@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<header th:fragment="header">
+    <head>
+        <link rel="stylesheet" th:href="@{/styles/header.css}">
+    </head>
+    <ul>
+        <li><h1 class="logo">BandMeetup</h1></li>
+        <li class="navbutton"><a href="/login" th:method="GET">Login</a> </li>
+    </ul>
+</header>
+<body>
+</body>
+</html>
