@@ -1,13 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Bandmeetup Wow</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <header>
     <div th:include="fragments/header :: header"> </div>
 </header>
 <body>
-    <p th:text="'Hello, ' + ${name} + '!'" />
+    <form method="GET" action="/login">
+        <input type="submit" value = "Login"/>
+    </form>
+    <form method="GET" action="/register">
+        <input type="submit" value = "Register"/>
+</form>
 </body>
 </html>
