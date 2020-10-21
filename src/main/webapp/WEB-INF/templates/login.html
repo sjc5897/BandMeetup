@@ -14,13 +14,16 @@
 <body>
     <div class="form">
         <form method="POST" action="/login">
-            <label for="uname">Username:</label>
-            <input id="uname" name="uname" type="text"><br>
+            <label for="uname">Email:</label>
+            <input id="uname" name="uname" type="text" required><br>
             <label for="pw">Password:</label>
-            <input id="pw" name="pw" type="password"><br>
+            <input id="pw" name="pw" type="password" required><br>
             <input type="submit" value="Login">
         </form>
-<!--        <input type="submit" action="/register" method="GET" value="Sign Up!"></input>-->
+        <form method="GET" action="/register">
+            <input type="submit" value="Sign Up!">
+        </form>
+
     </div>
 </body>
 </html>
