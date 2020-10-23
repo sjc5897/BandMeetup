@@ -1,7 +1,10 @@
 package com.bandmeetup.controller;
 
+import com.bandmeetup.services.RegistrationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * The Controller for the Registration Page
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Last Edit: 10/19/20
  */
 public class RegistrationController {
+    @Autowired
+    RegistrationService service;
     /**
      * Handles GET requests to the register page
      * @return String redirect to Register
@@ -21,6 +26,8 @@ public class RegistrationController {
         // TODO: Create a register page
         return "register";
     }
-    // TODO: Create a method to handle submission of registration form AND a service to register users.
-
+    @RequestMapping(value="/register", method = RequestMethod.POST)
+    public String handleRegister(@RequestParam(name="uname") String username, @RequestParam(name="password")String password, @RequestParam(name="accountT")String type){
+        return "register";
+    }
 }
