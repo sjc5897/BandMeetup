@@ -13,10 +13,8 @@ import java.util.Arrays;
  * Framework: Spring
  * Author: Stephen Cook <sjc5897@rit.edu>
  * Created: 10/16/20
- * Edited: 10/19/20
+ * Edited: 10/21/20
  */
-
-
 
 
 @SpringBootApplication
@@ -25,18 +23,5 @@ public class BandmeetupApplication {
     public static void main(String[] args) {
         SpringApplication.run(BandmeetupApplication.class, args);
     }
-
-//    @Bean
-//    public CommandLineRunner commandLineRunner(ApplicationContext ctx){
-//        return args -> {
-//            System.out.println("Let's inspect the beans provided by Spring Boot:");
-//
-//            String[] beanNames = ctx.getBeanDefinitionNames();
-//            Arrays.sort(beanNames);
-//            for (String beanName : beanNames) {
-//                System.out.println(beanName);
-//            }
-//        };
-//    }
 
 }

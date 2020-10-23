@@ -33,3 +33,9 @@ label {
     width: 50%;
     text-align: center;
 }
+.valid {
+    color: green;
+}
+.invalid{
+    color: red;
+}
