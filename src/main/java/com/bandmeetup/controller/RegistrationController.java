@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import static com.bandmeetup.security.Hasher.hashPass;
+
 /**
  * The Controller for the Registration Page
  * Language: Java 13
@@ -42,6 +48,8 @@ public class RegistrationController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String handleRegister(@RequestParam(name = "email") String email, @RequestParam(name = "username") String username,
                                   @RequestParam(name = "pw") String pw, @RequestParam(name = "accountT") String type, Model model) {
+
+        pw = hashPass(pw);
         String resp = service.register(email, username, pw, type);
         if(resp.contains("ERROR:")){
             model.addAttribute("error",true);
