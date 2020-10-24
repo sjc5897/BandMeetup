@@ -37,9 +37,11 @@ public class SQLiteConfig {
         }
     }
     public static boolean loginAuth(String email,String password) throws ClassNotFoundException {
+        //TODO: We need to have this return or query role for authentication purposes.
 
         // An example where er can verify login
         boolean flag = false;
+        //This will now query for only the email the user inputs
         String sql = "select Email, Password from USER WHERE Email=?;";
         Class.forName("org.sqlite.JDBC");
         try (Connection conn = connect();
