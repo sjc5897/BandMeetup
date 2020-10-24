@@ -17,6 +17,7 @@ public class User {
     private String pw;                      //User's plain text password
     private AccountTypeEnum userType;       //User's account type
 
+    // Methods
     /**
      * Constructor for User Object
      * @param email     String, user's email address
