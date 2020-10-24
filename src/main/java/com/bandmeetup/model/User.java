@@ -38,13 +38,15 @@ public class User {
      * Method for saving the user in the db
      * @return Boolean, represents success
      */
-    public boolean persistUser() {
+    public String persistUser() {
+        String resp;
         try{
-            SQLiteConfig.insert(this.email,this.name,this.pw,"musician");
+            resp = SQLiteConfig.insert_user(this.email,this.pw,this.userType.toString());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            resp = "ERROR: Unknown";
         }
-        return true;
+        return resp;
     }
 
 }
@@ -53,7 +55,7 @@ public class User {
  * Enum for the account types
  */
 enum AccountTypeEnum{
-    MUSICIAN,
-    VENUE,
-    ADMIN
+    Admin,
+    VenueManager,
+    Musician
 }

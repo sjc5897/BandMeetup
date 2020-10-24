@@ -13,6 +13,7 @@
 </header>
 <body>
     <div class="form">
+        <p th:if="${reg_success == True}" class="success-message">Registration Succesful, Please Sign In.</p>
         <form method="POST" action="/login">
             <label for="uname">Email:</label>
             <input id="uname" name="uname" type="text" required><br>

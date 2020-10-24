@@ -39,3 +39,15 @@ label {
 .invalid{
     color: red;
 }
+.error-message{
+     font-family: Roboto;
+     font-size: 20px;
+     color:red;
+     text-align: center;
+ }
+.success-message{
+    font-family: Roboto;
+    font-size: 20px;
+    color:red;
+    text-align: center;
+}

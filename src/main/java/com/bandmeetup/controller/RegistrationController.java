@@ -3,6 +3,7 @@ package com.bandmeetup.controller;
 import com.bandmeetup.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,8 +41,16 @@ public class RegistrationController {
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String handleRegister(@RequestParam(name = "email") String email, @RequestParam(name = "username") String username,
-                                  @RequestParam(name = "pw") String pw, @RequestParam(name = "accountT") String type) {
-        service.register(email, username, pw, type);
-        return "login";
+                                  @RequestParam(name = "pw") String pw, @RequestParam(name = "accountT") String type, Model model) {
+        String resp = service.register(email, username, pw, type);
+        if(resp.contains("ERROR:")){
+            model.addAttribute("error",true);
+            model.addAttribute("msg", resp);
+            return "register";
+        }
+        else{
+            model.addAttribute("reg_success", true);
+            return "login";
+        }
     }
 }

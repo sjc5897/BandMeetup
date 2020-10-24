@@ -22,7 +22,7 @@ public class RegistrationService {
      * @return Boolean representing success or failure
      * @throws ClassNotFoundException
      */
-    public boolean register(String email,String username, String pw, String type) {
+    public String register(String email,String username, String pw, String type) {
         User nuser = new User(email,username,pw,type);
         return nuser.persistUser();
     }
