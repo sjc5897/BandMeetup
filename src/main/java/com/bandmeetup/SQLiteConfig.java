@@ -22,6 +22,7 @@ public class SQLiteConfig {
 
 
         String sql = "INSERT INTO USER (Email, Password, UserType) VALUES(?,?,?)";
+
         Class.forName("org.sqlite.JDBC");
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -75,9 +76,12 @@ public class SQLiteConfig {
         }
         return flag;
     }
+
     public static void main(String[] args) throws Exception {
+
         boolean Pass =loginAuth("s@s","123456");
         System.out.println(Pass);
+
     }
 
 
