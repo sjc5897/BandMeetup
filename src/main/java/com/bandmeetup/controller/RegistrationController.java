@@ -2,6 +2,7 @@ package com.bandmeetup.controller;
 
 import com.bandmeetup.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * Created: 10/19/20
  * Last Edit: 10/24/20
  */
+@Controller
 public class RegistrationController {
     @Autowired
     RegistrationService service;
@@ -31,13 +33,13 @@ public class RegistrationController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String handleRegister(@RequestParam(name = "email") String email, @RequestParam(name = "username") String username,
-                                  @RequestParam(name = "password") String pw, @RequestParam(name = "accountT") String type) {
+                                  @RequestParam(name = "pw") String pw, @RequestParam(name = "accountT") String type) {
         try {
-           service.register(email, pw, type, username);
+           service.register(email, username, pw, type);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return "register";
         }
-        return "redirect:login";
+        return "login";
     }
 }

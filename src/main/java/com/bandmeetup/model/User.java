@@ -38,8 +38,12 @@ public class User {
      * @throws ClassNotFoundException
      */
     public boolean persistUser() throws ClassNotFoundException {
-        SQLiteConfig.insert(this.email,this.name,this.pw,this.userType.toString());
-        return true;
+        System.out.printf("%s,%s,%s,%s",
+                this.email,
+                this.name,
+                this.pw,
+                this.userType.toString());
+        return SQLiteConfig.insert(this.email,this.name,this.pw,"musician");
     }
 
 }
