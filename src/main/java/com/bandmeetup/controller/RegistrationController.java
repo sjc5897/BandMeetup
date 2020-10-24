@@ -12,22 +12,32 @@ import org.springframework.web.bind.annotation.RequestParam;
  * Framework: Spring
  * Author: Stephen Cook <sjc5897@rit.edu>
  * Created: 10/19/20
- * Last Edit: 10/19/20
+ * Last Edit: 10/24/20
  */
 public class RegistrationController {
     @Autowired
     RegistrationService service;
+
     /**
      * Handles GET requests to the register page
+     *
      * @return String redirect to Register
      */
-    @RequestMapping(value="/register", method = RequestMethod.GET)
-    public String displayRegistrationPage(){
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String displayRegistrationPage() {
         // TODO: Create a register page
         return "register";
     }
-    @RequestMapping(value="/register", method = RequestMethod.POST)
-    public String handleRegister(@RequestParam(name="uname") String username, @RequestParam(name="password")String password, @RequestParam(name="accountT")String type){
-        return "register";
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String handleRegister(@RequestParam(name = "email") String email, @RequestParam(name = "username") String username,
+                                  @RequestParam(name = "password") String pw, @RequestParam(name = "accountT") String type) {
+        try {
+           service.register(email, pw, type, username);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return "register";
+        }
+        return "redirect:login";
     }
 }
