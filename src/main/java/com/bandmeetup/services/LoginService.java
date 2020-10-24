@@ -1,5 +1,6 @@
 package com.bandmeetup.services;
 
+import com.bandmeetup.SQLiteConfig;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,7 +22,10 @@ public class LoginService {
      * @return Boolean of if the user is valid
      */
     public boolean validateUser(String uid, String password ){
-        // TODO: Implement validation for real
-        return uid.equals("Stephen") && password.equals("abc123");
+        try {
+            return SQLiteConfig.loginAuth(uid,password);
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
     }
 }

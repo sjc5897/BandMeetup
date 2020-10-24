@@ -14,6 +14,7 @@
 <body>
     <div class="form">
         <p th:if="${reg_success == True}" class="success-message">Registration Succesful, Please Sign In.</p>
+        <p th:if="${error == True}" class="error-message">Authentication unsuccessful, please try again. </p>
         <form method="POST" action="/login">
             <label for="uname">Email:</label>
             <input id="uname" name="uname" type="text" required><br>

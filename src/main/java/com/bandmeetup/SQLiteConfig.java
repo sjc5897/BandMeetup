@@ -40,25 +40,30 @@ public class SQLiteConfig {
 
         // An example where er can verify login
         boolean flag = false;
-
-        String sql = "select Email, Password from User;";
+        String sql = "select Email, Password from USER WHERE Email=?;";
         Class.forName("org.sqlite.JDBC");
         try (Connection conn = connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-
+                ps.setString(1,email);
             try {
                 ResultSet results = ps.executeQuery();
-
-                while (results.next()) {
-
-                    String Email = results.getString("Email");
-                    String Password =  results.getString("Password");
-                    System.out.println(Email);
-
-                    if ((email.equals(Email)) && (password.equals(Password))) {
-                        flag = true; }
-                    results.close();
+                if(results.next()) {
+                    flag = results.getString("Password").equals(password);
                 }
+                else{
+                    flag =  false;
+                }
+//                while (results.next()) {
+//
+//                    String Email = results.getString("Email");
+//                    String Password =  results.getString("Password");
+//                    System.out.println(Email);
+//
+//                    if ((email.equals(Email)) && (password.equals(Password))) {
+//                        flag = true; }
+//                    results.close();
+//                }
+                results.close();
             }catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
@@ -69,12 +74,8 @@ public class SQLiteConfig {
         return flag;
     }
     public static void main(String[] args) throws Exception {
-
         boolean Pass =loginAuth("s@s","123456");
         System.out.println(Pass);
-
-
-
     }
 
 
