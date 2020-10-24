@@ -2,6 +2,8 @@ package com.bandmeetup.model;
 
 import com.bandmeetup.SQLiteConfig;
 
+import java.sql.SQLException;
+
 /**
  * Model class used to represent a generic user
  * Language: Java 13
@@ -35,15 +37,14 @@ public class User {
     /**
      * Method for saving the user in the db
      * @return Boolean, represents success
-     * @throws ClassNotFoundException
      */
-    public boolean persistUser() throws ClassNotFoundException {
-        System.out.printf("%s,%s,%s,%s",
-                this.email,
-                this.name,
-                this.pw,
-                this.userType.toString());
-        return SQLiteConfig.insert(this.email,this.name,this.pw,"musician");
+    public boolean persistUser() {
+        try{
+            SQLiteConfig.insert(this.email,this.name,this.pw,"musician");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
 }
