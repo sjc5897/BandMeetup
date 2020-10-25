@@ -19,6 +19,40 @@ public class User {
     private String pw;                      //User's plain text password
     private AccountTypeEnum userType;       //User's account type
 
+    public String getEmail() {
+        return email;
+    }
+
+    public static void setEmail(String email) {
+        email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public static void setName(String name) {
+        name = name;
+    }
+
+
+    public String getPw() {
+        return pw;
+    }
+
+    public static void setPw(String pw) {
+        pw = pw;
+    }
+
+
+
+    public AccountTypeEnum getUserType() {
+        return userType;
+    }
+    public void setUserType(AccountTypeEnum userType) {
+        this.userType = userType;
+    }
+
     // Methods
     /**
      * Constructor for User Object
@@ -32,6 +66,10 @@ public class User {
         this.name = name;
         this.pw = pw;
         this.userType = AccountTypeEnum.valueOf(userType);
+    }
+
+    public User() {
+
     }
 
     /**
