@@ -26,10 +26,13 @@ public class LoginService {
      * @return Boolean of if the user is valid
      */
     public boolean validateUser(String uid, String password ) {
+        // Looks for sent uid in the user database
         Optional<User> user = uDao.get(uid);
+        // We get empty if no user found
         if (user.isEmpty()) {
             return false;
         }
+        // Otherwise we want to authenticate user
         return user.get().authenticate(password);
     }
 }

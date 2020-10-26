@@ -60,6 +60,11 @@ public class User {
         this.userType = AccountTypeEnum.valueOf(userType);
     }
 
+    /**
+     * Simple method for authenticating user password matches
+     * @param pw  String, user inputted passwords
+     * @return    Boolean, is authenticated.
+     */
     public boolean authenticate(String pw){
         return this.pw.equals(pw);
     }
