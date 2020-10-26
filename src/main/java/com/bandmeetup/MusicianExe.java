@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class MusicionExe implements MusicianDAO{
+public class MusicianExe implements MusicianDAO{
     @Override
     public Musician extractUser(ResultSet rs) throws SQLException {
 
