@@ -34,15 +34,14 @@ public class RegistrationController {
     /**
      * Handles the Post Requests to /register attempts to create and persist a new user
      * @param email     String, user's email address
-     * @param username  String, user's username
      * @param pw        String, user's password
      * @param type      String, user's account type
      * @return String redirect to relevant page
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String handleRegister(@RequestParam(name = "email") String email, @RequestParam(name = "username") String username,
-                                  @RequestParam(name = "pw") String pw, @RequestParam(name = "accountT") String type, Model model) {
-        String resp = service.register(email, username, pw, type);
+    public String handleRegister(@RequestParam(name = "email") String email, @RequestParam(name = "pw") String pw
+                                , @RequestParam(name = "accountT") String type, Model model) {
+        String resp = service.register(email, pw, type);
         if(resp.contains("ERROR:")){
             model.addAttribute("error",true);
             model.addAttribute("msg", resp);

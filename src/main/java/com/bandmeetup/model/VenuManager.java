@@ -5,7 +5,7 @@ public class VenuManager extends User{
     private String description;
 
     public VenuManager(String email, String name, String pw, String userType, String location, String description){
-        super(email,name, pw, userType);
+        super(email, pw, userType);
         this.location = location;
         this.description = description;
 
