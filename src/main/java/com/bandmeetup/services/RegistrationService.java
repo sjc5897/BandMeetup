@@ -26,7 +26,7 @@ public class RegistrationService {
      * @throws ClassNotFoundException
      */
     public String register(String email,String username, String pw, String type) {
-        User n_user = new User(email,username,pw,type);
+        User n_user = new User(email,pw,type);
         return uDao.save(n_user);
     }
 }

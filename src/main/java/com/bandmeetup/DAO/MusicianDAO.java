@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public class MusicianDAO implements Dao<Musician> {
 
-    @Override
-    public Optional<Musician> get(long id) {
+
+    public Optional<Musician> get(String email) {
         return Optional.empty();
     }
 

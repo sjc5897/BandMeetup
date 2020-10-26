@@ -2,9 +2,8 @@ package com.bandmeetup.DAO;
 
 import com.bandmeetup.model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,14 +18,56 @@ import java.util.Optional;
 public class UserDAO implements Dao<User> {
 
 
-    @Override
-    public Optional<User> get(long id) {
-        return Optional.empty();
+    public Optional<User> get(String email) {
+        String sql = "SELECT * FROM USER WHERE Email=?;";
+        try {
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,email);
+            try{
+                ResultSet result = preparedStatement.executeQuery();
+                if(result.next()){
+                    User u = new User(result.getString("Email"),
+                                      result.getString("Password"),
+                                      result.getString("UserType"));
+                    return Optional.of(u);
+                }
+                else{
+                    return Optional.empty();
+                }
+            }
+            catch (SQLException ex){
+                return Optional.empty();
+            }
+        }
+        catch(SQLException ex){
+            return Optional.empty();
+        }
+
     }
 
     @Override
     public List<User> getAll() {
-        return null;
+        String sql = "SELECT * FROM USER";
+        ArrayList<User> users = new ArrayList<User>();
+        try{
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            try{
+                ResultSet result = preparedStatement.executeQuery();
+                if(result.next()){
+                    users.add(new User(result.getString("Email"),
+                                       result.getString("Password"),
+                                       result.getString("UserType")));
+                }
+            }catch (SQLException ex){
+                return users;
+            }
+        }
+        catch (SQLException ex){
+            return users;
+        }
+        return users;
     }
 
     /**

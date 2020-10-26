@@ -22,7 +22,7 @@ public class Musician extends User{
      * Custom constructor
      */
     public Musician(String email, String name, String pw, String userType, Status status, ArrayList<String> instruments, ArrayList<String> Genre, String location, String bio){
-        super(email,name, pw, userType);
+        super(email, pw, userType);
         this.status = status;
         this.instruments = new ArrayList<String>();
         this.Genre = new ArrayList<String>();

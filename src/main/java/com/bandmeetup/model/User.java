@@ -16,17 +16,12 @@ import java.sql.SQLException;
 public class User {
     // Attributes
     private String email;                   //User's email address
-    private String name;                    //User's username/name
     private String pw;                      //User's plain text password
     private AccountTypeEnum userType;       //User's account type
 
     // Getters
     public String getEmail() {
         return email;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getPw() {
@@ -40,10 +35,6 @@ public class User {
     // Setters
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setPw(String pw) {
@@ -60,15 +51,17 @@ public class User {
      * Constructor for User Object
      *
      * @param email    String, user's email address
-     * @param name     String, user's username
      * @param pw       String, user's password
      * @param userType String, user's account type
      */
-    public User(String email, String name, String pw, String userType) {
+    public User(String email, String pw, String userType) {
         this.email = email;
-        this.name = name;
         this.pw = pw;
         this.userType = AccountTypeEnum.valueOf(userType);
+    }
+
+    public boolean authenticate(String pw){
+        return this.pw.equals(pw);
     }
 }
 /**
