@@ -186,6 +186,121 @@ body{
     border-radius: 3px;
 }
 
+/* REGISTRATION BLOCK */
+
+.reg-wrapper{
+
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 0 20px;
+    width: 100%;
+}
+
+.reg-form{
+    width: 100%;
+    max-width: 500px;
+    background: gainsboro;
+    margin: 0 auto;
+    height: 650px;
+    border-radius: 5px;
+    padding-bottom: 30px;
+    box-shadow: 0 2px 5px 0 rgba(225,225,225,0.16), 0 2px 10px 0 rgba(225,225,225,0.12);
+}
+
+.reg-form .title-section{
+    height: 45%;
+    position: relative;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    overflow: hidden;
+}
+
+.reg-form .title-section:before{
+    content: "";
+    position: absolute;
+    top: -85%;
+    width: 500px;
+    height: 500px;
+    border-radius:0% ;
+    background: url("music4.jpg") no-repeat top center;
+    background-size: cover;
+}
+
+/*
+.reg-form .title-section h2{
+    position: relative;
+    padding-top: 8%;
+    text-transform: uppercase;
+    font-size: 2.5em;
+    text-align: center;
+    color: whitesmoke;
+}
+*/
+
+.reg-form .reg-section{
+    width: 100%;
+    height: 55%;
+    padding: 0px 80px;
+    padding-bottom: 0px;
+}
+
+.reg-form .reg-section .input-fields{
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.reg-form .reg-section .input-fields .input{
+    width: 53%;
+    position: relative;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 3px;
+    font-size: 1em;
+}
+
+.reg-form .reg-section input[type=text]:focus{
+    background: #fff;
+    opacity: 100%;
+    outline: 2px solid rebeccapurple;
+}
+
+
+.reg-form .reg-section .input-fields a{
+    position: relative;
+    color: #212121;
+    right: 55px;
+    text-transform: capitalize;
+    font-size: 0.75em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.reg-form .reg-section .input-fields .fas{
+    position: absolute;
+    color: #212121;
+    left: 12px;
+    top: 15px;
+    font-size: 0.75em;
+    z-index: 1;
+}
+
+.btn{
+    width: 61%;
+    align-items: center;
+    background: #212121;
+    padding: 10px;
+    margin-top: 5px;
+    text-align: center;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    color: whitesmoke;
+    border-radius: 3px;
+}
+
+/* SUBMIT BUTTON */
+
 #submit {
     background-color: #212121;
     -moz-border-radius: 5px;

@@ -9,7 +9,7 @@
     <div th:include="fragments/header :: header"> </div>
 </header>
 <body>
-    <div class="form">
+   <!-- <div class="form">
         <form method="POST" action="/register">
             <table style="width:100%">
                 <tr th:if="${error == True}">
@@ -51,7 +51,57 @@
         <div id="password_conf" style="display:none">
             <p id="match" class="invalid">Passwords must match </p>
         </div>
-    </div>
+    </div> !-- Form  -->
+
+   <div class="container">
+
+       <div class="reg-wrapper">
+           <div class="reg-form">
+               <div class="title-section">
+                   <h2>Login form</h2>
+               </div>
+               <form method="POST" action="/login">
+                   <div class="reg-section">
+                       <div class="input-fields">
+                           <i class="fas fa-user"></i>
+                           <input name="uname" type="text" class="input" placeholder="Full Name">
+                       </div>
+
+                       <div class="input-fields">
+                           <i class="fas fa-envelope"></i>
+                           <input name="email" type="text" class="input" placeholder="Email">
+                       </div>
+
+                       <div class="input-fields">
+                           <i class="fas fa-user"></i>
+                           <input name="uname" type="text" class="input" placeholder="Username">
+                       </div>
+
+                       <div class="input-fields">
+                           <i class="fas fa-unlock-alt"></i>
+                           <input class="input" name="pw" type="password" placeholder="Password">
+                       </div>
+
+                       <div class="input-fields">
+                           <i class="fas fa-user"></i>
+                           <input name="accType" type="text" class="input" placeholder="Account Type">
+                       </div>
+
+                       <div class="input-fields">
+                           <i class="fas fa-calendar"></i>
+                           <input name="dob" type="text" class="input" placeholder="Date of Birth: MM/DD/YYYY">
+                       </div>
+
+                       <div class="btn"><input id="submit" type="submit" name="reg-form" value="Registration"> </div>
+                   </div>
+               </form>
+           </div>
+       </div>
+
+   </div>
+    <footer >
+        <div th:include="fragments/footer :: footer"> </div>
+    </footer>
     <script>
         var password = document.getElementById("pw");
         var passwordC = document.getElementById("pwC");
