@@ -1,7 +1,9 @@
 package com.bandmeetup.services;
 
+import com.bandmeetup.DAO.Dao;
 import com.bandmeetup.DAO.UserDAO;
 import com.bandmeetup.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,8 +16,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RegistrationService {
-    UserDAO uDao = new UserDAO();
-
+    @Autowired
+    private Dao<User> userDao;
     /**
      * Service used to handle registration
      * @param email     String, user's email address
@@ -26,7 +28,7 @@ public class RegistrationService {
      */
     public String register(String email, String pw, String type) {
         User n_user = new User(email,pw,type);
-        return uDao.save(n_user);
+        return userDao.save(n_user);
     }
 }
 

@@ -1,5 +1,6 @@
 package com.bandmeetup.DAO;
 
+import com.bandmeetup.model.Musician;
 import com.bandmeetup.model.User;
 
 import java.util.List;
@@ -15,8 +16,12 @@ import java.util.Optional;
  * Last Edit: 10/29/2020
  */
 public interface Dao <T> {
+
+    Optional<T> get(String email);
     List<T> getAll();
     String save(T t);
     void update(T t);
     void delete(T t);
+
+
 }

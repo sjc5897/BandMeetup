@@ -1,8 +1,10 @@
 package com.bandmeetup.services;
 
+import com.bandmeetup.DAO.Dao;
 import com.bandmeetup.DAO.UserDAO;
 import com.bandmeetup.SQLiteConfig;
 import com.bandmeetup.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,7 +20,8 @@ import java.util.Optional;
 
 @Service
 public class LoginService {
-    UserDAO uDao = new UserDAO();
+    @Autowired
+    private Dao<User> userDao;
     /**
      * The method for validating a user, currently stubbed
      * @param uid: String of the inputted UserID
@@ -27,7 +30,7 @@ public class LoginService {
      */
     public boolean validateUser(String uid, String password ) {
         // Looks for sent uid in the user database
-        Optional<User> user = uDao.get(uid);
+        Optional<User> user = userDao.get(uid);
         // We get empty if no user found
         if (user.isEmpty()) {
             return false;

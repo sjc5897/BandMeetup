@@ -1,6 +1,7 @@
 package com.bandmeetup.DAO;
 
 import com.bandmeetup.model.User;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,13 +16,16 @@ import java.util.Optional;
  * Created: 10/29/2020
  * Last Edit: 10/29/2020
  */
+@Component
 public class UserDAO implements Dao<User> {
+
 
     /**
      * Gets a user object from the database via primary key, email address
      * @param email String, requested email address
      * @return      Optional, Either User Object or Empty.
      */
+    @Override
     public Optional<User> get(String email) {
         // Sql statement for prepared statement
         String sql = "SELECT * FROM USER WHERE Email=?;";
