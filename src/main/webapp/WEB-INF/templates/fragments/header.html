@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <header th:fragment="header">
     <head>
-        <link href="../../css/header.css"  th:href="@{/css/header.css}" rel="stylesheet" media="all">
+        <link  th:href="@{/css/header.css?<?php echo rand();?>}" rel="stylesheet" media="all">
     </head>
         <div class="nav-wrapper">
             <div class="left-side">
