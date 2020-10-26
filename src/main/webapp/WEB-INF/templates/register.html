@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Bandmeetup Wow</title>
+    <title>Bandmeetup Wow: Register</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{/css/forms.css}" rel="stylesheet"/>
 </head>
@@ -60,7 +60,7 @@
                <div class="title-section">
                    <h2>Login form</h2>
                </div>
-               <form method="POST" action="/login">
+               <form method="POST" action="/register">
                    <div class="reg-section">
                        <div class="input-fields">
                            <i class="fas fa-user"></i>
@@ -69,7 +69,7 @@
 
                        <div class="input-fields">
                            <i class="fas fa-envelope"></i>
-                           <input name="email" type="text" class="input" placeholder="Email">
+                           <input class="input" id="email" name="email" type="email" placeholder="example@email.com" required>
                        </div>
 
                        <div class="input-fields">
@@ -79,12 +79,22 @@
 
                        <div class="input-fields">
                            <i class="fas fa-unlock-alt"></i>
-                           <input class="input" name="pw" type="password" placeholder="Password">
+                           <input class="input" id="pw" name="pw" type="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Password" required>
+                       </div>
+                       <div class="input-fields">
+                           <i class="fas fa-unlock-alt"></i>
+                           <input class="input" id="pwC" name="pwC" type="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Confirm Password" required>
                        </div>
 
                        <div class="input-fields">
                            <i class="fas fa-user"></i>
-                           <input name="accType" type="text" class="input" placeholder="Account Type">
+                           <i class="fas fa-user"></i>
+                           <!-- <input name="accType" type="text" class="input" placeholder="Account Type"> -->
+                           <select id="accountT" name="accountT" required>
+                               <option class="opt" value="SelectAccountType">Select Account Type</option>
+                               <option class="opt" value="Musician">Musician</option>
+                               <option class="opt" value="VenueManager">Venue</option>
+                           </select>
                        </div>
 
                        <div class="input-fields">

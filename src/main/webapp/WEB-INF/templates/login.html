@@ -1,11 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Bandmeetup Wow</title>
+    <title>Bandmeetup Wow: Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{/css/forms.css}" rel="stylesheet"/>
 
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 </head>
 <style>
@@ -15,7 +14,10 @@
     <div th:include="fragments/header :: header"> </div>
 </header>
 <body>
-    <!-- <div class="form">
+    <!--
+     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <div class="form">
         <p th:if="${reg_success == True}" class="success-message">Registration Succesful, Please Sign In.</p>
         <p th:if="${error == True}" class="error-message">Authentication unsuccessful, please try again. </p>
         <form method="POST" action="/login">
