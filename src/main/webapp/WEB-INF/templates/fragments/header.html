@@ -2,9 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <header th:fragment="header">
     <head>
-        <link th:href="@{/css/header.css}" rel="stylesheet">
+        <link href="../../css/header.css"  th:href="@{/css/header.css}" rel="stylesheet" media="all">
     </head>
-    <div class="wrapper">
         <div class="nav-wrapper">
             <div class="left-side">
                 <div class="nav-link-wrapper">
@@ -13,34 +12,14 @@
             </div>
 
             <div class="right-side">
-                <!-- <div class="nav-link-wrapper">
-                     <a href="profile.html">HOME</a>
-                 </div>
-
-                 <div class="nav-link-wrapper">
-                     <a href="#">UPLOAD</a>
-                 </div>
-
-                 <div class="nav-link-wrapper">
-                     <a href="profile.html">INVITE</a>
-                 </div>
-
-                 <div class="nav-link-wrapper">
-                     <a href="#">CHAT</a>
-                 </div>--->
                 <div class="nav-link-wrapper">
                     <a href="registration.html">SIGN UP</a>
                 </div>
                 <div class="nav-link-wrapper">
                     <a href="login.html">LOGIN</a>
                 </div>
-                <!---<div class="nav-link-wrapper">
-                    <a href="profile.html">PROFILE</a>
-                </div>-->
             </div>
         </div>
-
-    </div>
 </header>
 <body>
 </body>

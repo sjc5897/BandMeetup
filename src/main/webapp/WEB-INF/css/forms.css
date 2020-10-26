@@ -57,7 +57,7 @@ label {
 body{
     margin: 0;
     background: ghostwhite;
-    background: url("../assets/music3.jpg") no-repeat top center;
+    background: gray;/*url("../assets/music3.jpg") no-repeat top center;*/
     opacity: 70%;
     height: 100%;
     position: relative;
