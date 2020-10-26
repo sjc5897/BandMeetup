@@ -39,7 +39,7 @@
                 <div class="title-section">
                     <h2>Login form</h2>
                 </div>
-                <form method="POST" action="/login">
+                <form method="POST" action="/login" onclick="/profile.html">
                     <div class="login-section">
 
                         <div class="input-fields">
@@ -52,7 +52,6 @@
                             <input class="input" name="pw" type="password" placeholder="Password">
                             <a href="#">Forget?</a>
                         </div>
-
                         <div class="btn"><input id="submit" type="submit" name="Login" value="Login"> </div>
                     </div>
                 </form>
@@ -63,5 +62,10 @@
     <footer >
     <div th:include="fragments/footer :: footer"> </div>
     </footer>
+
+<script>
+
+</script>
+
 </body>
 </html>
