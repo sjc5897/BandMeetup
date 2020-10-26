@@ -12,7 +12,7 @@
     <div th:include="fragments/header :: header"> </div>
 </header>
 <body>
-    <div class="form">
+    <!-- <div class="form">
         <p th:if="${reg_success == True}" class="success-message">Registration Succesful, Please Sign In.</p>
         <p th:if="${error == True}" class="error-message">Authentication unsuccessful, please try again. </p>
         <form method="POST" action="/login">
@@ -26,7 +26,35 @@
             <input type="submit" value="Sign Up!">
         </form>
 
-    </div>
+    </div> -->
+
+    <div class="container">
+        <div class="login-wrapper">
+            <div class="login-form">
+                <div class="title-section">
+                    <h2>Login form</h2>
+                </div>
+                <form method="POST" action="/login">
+                    <div class="login-section">
+
+                        <div class="input-fields">
+                            <i class="fas fa-user"></i>
+                            <input name="uname" type="text" class="input" placeholder="Username">
+                        </div>
+
+                        <div class="input-fields">
+                            <i class="fas fa-unlock-alt"></i>
+                            <input class="input" name="pw" type="password" placeholder="Password">
+                            <a href="#">Forget?</a>
+                        </div>
+
+                        <div class="btn"><input id="submit" type="submit" name="Login" value="Login"> </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!-- container -->
+
     <footer >
     <div th:include="fragments/footer :: footer" > </div>
     </footer>
