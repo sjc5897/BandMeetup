@@ -45,9 +45,11 @@ public class LogController {
         if (service.validateUser(name,pw)){
             model.addAttribute("name", name);
             model.addAttribute("password", pw);
+            // TODO: We need some robust role system
             return "home";
         }
         else{
+            model.addAttribute("error", true);
             return "login";
         }
     }
