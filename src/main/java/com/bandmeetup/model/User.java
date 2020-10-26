@@ -1,5 +1,6 @@
 package com.bandmeetup.model;
 
+import com.bandmeetup.DAO.UserDAO;
 import com.bandmeetup.SQLiteConfig;
 
 import java.sql.SQLException;
@@ -19,76 +20,57 @@ public class User {
     private String pw;                      //User's plain text password
     private AccountTypeEnum userType;       //User's account type
 
+    // Getters
     public String getEmail() {
         return email;
-    }
-
-    public static void setEmail(String email) {
-        email = email;
     }
 
     public String getName() {
         return name;
     }
 
-    public static void setName(String name) {
-        name = name;
-    }
-
-
     public String getPw() {
         return pw;
     }
 
-    public static void setPw(String pw) {
-        pw = pw;
+    public String getUserType() {
+        return userType.toString();
     }
 
-
-
-    public AccountTypeEnum getUserType() {
-        return userType;
+    // Setters
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+
     public void setUserType(AccountTypeEnum userType) {
         this.userType = userType;
     }
 
     // Methods
+
     /**
      * Constructor for User Object
-     * @param email     String, user's email address
-     * @param name      String, user's username
-     * @param pw        String, user's password
-     * @param userType  String, user's account type
+     *
+     * @param email    String, user's email address
+     * @param name     String, user's username
+     * @param pw       String, user's password
+     * @param userType String, user's account type
      */
-    public User(String email, String name, String pw, String userType){
+    public User(String email, String name, String pw, String userType) {
         this.email = email;
         this.name = name;
         this.pw = pw;
         this.userType = AccountTypeEnum.valueOf(userType);
     }
-
-    public User() {
-
-    }
-
-    /**
-     * Method for saving the user in the db
-     * @return Boolean, represents success
-     */
-    public String persistUser() {
-        String resp;
-        try{
-            resp = SQLiteConfig.insert_user(this.email,this.pw,this.userType.toString());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            resp = "ERROR: Unknown";
-        }
-        return resp;
-    }
-
 }
-
 /**
  * Enum for the account types
  */

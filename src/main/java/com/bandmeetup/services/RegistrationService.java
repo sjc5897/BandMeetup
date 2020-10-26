@@ -1,5 +1,6 @@
 package com.bandmeetup.services;
 
+import com.bandmeetup.DAO.UserDAO;
 import com.bandmeetup.model.User;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RegistrationService {
+    UserDAO uDao = new UserDAO();
+
     /**
      * Service used to handle registration
      * @param email     String, user's email address
@@ -23,8 +26,8 @@ public class RegistrationService {
      * @throws ClassNotFoundException
      */
     public String register(String email,String username, String pw, String type) {
-        User nuser = new User(email,username,pw,type);
-        return nuser.persistUser();
+        User n_user = new User(email,username,pw,type);
+        return uDao.save(n_user);
     }
 }
 
