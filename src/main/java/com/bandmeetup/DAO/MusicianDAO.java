@@ -147,7 +147,7 @@ public class MusicianDAO implements Dao<Musician> {
 
     @Override
     public void delete(Musician musician) {
-        String sql = "DELETE Musician WHERE Email="+musician.getEmail()+";";
+        String sql = "DELETE FROM Musician where Email="+musician.getEmail()+";" +" DELETE FROM User where Email="+musician.getEmail()+";";
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
