@@ -130,7 +130,7 @@ public class VenuManagerDAO implements Dao<VenuManager> {
 
     @Override
     public void delete(VenuManager venumanager) {
-        String sql = "DELETE Venumanager WHERE Email="+venumanager.getEmail()+";";
+        String sql = "DELETE Venumanager WHERE Email="+venumanager.getEmail()+";"+"DELETE FROM User where Email ="+venumanager.getEmail()+";";
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
