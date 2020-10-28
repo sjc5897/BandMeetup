@@ -9,46 +9,6 @@
     <div th:include="fragments/header :: header"> </div>
 </header>
 <body>
-   <!-- <div class="form">
-        <form method="POST" action="/register">
-            <table style="width:100%">
-                <tr th:if="${error == True}">
-                    <td th:text="${msg}" class="error-message"></td>
-                </tr>
-                <tr>
-                    <td><label for="email">Email:</label></td>
-                    <td><input id="email" name="email" type="email" required></td>
-                </tr>
-                <tr>
-                    <td><label for="pw">Password:</label></td>
-                    <td><input id="pw" name="pw" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></td>
-                </tr>
-               <tr>
-                   <td><label for="pwC">Confirm Password:</label></td>
-                   <td><input id="pwC" name="pwC" type="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></td>
-               </tr>
-                <tr>
-                    <td><label for="accountT">Account Type: </label></td>
-                    <td><select id="accountT" name="accountT" required>
-                        <option value="Musician">Musician</option>
-                        <option value="VenueManager">Venue</option>
-                    </select></td>
-                </tr>
-            </table>
-            <input type="submit" value="Submit">
-        </form>
-        <div id="password_crit" style="display:none">
-            <h3>Password must contain the following</h3>
-            <p id="lower" class="invalid">A <b>lowercase</b> letter</p>
-            <p id="capital" class="invalid">A <b>capital</b> letter</p>
-            <p id="number" class="invalid">A <b>number</b></p>
-            <p id="length" class="invalid"> Minimum <b>8 Charaters</b></p>
-        </div>
-        <div id="password_conf" style="display:none">
-            <p id="match" class="invalid">Passwords must match </p>
-        </div>
-    </div> !-- Form  -->
-
    <div class="container" id="container-reg">
 
        <div class="reg-wrapper" id="regWrapper">
@@ -98,7 +58,7 @@
                            <input name="dob" type="text" class="input" placeholder="Date of Birth: MM/DD/YYYY">
                        </div>
 
-                       <div class="btn"><input id="submit" type="submit" name="reg-form" value="Registration"> </div>
+                       <div class="btn"><form method="get" action="/login"><input id="submit" type="submit" name="reg-form" value="Registration"></form></div>
                    </div>
                </form>
 
@@ -117,13 +77,6 @@
        </div>
 
    </div>
-
-   <div >
-       <footer class="footer">
-           &#169; Group 4 Collaborative Software Development Team
-       </footer>
-   </div>
-
 
    </div>
     <footer >
