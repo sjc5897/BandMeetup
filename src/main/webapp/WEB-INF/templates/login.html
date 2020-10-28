@@ -3,7 +3,7 @@
 <head>
     <title>Bandmeetup Wow: Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/forms.css}" rel="stylesheet"/>
+    <link th:href="@{/css/forms.css?<?php echo rand();?>}" rel="stylesheet"/>
 
 
 </head>
@@ -39,7 +39,7 @@
                 <div class="title-section">
                     <h2>Login form</h2>
                 </div>
-                <form method="POST" action="/profile" onclick="/profile.html">
+                <form method="get" action="/profile">
                     <div class="login-section">
 
                         <div class="input-fields">
@@ -52,7 +52,7 @@
                             <input class="input" name="pw" type="password" placeholder="Password">
                             <a href="#">Forget?</a>
                         </div>
-                        <div class="btn"><a href="profile.html"><input id="submit" type="submit" name="Login" value="Login"></a></div>
+                        <div class="btn"><input id="submit" type="submit" name="Login" value="Login"></div>
                     </div>
                 </form>
             </div>

@@ -3,7 +3,7 @@
 <head>
     <title>Bandmeetup Wow: Register</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/forms.css}" rel="stylesheet"/>
+    <link th:href="@{/css/forms.css?<?php echo rand();?>}" rel="stylesheet"/>
 </head>
 <header>
     <div th:include="fragments/header :: header"> </div>
@@ -58,9 +58,9 @@
        <div class="reg-wrapper" id="regWrapper">
            <div class="reg-form" id="regForm">
                <div class="title-section">
-                   <h2>Login form</h2>
+                   <h2>Registration Form</h2>
                </div>
-               <form method="POST" action="/register">
+               <form method="get" action="/login">
                    <div class="reg-section" id="reg_sec">
                        <div class="input-fields">
                            <i class="fas fa-user"></i>
@@ -156,6 +156,11 @@
     passwordC.onfocus = function(){
         document.getElementById("password_conf").style.display = "block";
         document.getElementById("password_conf").style.textAlign = "center";
+         passwordC.onclick = function(){
+            document.getElementById("regForm").style.paddingBottom = "120px";
+            document.getElementById("container-reg").style.minHeight = "130vh";
+            document.getElementById("regWrapper").style.top = "45%";
+        };
     };
     password.onblur= function(){
         document.getElementById("password_crit").style.display = "none";
