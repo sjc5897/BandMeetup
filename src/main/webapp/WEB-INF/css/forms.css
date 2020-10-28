@@ -4,7 +4,7 @@
 body{
     margin: 0;
     background: ghostwhite;
-    background: url("/assets/music3.jpg") no-repeat top center;
+    background: url("http://localhost:8080/webapp/assets/music3.jpg") no-repeat top center;
     opacity: 70%;
     height: 100%;
     position: relative;
