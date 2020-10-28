@@ -1,5 +1,6 @@
 package com.bandmeetup.model;
 
+import com.bandmeetup.DAO.UserDAO;
 import com.bandmeetup.SQLiteConfig;
 
 import java.sql.SQLException;
@@ -15,42 +16,59 @@ import java.sql.SQLException;
 public class User {
     // Attributes
     private String email;                   //User's email address
-    private String name;                    //User's username/name
     private String pw;                      //User's plain text password
     private AccountTypeEnum userType;       //User's account type
 
+    // Getters
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPw() {
+        return pw;
+    }
+
+    public String getUserType() {
+        return userType.toString();
+    }
+
+    // Setters
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+
+    public void setUserType(AccountTypeEnum userType) {
+        this.userType = userType;
+    }
+
     // Methods
+
     /**
      * Constructor for User Object
-     * @param email     String, user's email address
-     * @param name      String, user's username
-     * @param pw        String, user's password
-     * @param userType  String, user's account type
+     *
+     * @param email    String, user's email address
+     * @param pw       String, user's password
+     * @param userType String, user's account type
      */
-    public User(String email, String name, String pw, String userType){
+    public User(String email, String pw, String userType) {
         this.email = email;
-        this.name = name;
         this.pw = pw;
         this.userType = AccountTypeEnum.valueOf(userType);
     }
 
     /**
-     * Method for saving the user in the db
-     * @return Boolean, represents success
+     * Simple method for authenticating user password matches
+     * @param pw  String, user inputted passwords
+     * @return    Boolean, is authenticated.
      */
-    public String persistUser() {
-        String resp;
-        try{
-            resp = SQLiteConfig.insert_user(this.email,this.pw,this.userType.toString());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            resp = "ERROR: Unknown";
-        }
-        return resp;
+    public boolean authenticate(String pw){
+        return this.pw.equals(pw);
     }
-
 }
-
 /**
  * Enum for the account types
  */
