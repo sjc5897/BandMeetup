@@ -1,4 +1,4 @@
-package com.bandmeetup;
+package com.bandmeetup.DAO;
 
 import java.sql.*;
 
