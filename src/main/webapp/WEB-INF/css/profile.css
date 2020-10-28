@@ -32,6 +32,7 @@ body{
 .profile-section-wrapper{
     margin: 0 200px;
     padding: 40px;
+    top: 40%;
     background-color: black;
     font-family: "poppins",sans-serif;
 }

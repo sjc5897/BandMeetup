@@ -3,65 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Name's Profile</title>
-    <link th:href="@{/css/profile.css}" rel="stylesheet"/>
+    <link th:href="@{/css/profile.css?<?php echo rand();?>}" rel="stylesheet"/>
+    <link th:href="@{/css/forms.css?<?php echo rand();?>}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 </head>
 <header>
-    <div th:include="fragments/header :: header"> </div>
+    <div th:include="fragments/header :: header1"> </div>
 </header>
 <body>
 
 <div class="container">
-<div class="wrapper">
-    <div class="nav-wrapper">
-        <div class="left-side">
-            <div class="nav-link-wrapper">
-                <a class="title" href="#">BandMeetup</a>
-            </div>
-        </div>
-
-        <div class="right-side">
-            <div class="nav-link-wrapper">
-                <a href="profile.html">HOME</a>
-            </div>
-
-            <div class="nav-link-wrapper">
-                <a href="#">UPLOAD</a>
-            </div>
-
-            <div class="nav-link-wrapper">
-                <a href="profile.html">INVITE</a>
-            </div>
-
-            <div class="nav-link-wrapper">
-                <a href="personal.html">CHAT</a>
-            </div>
-            <!-- <div class="nav-link-wrapper">
-                 <a href="index.html">SIGN UP</a>
-             </div> -->
-            <div class="nav-link-wrapper">
-                <a href="login.html">LOG OUT</a>
-            </div>
-            <div class="nav-link-wrapper">
-                <a href="profile.html">PROFILE</a>
-            </div>
-        </div>
-    </div>
-
-</div>
 
 <!-- Profile -->
+    <form action="/profile" method="get" enctype="multipart/form-data">
 <div class="profile-section-wrapper">
     <div class="profile-header">
 
         <!-- Trying to upload Profile Picture -->
-        <form action="" method="POST" enctype="multipart/form-data"></form>
+
         <div class="profile-img">
-            <img src="profile1.jpg" width="250" alt="Profile"/>
+            <img src="../assets/profile1.jpg" width="250" alt="Profile"/>
             <input type="file" name="profile-pic" id="profile-pic" class="form-control">
         </div>
-        </form>
+
 
         <div class="profile-nav-info">
             <h3 class="user-name">Jerry Code</h3>
@@ -76,7 +41,7 @@
             </div> <!-- .notification -->
         </div> <!-- .profile-option -->
     </div> <!-- .profile-header -->
-
+    </form>
     <div class="main-bd">
 
         <div class="profile-left-side">
@@ -196,7 +161,8 @@
 
     </div>  <!-- .main-bd -->
 </div> <!-- .profile-section-wrapper -->
-</div>
+</form>
+</div><!-- Container -->
 <footer >
     <div th:include="fragments/footer :: footer"> </div>
 </footer>
