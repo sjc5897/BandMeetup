@@ -58,7 +58,7 @@ body{
     width: 500px;
     height: 500px;
     border-radius:50% ;
-    /*background: url("resources/assets/music4.png") no-repeat top center;*/
+    background: url("../resources/music4.png") no-repeat top center;
     background-size: cover;
 }
 
