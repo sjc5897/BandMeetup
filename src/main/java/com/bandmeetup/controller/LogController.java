@@ -46,7 +46,7 @@ public class LogController {
             model.addAttribute("name", name);
             model.addAttribute("password", pw);
             // TODO: We need some robust role system
-            return "home";
+            return "profile";
         }
         else{
             model.addAttribute("error", true);

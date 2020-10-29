@@ -1,121 +1,170 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Bandmeetup Wow</title>
+    <title>Bandmeetup Wow: Register</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/forms.css}" rel="stylesheet"/>
+    <link th:href="@{/css/forms.css?<?php echo rand();?>}" rel="stylesheet"/>
 </head>
 <header>
     <div th:include="fragments/header :: header"> </div>
 </header>
 <body>
-    <div class="form">
-        <form method="POST" action="/register">
-            <table style="width:100%">
-                <tr th:if="${error == True}">
-                    <td th:text="${msg}" class="error-message"></td>
-                </tr>
-                <tr>
-                    <td><label for="email">Email:</label></td>
-                    <td><input id="email" name="email" type="email" required></td>
-                </tr>
-                <tr>
-                    <td><label for="pw">Password:</label></td>
-                    <td><input id="pw" name="pw" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></td>
-                </tr>
-               <tr>
-                   <td><label for="pwC">Confirm Password:</label></td>
-                   <td><input id="pwC" name="pwC" type="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></td>
-               </tr>
-                <tr>
-                    <td><label for="accountT">Account Type: </label></td>
-                    <td><select id="accountT" name="accountT" required>
-                        <option value="Musician">Musician</option>
-                        <option value="VenueManager">Venue</option>
-                    </select></td>
-                </tr>
-            </table>
-            <input type="submit" value="Submit">
-        </form>
-        <div id="password_crit" style="display:none">
-            <h3>Password must contain the following</h3>
-            <p id="lower" class="invalid">A <b>lowercase</b> letter</p>
-            <p id="capital" class="invalid">A <b>capital</b> letter</p>
-            <p id="number" class="invalid">A <b>number</b></p>
-            <p id="length" class="invalid"> Minimum <b>8 Charaters</b></p>
-        </div>
-        <div id="password_conf" style="display:none">
-            <p id="match" class="invalid">Passwords must match </p>
-        </div>
-    </div>
-    <script>
-        var password = document.getElementById("pw");
-        var passwordC = document.getElementById("pwC");
-        var letter = document.getElementById("lower");
-        var capital = document.getElementById("capital");
-        var number = document.getElementById("number");
-        var length = document.getElementById("length");
-        var match = document.getElementById("match");
+   <div class="container" id="container-reg">
 
-        password.onfocus = function(){
-            document.getElementById("password_crit").style.display = "block";
+       <div class="reg-wrapper" id="regWrapper">
+           <div class="reg-form" id="regForm">
+               <div class="title-section">
+                   <h2>Registration Form</h2>
+               </div>
+               <form method="POST" action="/register">
+                   <div class="reg-section" id="reg_sec">
+                       <div class="input-fields">
+                           <i class="fas fa-user"></i>
+                           <input name="uname" type="text" class="input" placeholder="Full Name">
+                       </div>
+
+                       <div class="input-fields">
+                           <i class="fas fa-envelope"></i>
+                           <input class="input" id="email" name="email" type="email" placeholder="example@email.com" required>
+                       </div>
+
+                       <div class="input-fields">
+                           <i class="fas fa-user"></i>
+                           <input name="uname" type="text" class="input" placeholder="Username">
+                       </div>
+
+                       <div class="input-fields">
+                           <i class="fas fa-unlock-alt"></i>
+                           <input class="input" id="pw" name="pw" type="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Password" required>
+                       </div>
+                       <div class="input-fields">
+                           <i class="fas fa-unlock-alt"></i>
+                           <input class="input" id="pwC" name="pwC" type="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Confirm Password" required>
+                       </div>
+
+                       <div class="input-fields">
+                           <i class="fas fa-user"></i>
+                           <i class="fas fa-user"></i>
+                           <!-- <input name="accType" type="text" class="input" placeholder="Account Type"> -->
+                           <select id="accountT" name="accountT" required>
+                               <option class="opt" value="SelectAccountType">Select Account Type</option>
+                               <option class="opt" value="Musician">Musician</option>
+                               <option class="opt" value="VenueManager">Venue</option>
+                           </select>
+                       </div>
+
+                       <div class="input-fields">
+                           <i class="fas fa-calendar"></i>
+                           <input name="dob" type="text" class="input" placeholder="Date of Birth: MM/DD/YYYY">
+                       </div>
+
+                       <div class="btn"><form method="get" action="/login"><input id="submit" type="submit" name="reg-form" value="Registration"></form></div>
+                   </div>
+               </form>
+
+               <div id="password_crit" style="display:none">
+                   <h3>Password must contain the following</h3>
+                   <p id="lower" class="invalid">A <b>lowercase</b> letter</p>
+                   <p id="capital" class="invalid">A <b>capital</b> letter</p>
+                   <p id="number" class="invalid">A <b>number</b></p>
+                   <p id="length" class="invalid"> Minimum <b>8 Charaters</b></p>
+               </div>
+               <div id="password_conf" style="display:none">
+                   <p id="match" class="invalid">Passwords must match </p>
+               </div>
+
+           </div>
+       </div>
+
+   </div>
+
+   </div>
+    <footer >
+        <div th:include="fragments/footer :: footer"> </div>
+    </footer>
+
+   <script>
+    var password = document.getElementById("pw");
+    var passwordC = document.getElementById("pwC");
+    var letter = document.getElementById("lower");
+    var capital = document.getElementById("capital");
+    var number = document.getElementById("number");
+    var length = document.getElementById("length");
+    var match = document.getElementById("match");
+
+    password.onfocus = function(){
+        document.getElementById("password_crit").style.display = "block";
+        document.getElementById("password_crit").style.textAlign = "center";
+        password.onclick = function(){
+            document.getElementById("regForm").style.paddingBottom = "220px";
+            document.getElementById("container-reg").style.minHeight = "150vh";
+            document.getElementById("regWrapper").style.top = "45%";
         };
-        passwordC.onfocus = function(){
-            document.getElementById("password_conf").style.display = "block";
+    };
+
+    passwordC.onfocus = function(){
+        document.getElementById("password_conf").style.display = "block";
+        document.getElementById("password_conf").style.textAlign = "center";
+         passwordC.onclick = function(){
+            document.getElementById("regForm").style.paddingBottom = "120px";
+            document.getElementById("container-reg").style.minHeight = "130vh";
+            document.getElementById("regWrapper").style.top = "45%";
         };
-        password.onblur= function(){
-            document.getElementById("password_crit").style.display = "none";
-        };
-        passwordC.onblur = function(){
-            document.getElementById("password_conf").style.display = "none";
-        };
-        password.onkeyup = function(){
-            var lowerCaseLetters = /[a-z]/g;
-            if(password.value.match(lowerCaseLetters)) {
-                letter.classList.remove("invalid");
-                letter.classList.add("valid");
-            }
-            else {
-                letter.classList.remove("valid");
-                letter.classList.add("invalid");
-            }
-            // Validate capital letters
-            var upperCaseLetters = /[A-Z]/g;
-            if(password.value.match(upperCaseLetters)) {
-                capital.classList.remove("invalid");
-                capital.classList.add("valid");
-            }
-            else {
-                capital.classList.remove("valid");
-                capital.classList.add("invalid");
-            }
-            // Validate numbers
-            var numbers = /[0-9]/g;
-            if(password.value.match(numbers)) {
-                number.classList.remove("invalid");
-                number.classList.add("valid");
-            } else {
-                number.classList.remove("valid");
-                number.classList.add("invalid");
-            }
-            // Validate length
-            if(password.value.length >= 8) {
-                length.classList.remove("invalid");
-                length.classList.add("valid");
-            } else {
-                length.classList.remove("valid");
-                length.classList.add("invalid");
-            }
-        };
-        passwordC.onkeyup = function () {
-            if (passwordC.value === password.value) {
-                match.classList.remove("invalid");
-                match.classList.add("valid")
-            } else {
-                match.classList.remove("valid");
-                match.classList.add("invalid")
-            }
+    };
+    password.onblur= function(){
+        document.getElementById("password_crit").style.display = "none";
+    };
+    passwordC.onblur = function(){
+        document.getElementById("password_conf").style.display = "none";
+    };
+    password.onkeyup = function(){
+        var lowerCaseLetters = /[a-z]/g;
+        if(password.value.match(lowerCaseLetters)) {
+            letter.classList.remove("invalid");
+            letter.classList.add("valid");
         }
-    </script>
+        else {
+            letter.classList.remove("valid");
+            letter.classList.add("invalid");
+        }
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/g;
+        if(password.value.match(upperCaseLetters)) {
+            capital.classList.remove("invalid");
+            capital.classList.add("valid");
+        }
+        else {
+            capital.classList.remove("valid");
+            capital.classList.add("invalid");
+        }
+        // Validate numbers
+        var numbers = /[0-9]/g;
+        if(password.value.match(numbers)) {
+            number.classList.remove("invalid");
+            number.classList.add("valid");
+        } else {
+            number.classList.remove("valid");
+            number.classList.add("invalid");
+        }
+        // Validate length
+        if(password.value.length >= 8) {
+            length.classList.remove("invalid");
+            length.classList.add("valid");
+        } else {
+            length.classList.remove("valid");
+            length.classList.add("invalid");
+        }
+    };
+
+    passwordC.onkeyup = function () {
+        if (passwordC.value === password.value) {
+            match.classList.remove("invalid");
+            match.classList.add("valid")
+        } else {
+            match.classList.remove("valid");
+            match.classList.add("invalid")
+        }
+    }
+</script>
 </body>
 </html>
