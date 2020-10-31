@@ -47,9 +47,8 @@ public class LogController {
         pw = hashPass(pw);
         if (service.validateUser(name,pw)){
             model.addAttribute("name", name);
-            model.addAttribute("password", pw);
             // TODO: We need some robust role system
-            return "home";
+            return "profile";
         }
         else{
             model.addAttribute("error", true);
