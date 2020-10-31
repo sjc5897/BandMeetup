@@ -8,15 +8,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import com.bandmeetup.model.VenuManager;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class VenuManagerDAO implements Dao<VenuManager> {
 
     @Override
     public Optional<VenuManager> get(String email) {
         // Sql statement for prepared statement
-        String sql = "select * from User JOIN VenuManager ON User.Email = VenuManager.Email WHERE User,Email="+email+";";
+        String sql = "select * from VenueManager join User ON VenueManager.Email = User.Email WHERE VenueManager.Email='"+email+"';";
 
         try{
             // Try and get connection
@@ -53,7 +55,7 @@ public class VenuManagerDAO implements Dao<VenuManager> {
     @Override
     public List<VenuManager> getAll() {
          // SQL Statement for prepared statement
-         String sql = "select * from User JOIN VenuManager ON User.Email = VenuManager.Email;";
+         String sql = "select * from User JOIN VenueManager ON User.Email = VenueManager.Email;";
          ArrayList<VenuManager> VenuManagers = new ArrayList<VenuManager>();
          try{
              //Try connection and prepared statement setup
@@ -86,16 +88,15 @@ public class VenuManagerDAO implements Dao<VenuManager> {
 
     @Override
     public String save(VenuManager venumanager) {
-        String sql = "INSERT INTO VenuManager(Email, Password, Name, Location, Description) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO VenueManager(Email, Name, Location, Description) VALUES(?,?,?,?)";
         String resp;
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,venumanager.getEmail());
-            preparedStatement.setString(2,venumanager.getPw());
-            preparedStatement.setString(3,venumanager.getName());
-            preparedStatement.setString(4,venumanager.getLocation());
-            preparedStatement.setString(5,venumanager.getDescription());
+            preparedStatement.setString(2,venumanager.getName());
+            preparedStatement.setString(3,venumanager.getLocation());
+            preparedStatement.setString(4,venumanager.getDescription());
             preparedStatement.execute();
             preparedStatement.closeOnCompletion();
             resp = "Success";
@@ -108,12 +109,11 @@ public class VenuManagerDAO implements Dao<VenuManager> {
 
     @Override
     public void update(VenuManager venumanager) {
-        String sql = "update VenuManager set"+
-                "Password="+venumanager.getPw()+
-                ",Name="+venumanager.getName()+
-                ",Location="+venumanager.getLocation()+
-                ",Description=" +venumanager.getDescription()+
-                "where Email="+venumanager.getEmail()+";";
+        String sql = "update VenueManager set"+
+                "',Name='"+venumanager.getName()+
+                "',Location='"+venumanager.getLocation()+
+                "',Description='" +venumanager.getDescription()+
+                "where Email='"+venumanager.getEmail()+";";
 
         try{
             Connection connection = ConnectDB.getConnection();
@@ -130,7 +130,7 @@ public class VenuManagerDAO implements Dao<VenuManager> {
 
     @Override
     public void delete(VenuManager venumanager) {
-        String sql = "DELETE Venumanager WHERE Email="+venumanager.getEmail()+";"+"DELETE FROM User where Email ="+venumanager.getEmail()+";";
+        String sql = "DELETE FROM VenueManager WHERE Email='"+venumanager.getEmail()+"';"+"DELETE FROM User where Email ='"+venumanager.getEmail()+"';";
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
