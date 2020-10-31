@@ -2,11 +2,14 @@ package com.bandmeetup.DAO;
 import com.bandmeetup.model.Musician;
 import com.bandmeetup.model.User;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class MusicianDAO implements Dao<Musician> {
 
     @Override
@@ -89,21 +92,20 @@ public class MusicianDAO implements Dao<Musician> {
     @Override
     public String save(Musician musician) {
 
-        String sql = "INSERT INTO Musician(Email, Password, FName, LName, Genre, ProfileStatus, Instruments, Bio, Location) VALUES(?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Musician(Email, FName, LName, Genre, ProfileStatus, Instruments, Bio, Location) VALUES(?,?,?,?,?,?,?,?)";
         String resp;
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,musician.getEmail());
-            preparedStatement.setString(2,musician.getPw());
             String[] arrOfStr = musician.getName().split(" ", 2);
-            preparedStatement.setString(3,arrOfStr[0]);
-            preparedStatement.setString(4,arrOfStr[1]);
-            preparedStatement.setString(6,musician.getGenre());
-            preparedStatement.setString(7,String.valueOf(musician.getStatus()));
-            preparedStatement.setString(8,musician.getInstruments());
-            preparedStatement.setString(9,musician.getBio());
-            preparedStatement.setString(10,musician.getLocation());
+            preparedStatement.setString(2,arrOfStr[0]);
+            preparedStatement.setString(3,arrOfStr[1]);
+            preparedStatement.setString(4,musician.getGenre());
+            preparedStatement.setString(5,String.valueOf(musician.getStatus()));
+            preparedStatement.setString(6,musician.getInstruments());
+            preparedStatement.setString(7,musician.getBio());
+            preparedStatement.setString(8,musician.getLocation());
             preparedStatement.execute();
             preparedStatement.closeOnCompletion();
             resp = "Success";
@@ -119,7 +121,6 @@ public class MusicianDAO implements Dao<Musician> {
 
         String[] arrOfStr = musician.getName().split(" ", 2);
         String sql = "update Musician set"+
-                "Password="+musician.getPw()+
                 ",FName="+arrOfStr[0]+
                 ",LName="+arrOfStr[1]+
                 ",Genre="+musician.getGenre()+
