@@ -44,7 +44,6 @@ public class LogController {
     public String runLogin(@RequestParam(name="uname") String name, @RequestParam(name="pw") String pw, Model model) {
         if (service.validateUser(name,pw)){
             model.addAttribute("name", name);
-            model.addAttribute("password", pw);
             // TODO: We need some robust role system
             return "profile";
         }
