@@ -125,11 +125,31 @@ public class UserDAO implements Dao<User> {
 
     @Override
     public void update(User user) {
-
+        String sql = "update User set Password="+user.getPw()+"where Email="+user.getEmail()+";";
+        try{
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeQuery();
+            preparedStatement.closeOnCompletion();
+        }
+        catch (SQLException ex){
+            ex.getSQLState();
+        }
     }
 
     @Override
     public void delete(User user) {
-
+        String sql = "DELETE User WHERE Email="+user.getEmail()+";";
+        try{
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeQuery();
+            preparedStatement.closeOnCompletion();
+        }
+        catch (SQLException ex){
+            ex.getSQLState();
+        }
     }
+
+
 }
