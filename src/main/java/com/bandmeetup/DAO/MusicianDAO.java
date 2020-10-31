@@ -136,7 +136,7 @@ public class MusicianDAO implements Dao<Musician> {
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.executeQuery();
+            preparedStatement.execute();
             preparedStatement.closeOnCompletion();
 
         }
@@ -155,7 +155,7 @@ public class MusicianDAO implements Dao<Musician> {
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.executeQuery();
+            preparedStatement.execute();
             preparedStatement.closeOnCompletion();
         }
         catch (SQLException ex){

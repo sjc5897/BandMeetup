@@ -129,7 +129,7 @@ public class UserDAO implements Dao<User> {
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.executeQuery();
+            preparedStatement.execute();
             preparedStatement.closeOnCompletion();
         }
         catch (SQLException ex){
