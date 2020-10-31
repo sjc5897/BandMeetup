@@ -2,6 +2,8 @@ package com.bandmeetup.DAO;
 import com.bandmeetup.model.Musician;
 import com.bandmeetup.model.User;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +93,8 @@ public class MusicianDAO implements Dao<Musician> {
     @Override
     public String save(Musician musician) {
 
-        String sql = "INSERT INTO Musician(Email, FName, LName, Genre, ProfileStatus, Instruments, Bio, Location) VALUES(?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Musician(Email, FName, LName, Genre, ProfileStatus, Instruments, Bio, Location) VALUES(?,?,?,?,?,?,?,?)";
+
         String resp;
         try{
             Connection connection = ConnectDB.getConnection();
@@ -128,6 +131,7 @@ public class MusicianDAO implements Dao<Musician> {
                 "',Bio='"+musician.getBio()+
                 "',Location='" +musician.getLocation()+
                 "where Email='"+musician.getEmail()+"';";
+
 
         try{
             Connection connection = ConnectDB.getConnection();

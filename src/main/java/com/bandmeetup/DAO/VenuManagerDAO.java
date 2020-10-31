@@ -11,7 +11,6 @@ import java.util.Optional;
 import com.bandmeetup.model.VenuManager;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class VenuManagerDAO implements Dao<VenuManager> {
 
@@ -89,6 +88,7 @@ public class VenuManagerDAO implements Dao<VenuManager> {
     @Override
     public String save(VenuManager venumanager) {
         String sql = "INSERT INTO VenueManager(Email, Name, Location, Description) VALUES(?,?,?,?)";
+
         String resp;
         try{
             Connection connection = ConnectDB.getConnection();
@@ -114,6 +114,7 @@ public class VenuManagerDAO implements Dao<VenuManager> {
                 "',Location='"+venumanager.getLocation()+
                 "',Description='" +venumanager.getDescription()+
                 "where Email='"+venumanager.getEmail()+";";
+
 
         try{
             Connection connection = ConnectDB.getConnection();
