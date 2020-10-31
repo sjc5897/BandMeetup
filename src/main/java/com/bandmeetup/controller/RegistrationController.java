@@ -1,5 +1,6 @@
 package com.bandmeetup.controller;
 
+import com.bandmeetup.model.Musician;
 import com.bandmeetup.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,11 +46,13 @@ public class RegistrationController {
      * @return String redirect to relevant page
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String handleRegister(@RequestParam(name = "email") String email, @RequestParam(name = "pw") String pw
-            , @RequestParam(name = "accountT") String type, Model model) {
+    public String handleRegister(@RequestParam(name = "email") String email,
+                                 @RequestParam(name = "full_name") String name,
+                                 @RequestParam(name = "pw") String pw,
+                                 @RequestParam(name = "accountT") String type, Model model) {
 
         pw = hashPass(pw);
-        String resp = service.register(email, pw, type);
+        String resp = service.register(email,name, pw, type);
         if(resp.contains("ERROR:")){
             model.addAttribute("error",true);
             model.addAttribute("msg", resp);

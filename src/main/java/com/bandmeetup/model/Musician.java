@@ -12,8 +12,8 @@ public class Musician extends User{
 
     private String name;
     private Status status;                      //Status of the user
-    private String instruments;      //Array list of played instruments
-    private String Genre;            //Array list of preferred Genres
+    private String instruments;                 //Array list of played instruments
+    private String Genre;                       //Array list of preferred Genres
     private String location;                    //Location of user
     private String bio;                         //Their custom Bio
 

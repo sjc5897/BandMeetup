@@ -7,7 +7,9 @@ import com.bandmeetup.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,15 +30,22 @@ public class ProfileController {
      * This will most likely need some sort of ID passed to query the correct user and generate the profile.
      * @return String Login, which is used to represent the Profile page
      */
-    @RequestMapping(value="/profile", method = RequestMethod.GET)
-    public String displayLoginPage(@ModelAttribute("email") String email){
+    @RequestMapping(value="/profile/{email}", method = RequestMethod.GET)
+    public String displayLoginPage(@PathVariable("email")String email,Model model){
+
+
+        email += ".com";
         User user = service.getUser(email);
+
         if (user.getUserType().equals("Musician")){
             Musician profile = service.getMusician(email);
+            model.addAttribute("Profile", profile);
         }
         else if (user.getUserType().equals("VenueManager")){
             VenuManager profile = new VenuManager("a","a","a","a","a","a");
+            model.addAttribute("Profile", profile);
         }
+
         return "profile";
     }
 }

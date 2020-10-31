@@ -2,7 +2,9 @@ package com.bandmeetup.services;
 
 import com.bandmeetup.DAO.Dao;
 import com.bandmeetup.DAO.UserDAO;
+import com.bandmeetup.model.Musician;
 import com.bandmeetup.model.User;
+import com.bandmeetup.model.VenuManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,11 @@ import org.springframework.stereotype.Service;
 public class RegistrationService {
     @Autowired
     private Dao<User> userDao;
+    @Autowired
+    private Dao<Musician> musicianDao;
+    @Autowired
+    private Dao<VenuManager> venuManagerDao;
+
     /**
      * Service used to handle registration
      * @param email     String, user's email address
@@ -26,9 +33,16 @@ public class RegistrationService {
      * @return Boolean representing success or failure
      * @throws ClassNotFoundException
      */
-    public String register(String email, String pw, String type) {
-        User n_user = new User(email,pw,type);
-        return userDao.save(n_user);
+    public String register(String email, String name, String pw, String type) {
+        if (type.equals("Musician")){
+            Musician n_user = new Musician(email,name,pw,type,"Lookingtojoinaband","","","","");
+            musicianDao.save(n_user);
+            return userDao.save(n_user);
+        }
+        return "Error: ";
     }
+
 }
+
+
 

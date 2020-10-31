@@ -1,12 +1,15 @@
 package com.bandmeetup.DAO;
 import com.bandmeetup.model.Musician;
 import com.bandmeetup.model.User;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
+@Component
 public class MusicianDAO implements Dao<Musician> {
 
     @Override
@@ -99,11 +102,11 @@ public class MusicianDAO implements Dao<Musician> {
             String[] arrOfStr = musician.getName().split(" ", 2);
             preparedStatement.setString(3,arrOfStr[0]);
             preparedStatement.setString(4,arrOfStr[1]);
-            preparedStatement.setString(6,musician.getGenre());
-            preparedStatement.setString(7,String.valueOf(musician.getStatus()));
-            preparedStatement.setString(8,musician.getInstruments());
-            preparedStatement.setString(9,musician.getBio());
-            preparedStatement.setString(10,musician.getLocation());
+            preparedStatement.setString(5,musician.getGenre());
+            preparedStatement.setString(6,String.valueOf(musician.getStatus()));
+            preparedStatement.setString(7,musician.getInstruments());
+            preparedStatement.setString(8,musician.getBio());
+            preparedStatement.setString(9,musician.getLocation());
             preparedStatement.execute();
             preparedStatement.closeOnCompletion();
             resp = "Success";

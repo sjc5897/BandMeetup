@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.bandmeetup.model.VenuManager;
+import org.springframework.stereotype.Component;
 
+@Component
 public class VenuManagerDAO implements Dao<VenuManager> {
 
     @Override

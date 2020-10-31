@@ -20,6 +20,7 @@ import java.util.Optional;
 public class ProfileService {
     @Autowired
     Dao<User> userDao;
+    @Autowired
     Dao<Musician> musicianDao;
 
     public User getUser(String user_email){
