@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.bandmeetup.security.Hasher.hashPass;
+
 /**
  * This is the LoginController, handles GETs and POSTs to login
  * Note: For some reason IDE wouldn't let me name it LoginController
@@ -42,9 +44,9 @@ public class LogController {
      */
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public String runLogin(@RequestParam(name="uname") String name, @RequestParam(name="pw") String pw, Model model) {
+        pw = hashPass(pw);
         if (service.validateUser(name,pw)){
             model.addAttribute("name", name);
-            model.addAttribute("password", pw);
             // TODO: We need some robust role system
             return "profile";
         }
