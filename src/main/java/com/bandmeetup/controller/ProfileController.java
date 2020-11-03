@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.swing.*;
 import java.util.Optional;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * This is the LoginController, handles GETs and POSTs to profile
@@ -25,42 +28,46 @@ import java.util.Optional;
 public class ProfileController {
     @Autowired
     ProfileService service;
+
+    public void addProfile(String email,Model model){
+        User user = service.getUser(email);
+        if (user == null){
+            return;
+        }
+        else if (user.getUserType().equals("Musician")) {
+            Musician profile = service.getMusician(email);
+            model.addAttribute("Profile", profile);
+        }
+        else if(user.getUserType().equals("VenueManager")){
+            VenueManager profile = service.getVenueManager(email);
+            model.addAttribute("Profile", profile);
+        }
+    }
     /**
      * The method that handles Profile page requests
      * This will most likely need some sort of ID passed to query the correct user and generate the profile.
      * @return String Login, which is used to represent the Profile page
      */
-    @RequestMapping(value="/profile/{email}", method = RequestMethod.GET)
-    public String displayLoginPage(@PathVariable("email")String email,Model model){
-
-
+    @RequestMapping(value="/edit/{email}", method = GET)
+    public String getEditPage(@PathVariable("email")String email, Model model){
         email += ".com";
-        Optional<User> userO = service.getUser(email);
-        if(userO.isEmpty()){
+        addProfile(email,model);
+
+        if(model.getAttribute("Profile") == null){
             return "redirect:/cerror/profile_not_found";
         }
-        else {
-            User user = userO.get();
-            if (user.getUserType().equals("Musician")) {
-                Optional<Musician> musicianO= service.getMusician(email);
-                if(musicianO.isEmpty()){
-                    return "redirect:/cerror/profile_not_found";
-                }
-                else{
-                    Musician profile = musicianO.get();
-                    model.addAttribute("Profile", profile);
-                }
-            }
-            else if (user.getUserType().equals("VenueManager")) {
-                Optional<VenueManager> venueManagerO = service.getVenueManager(email);
-                if(venueManagerO.isEmpty()){
-                    return "redirect:/cerror/profile_not_found";
-                }
-                else{
-                    VenueManager profile = venueManagerO.get();
-                    model.addAttribute("Profile", profile);
-                }
-            }
+        return "edit";
+    }
+
+
+    @RequestMapping(value="/profile/{email}", method = RequestMethod.GET)
+    public String displayLoginPage(@PathVariable("email")String email,Model model) {
+
+        email += ".com";
+        addProfile(email, model);
+
+        if (model.getAttribute("Profile") == null) {
+            return "redirect:/cerror/profile_not_found";
         }
         return "profile";
     }

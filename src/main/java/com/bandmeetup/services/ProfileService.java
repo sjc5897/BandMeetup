@@ -26,19 +26,28 @@ public class ProfileService {
     @Autowired
     Dao<VenueManager> venueManagerDao;
 
-    public Optional<User> getUser(String user_email){
+    public User getUser(String user_email){
         Optional<User> user = userDao.get(user_email);
-        return user;
+        if(user.isEmpty()){
+            return null;
+        }
+        return user.get();
     }
 
-    public Optional<Musician> getMusician(String user_email){
+    public Musician getMusician(String user_email){
         Optional<Musician> musician = musicianDao.get(user_email);
-        return musician;
+        if(musician.isEmpty()){
+            return null;
+        }
+        return musician.get();
     }
 
-    public Optional<VenueManager> getVenueManager(String user_email){
+    public VenueManager getVenueManager(String user_email){
         Optional<VenueManager> venueManager = venueManagerDao.get(user_email);
-        return venueManager;
+        if(venueManager.isEmpty()){
+            return null;
+        }
+        return venueManager.get();
     }
 
 }

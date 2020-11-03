@@ -19,8 +19,8 @@
         </div> <!-- .profile-nav-info -->
         <div class="profile-option">
             <div class="notification">
-             <i class="fas fa-bell"></i> 1
-            </div> <!-- .notification -->
+              <a style="color:white;text-decoration: none;" th:href="@{/edit/} + ${Profile.getEmail()}" class="fas fa-wrench"> </a>
+            </div><!-- .notification -->
         </div> <!-- .profile-option -->
     </div> <!-- .profile-header -->
 </body>
