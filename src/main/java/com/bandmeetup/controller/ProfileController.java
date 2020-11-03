@@ -36,9 +36,10 @@ public class ProfileController {
 
         email += ".com";
         User user = service.getUser(email);
-
+        System.out.println(user.getEmail());
         if (user.getUserType().equals("Musician")){
             Musician profile = service.getMusician(email);
+            System.out.println(profile.getName());
             model.addAttribute("Profile", profile);
         }
         else if (user.getUserType().equals("VenueManager")){
