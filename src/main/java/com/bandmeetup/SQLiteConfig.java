@@ -1,6 +1,8 @@
 package com.bandmeetup;
 
 
+import com.bandmeetup.DAO.ConnectDB;
+
 import java.sql.*;
 
 public class SQLiteConfig {
@@ -79,10 +81,28 @@ public class SQLiteConfig {
 
     public static void main(String[] args) throws Exception {
 
-        boolean Pass =loginAuth("s@s","123456");
-        System.out.println(Pass);
+//        boolean Pass =loginAuth("s@s","123456");
+//        System.out.println(Pass);
+        update("D@d");
 
     }
+
+
+    public static void update(String email) throws ClassNotFoundException {
+
+        String sql = "update Musician set FName='" + "Mohammed" + "' where Email='" + email + "';";
+        Class.forName("org.sqlite.JDBC");
+        try (Connection conn = connect();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.execute();
+            ps.closeOnCompletion();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
 
 
 }
