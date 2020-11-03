@@ -60,7 +60,7 @@ public class RegistrationController {
         }
         else{
             model.addAttribute("reg_success", true);
-            return "login";
+            return "redirect:/login";
         }
     }
 }

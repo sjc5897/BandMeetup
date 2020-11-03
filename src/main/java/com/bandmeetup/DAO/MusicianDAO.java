@@ -15,7 +15,7 @@ public class MusicianDAO implements Dao<Musician> {
     @Override
     public Optional<Musician> get(String email) {
         // Sql statement for prepared statement
-        String sql = "select * from User JOIN Musician ON User.Email = Musician.Email WHERE User.Email="+email+";";
+        String sql = "select * from User JOIN Musician ON User.Email = Musician.Email WHERE User.Email=?;";
 
         try {
             // Try and get connection

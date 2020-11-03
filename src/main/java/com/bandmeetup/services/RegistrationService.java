@@ -1,10 +1,9 @@
 package com.bandmeetup.services;
 
 import com.bandmeetup.DAO.Dao;
-import com.bandmeetup.DAO.UserDAO;
 import com.bandmeetup.model.Musician;
 import com.bandmeetup.model.User;
-import com.bandmeetup.model.VenuManager;
+import com.bandmeetup.model.VenueManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,7 @@ public class RegistrationService {
     @Autowired
     private Dao<Musician> musicianDao;
     @Autowired
-    private Dao<VenuManager> venuManagerDao;
+    private Dao<VenueManager> venueManagerDao;
 
     /**
      * Service used to handle registration
@@ -37,6 +36,11 @@ public class RegistrationService {
         if (type.equals("Musician")){
             Musician n_user = new Musician(email,name,pw,type,"Lookingtojoinaband","","","","");
             musicianDao.save(n_user);
+            return userDao.save(n_user);
+        }
+        if (type.equals("VenueManager")){
+            VenueManager n_user = new VenueManager(email,name,pw,type,"","");
+            venueManagerDao.save(n_user);
             return userDao.save(n_user);
         }
         return "Error: ";

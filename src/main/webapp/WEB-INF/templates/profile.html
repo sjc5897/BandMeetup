@@ -16,152 +16,95 @@
 <div class="container">
 
 <!-- Profile -->
-    <form action="/profile" method="get" enctype="multipart/form-data">
 <div class="profile-section-wrapper">
-    <div class="profile-header">
+    <div th:include="fragments/profile_top :: profile-header" class="profile-header">
+    </div> <!-- .profile-left-side -->
+    <div class="main-bd">
+    <div th:include="fragments/profile_left :: profile-left">
+    </div>
 
-        <!-- Trying to upload Profile Picture -->
 
-        <div class="profile-img">
-            <img th:src="@{resources/profile1.jpg}" width="250" alt="Profile"/>
-            <input type="file" name="profile-pic" id="profile-pic" class="form-control">
+    <div class="profile-right-side">
+        <div class="profile-nav">
+            <ul>
+                <li onclick="tabs(0)" class="user-post active">Social</li>
+                <li onclick="tabs(1)" class="user-music-genre">Music Genre</li>
+                <li onclick="tabs(2)" class="user-music-instrument">Music Instruments</li>
+                <li onclick="tabs(3)" class="user-settings">Settings</li>
+            </ul>
+        </div> <!-- .profile-nav -->
+
+        <div class="profile-body">
+            <div class="profile-posts tab">
+                <h1>Your Music Clips</h1>
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content
+                    of a page when looking at its layout. The point of using Lorem Ipsum is that it has
+                    a more-or-less normal distribution of letters, as opposed to using 'Content here,
+                    content here', making it look like readable English.
+                </p>
+            </div>
+            <div class="profile-music-genre tab">
+                <h1>Your Music Genres</h1>
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content
+                    of a page when looking at its layout. The point of using Lorem Ipsum is that it has
+                    a more-or-less normal distribution of letters, as opposed to using 'Content here,
+                    content here', making it look like readable English. Many desktop publishing packages
+                    and web page editors now use Lorem Ipsum as their default model text, and a search
+                    for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
+                    have evolved over the years, sometimes by accident, sometimes on purpose (injected
+                    humour and the like).Many desktop publishing packages
+                    and web page editors now use Lorem Ipsum as their default model text, and a search
+                    for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
+                    have evolved over the years, sometimes by accident, sometimes on purpose (injected
+                    humour and the like).
+                </p>
+            </div>
+            <div class="profile-music-instruments tab">
+                <h1>Your Music Instruments</h1>
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content
+                    of a page when looking at its layout. The point of using Lorem Ipsum is that it has
+                    a more-or-less normal distribution of letters, as opposed to using 'Content here,
+                    content here', making it look like readable English. Many desktop publishing packages
+                    and web page editors now use Lorem Ipsum as their default model text, and a search
+                    for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
+                    have evolved over the years, sometimes by accident, sometimes on purpose (injected
+                    humour and the like).Many desktop publishing packages
+                    and web page editors now use Lorem Ipsum as their default model text, and a search
+                    for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
+                    have evolved over the years, sometimes by accident, sometimes on purpose (injected
+                    humour and the like).Many desktop publishing packages
+                    and web page editors now use Lorem Ipsum as their default model text, and a search
+                    for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
+                    have evolved over the years, sometimes by accident, sometimes on purpose (injected
+                    humour and the like).Many desktop publishing packages
+                    and web page editors now use Lorem Ipsum as their default model text, and a search
+                    for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
+                    have evolved over the years, sometimes by accident, sometimes on purpose (injected
+                    humour and the like).
+                </p>
+            </div>
+            <div class="profile-settings tab">
+                <h1>Account Settings</h1>
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content
+                    of a page when looking at its layout. The point of using Lorem Ipsum is that it has
+                    a more-or-less normal distribution of letters, as opposed to using 'Content here,
+                    content here', making it look like readable English. Many desktop publishing packages
+                    and web page editors now use Lorem Ipsum as their default model text, and a search
+                    for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
+                    have evolved over the years, sometimes by accident, sometimes on purpose (injected
+                    humour and the like).
+                </p>
+            </div>
         </div>
 
-
-        <div class="profile-nav-info">
-            <h3 class="user-name" th:text="${Profile.getName()}">Name</h3>
-            <div class="address">
-                <p class="state">New York,</p>
-                <span class="country"> &nbsp;USA.</span>
-            </div>
-        </div> <!-- .profile-nav-info -->
-        <div class="profile-option">
-            <div class="notification">
-                <i class="fas fa-bell"></i> 1
-            </div> <!-- .notification -->
-        </div> <!-- .profile-option -->
-    </div> <!-- .profile-header -->
-    </form>
-    <div class="main-bd">
-
-        <div class="profile-left-side">
-            <div class="profile-side">
-                <p class="profile-status">
-                    <i class="fas fa-music"></i> Status :
-                </p>
-                <p class="mobile-no"><i class="fas fa-phone"></i> +1 (434)-746-3378</p>
-                <p class="user-email"><i class="fas fa-envelope"></i> example@email.com</p>
-                <div class="user-bio">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen
-                        book. .profile</p>
-                </div> <!-- .profile-side -->
-                <div class="profile-btn">
-                    <button class="chatbtn">
-                        <i class="fas fa-comment"></i> Chat
-                    </button>
-                    <button class="invitebtn">
-                        <i class="fas fa-plus"></i> Invite
-                    </button>
-                </div> <!-- .profile-btn -->
-
-                <!--
-                <div class="user-rating">
-                    <h3 class="rating">4.5</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>  .user-rating -->
-            </div>
-        </div> <!-- .profile-left-side -->
-
-        <div class="profile-right-side">
-            <div class="profile-nav">
-                <ul>
-                    <li onclick="tabs(0)" class="user-post active">Social</li>
-                    <li onclick="tabs(1)" class="user-music-genre">Music Genre</li>
-                    <li onclick="tabs(2)" class="user-music-instrument">Music Instruments</li>
-                    <li onclick="tabs(3)" class="user-settings">Settings</li>
-                </ul>
-            </div> <!-- .profile-nav -->
-
-            <div class="profile-body">
-                <div class="profile-posts tab">
-                    <h1>Your Music Clips</h1>
-                    <p>
-                        It is a long established fact that a reader will be distracted by the readable content
-                        of a page when looking at its layout. The point of using Lorem Ipsum is that it has
-                        a more-or-less normal distribution of letters, as opposed to using 'Content here,
-                        content here', making it look like readable English.
-                    </p>
-                </div>
-                <div class="profile-music-genre tab">
-                    <h1>Your Music Genres</h1>
-                    <p>
-                        It is a long established fact that a reader will be distracted by the readable content
-                        of a page when looking at its layout. The point of using Lorem Ipsum is that it has
-                        a more-or-less normal distribution of letters, as opposed to using 'Content here,
-                        content here', making it look like readable English. Many desktop publishing packages
-                        and web page editors now use Lorem Ipsum as their default model text, and a search
-                        for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
-                        have evolved over the years, sometimes by accident, sometimes on purpose (injected
-                        humour and the like).Many desktop publishing packages
-                        and web page editors now use Lorem Ipsum as their default model text, and a search
-                        for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
-                        have evolved over the years, sometimes by accident, sometimes on purpose (injected
-                        humour and the like).
-                    </p>
-                </div>
-                <div class="profile-music-instruments tab">
-                    <h1>Your Music Instruments</h1>
-                    <p>
-                        It is a long established fact that a reader will be distracted by the readable content
-                        of a page when looking at its layout. The point of using Lorem Ipsum is that it has
-                        a more-or-less normal distribution of letters, as opposed to using 'Content here,
-                        content here', making it look like readable English. Many desktop publishing packages
-                        and web page editors now use Lorem Ipsum as their default model text, and a search
-                        for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
-                        have evolved over the years, sometimes by accident, sometimes on purpose (injected
-                        humour and the like).Many desktop publishing packages
-                        and web page editors now use Lorem Ipsum as their default model text, and a search
-                        for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
-                        have evolved over the years, sometimes by accident, sometimes on purpose (injected
-                        humour and the like).Many desktop publishing packages
-                        and web page editors now use Lorem Ipsum as their default model text, and a search
-                        for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
-                        have evolved over the years, sometimes by accident, sometimes on purpose (injected
-                        humour and the like).Many desktop publishing packages
-                        and web page editors now use Lorem Ipsum as their default model text, and a search
-                        for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
-                        have evolved over the years, sometimes by accident, sometimes on purpose (injected
-                        humour and the like).
-                    </p>
-                </div>
-                <div class="profile-settings tab">
-                    <h1>Account Settings</h1>
-                    <p>
-                        It is a long established fact that a reader will be distracted by the readable content
-                        of a page when looking at its layout. The point of using Lorem Ipsum is that it has
-                        a more-or-less normal distribution of letters, as opposed to using 'Content here,
-                        content here', making it look like readable English. Many desktop publishing packages
-                        and web page editors now use Lorem Ipsum as their default model text, and a search
-                        for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
-                        have evolved over the years, sometimes by accident, sometimes on purpose (injected
-                        humour and the like).
-                    </p>
-                </div>
-            </div>
-
-        </div> <!-- .profile-right-side -->
+    </div> <!-- .profile-right-side -->
 
     </div>  <!-- .main-bd -->
 </div> <!-- .profile-section-wrapper -->
-</form>
 </div><!-- Container -->
 <footer >
     <div th:include="fragments/footer :: footer"> </div>

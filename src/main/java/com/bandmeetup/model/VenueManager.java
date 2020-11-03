@@ -1,11 +1,11 @@
 package com.bandmeetup.model;
-public class VenuManager extends User{
+public class VenueManager extends User{
 
     private String name;        //Name for company
     private String location;    //location of company
     private String description; //Brief description of company
 
-    public VenuManager(String email, String name, String pw, String userType, String location, String description){
+    public VenueManager(String email, String name, String pw, String userType, String location, String description){
         super(email, pw, userType);
         this.name = name;
         this.location = location;

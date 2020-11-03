@@ -3,6 +3,7 @@ package com.bandmeetup.services;
 import com.bandmeetup.DAO.Dao;
 import com.bandmeetup.model.Musician;
 import com.bandmeetup.model.User;
+import com.bandmeetup.model.VenueManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +23,22 @@ public class ProfileService {
     Dao<User> userDao;
     @Autowired
     Dao<Musician> musicianDao;
+    @Autowired
+    Dao<VenueManager> venueManagerDao;
 
-    public User getUser(String user_email){
+    public Optional<User> getUser(String user_email){
         Optional<User> user = userDao.get(user_email);
-        return user.get();
+        return user;
     }
 
-    public Musician getMusician(String user_email){
+    public Optional<Musician> getMusician(String user_email){
         Optional<Musician> musician = musicianDao.get(user_email);
-        return musician.get();
+        return musician;
+    }
+
+    public Optional<VenueManager> getVenueManager(String user_email){
+        Optional<VenueManager> venueManager = venueManagerDao.get(user_email);
+        return venueManager;
     }
 
 }
