@@ -18,6 +18,7 @@
                </div>
                <form method="POST" action="/register">
                    <div class="reg-section" id="reg_sec">
+                       <p th:if="${{(param.error != null)}}" class="error-message">Registration Unsuccessful, Email Taken </p>
 
                        <div class="input-fields">
                            <i class="fas fa-user"></i>

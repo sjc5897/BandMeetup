@@ -54,7 +54,7 @@ public class VenueManagerDAO implements Dao<VenueManager> {
     @Override
     public List<VenueManager> getAll() {
          // SQL Statement for prepared statement
-         String sql = "select * from User JOIN VenueManager ON User.Email = VenuManager.Email;";
+         String sql = "select * from User JOIN VenueManager ON User.Email = VenueManager.Email;";
          ArrayList<VenueManager> VenuManagers = new ArrayList<VenueManager>();
          try{
              //Try connection and prepared statement setup
