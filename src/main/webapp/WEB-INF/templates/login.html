@@ -37,9 +37,9 @@
         <div class="login-wrapper">
             <div class="login-form">
                 <div class="title-section">
-                    <h2>Login form</h2>
+                    <!-- <h2>Login form</h2> -->
                 </div>
-                <form method="get" action="/profile">
+                <form method="POST" action="/login">
                     <div class="login-section">
 
                         <div class="input-fields">
@@ -52,7 +52,7 @@
                             <input class="input" name="pw" type="password" placeholder="Password">
                             <a href="#">Forget?</a>
                         </div>
-                        <div class="btn"><input id="submit" type="submit" name="Login" value="Login"></div>
+                        <div class="btn"><form action="/profile" method="get"><input id="submit" type="submit" name="Login" value="Login"/></form></div>
                     </div>
                 </form>
             </div>
