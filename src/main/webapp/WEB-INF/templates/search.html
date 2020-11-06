@@ -53,8 +53,8 @@
                 <?php
                     $db = new PDO("mysql: host=localhost; dbname=BandDB", "root", "");
                     $stmt = $db->prepare("select * from Musician");
-                $stmt->execute();
-                while($row=$stmt->fetch()){
+                    $stmt->execute();
+                    while($row=$stmt->fetch()){
                 ?>
                 <tr>
                     <td><!-- Haven't added the profile pic yet --></td>
