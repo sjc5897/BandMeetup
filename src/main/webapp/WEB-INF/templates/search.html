@@ -5,10 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{/css/search.css?<?php echo rand();?>}">
     <link th:href="@{/css/forms.css?<?php echo rand();?>}" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
-    <script src="jquery.js"></script>
-    <script src="ddtf.js"></script>
+    <script th:src=@{"/javascript/jquery.js"}></script>
+    <script th:src=@{"/javascript/ddtf.js"}></script>
 
 </head>
 <header>
@@ -57,7 +57,7 @@
                 while($row=$stmt->fetch()){
                 ?>
                 <tr>
-                    <td></td>
+                    <td><!-- Haven't added the profile pic yet --></td>
                     <td>Vaibhavi</td>
                     <td>Musician</td>
                     <td>Guitar</td>
