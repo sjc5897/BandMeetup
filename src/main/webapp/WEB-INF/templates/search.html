@@ -21,7 +21,14 @@
         <div class="search-bar">
             <input type="text" name="searchBar" id="searchBar"
                    class="search-field user" placeholder="Search your BandMate here. . . . ">
-            <input type="text" name="location-filter" class="search-field location" placeholder="Location">
+            <select class="filter">
+                <option>Select Filter</option>
+                <option>Account Type</option>
+                <option>Instrument</option>
+                <option>Genre</option>
+                <option>Location</option>
+            </select>
+            <!-- <input type="text" name="location-filter" class="search-field location" placeholder="Location"> -->
 
             <button class="search-btn"><i class="fas fa-search search-icon"></i></button>
 
@@ -33,14 +40,7 @@
                 <tr id="header">
                     <th>Profile</th>
                     <th>Name</th>
-                    <th>
-                        Account Type
-                        <select class="slt">
-                            <option></option>
-                            <option>Musician</option>
-                            <option>Venue</option>
-                        </select>
-                    </th>
+                    <th>Account Type</th>
                     <th>Instrument</th>
                     <th>Genre</th>
                     <th>
@@ -50,20 +50,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php
-                    $db = new PDO("mysql: host=localhost; dbname=BandDB", "root", "");
-                    $stmt = $db->prepare("select * from Musician");
-                    $stmt->execute();
-                    while($row=$stmt->fetch()){
-                ?>
+                <!--        <?php //Code check here.
+                            $db = new PDO("mysql: host=localhost; dbname=BandDB", "root", "");
+                            $stmt = $db->prepare("select * from Musician");
+                            $stmt->execute();
+                            while($row=$stmt->fetch()){
+                        ?> -->
                 <tr>
-                    <td><!-- Haven't added the profile pic yet --></td>
+                    <td></td>
                     <td>Vaibhavi</td>
                     <td>Musician</td>
                     <td>Guitar</td>
                     <td>Country</td>
                     <td>14623</td>
-                    <td><button>Invite</button></td>
+                    <td><button class="invite-btn">Invite</button></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -72,17 +72,19 @@
                     <td><?php echo $row['Instuments']?></td>
                     <td><?php echo $row['Genre']?></td>
                     <td><?php echo $row['Location']?></td>
-                    <td><button>Invite</button></td>
+                    <td><button class="invite-btn">Invite</button></td>
                 </tr>
-                <?
-                    }
-                ?>
+                <!-- <?php
+                        }
+                    ?> -->
                 </tbody>
             </table>
         </div> <!-- search-results -->
     </div><!-- search-warpper -->
 
 </div>
+
+<div >
 
 <footer >
     <div th:include="fragments/footer :: footer"> </div>

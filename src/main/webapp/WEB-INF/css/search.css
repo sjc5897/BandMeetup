@@ -1,264 +1,140 @@
-body{
-    margin: 0;
-    background: ghostwhite;
-    background: url("music3.jpg") no-repeat top center;
-    opacity: 70%;
-    height: 100%;
-    position: relative;
-}
-
-.container{
-    z-index: 1;
-    min-height: 100vh; /* will cover the 100% of viewport */
-    overflow: hidden;
-    display: block;
-    position: relative;
-    padding-bottom: 100px;
-
-}
-
-/* NAVIGATION */
-
-.nav-wrapper{
-    margin: 0;
-    display: flex;
-    width: auto;
-    justify-content: space-between;
-    background-color:black;
-    padding: 40px;
-    text-align: justify-all;
-}
-
-.right-side{
-    display: flex;
-}
-
-.nav-wrapper > .right-side > div{
-    display: flex;
-    margin-right: 20px;
-    padding-top: 10px;
-    font-size: 0.9em;
-    text-transform: uppercase;
-}
-
-.nav-wrapper > .left-side > div{
-    margin-right: 20px;
-    font-size: 0.9em;
-    text-transform: uppercase;
-    color: black;
-}
-
-.title{
-    font-size: 30px;
-    font-weight: bold;
-}
-
-/* NAVIGATION DECORATION */
-
-.nav-link-wrapper > a{
-    color:white;
-    text-decoration: none;
-    transition: color 0.5s;
-}
-
-.nav-link-wrapper:hover{
-    border-bottom: 1px solid black;
-}
-
-.nav-link-wrapper a:hover{
-    color: #8a8a8a;
-}
-
-
-.active-nav-link{
-  border-bottom: 1px solid black;
-}
-
-/* LOGIN BLOCK */
-
-.login-wrapper{
-
+table{
+    background-color: aliceblue;
     position: absolute;
-    top: 50%;
     left: 50%;
+    top:50%;
     transform: translate(-50%,-50%);
-    padding: 0 20px;
-    width: 100%;
+    border-collapse: collapse;
+    width: 800px;
+    height: 200px;
+    border: 1px solid #bdc3c7;
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.3), -1px -1px 8px rgba(0,0,0,0.5);
 }
 
-.login-form{
-    width: 100%;
-    max-width: 350px;
-    background: gainsboro;
-    margin: 0 auto;
-    height: 350px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px 0 rgba(225,225,225,0.16), 0 2px 10px 0 rgba(225,225,225,0.12);
+tr{
+    transition: all 0.2s ease-in;
+    cursor: pointer;
 }
 
-.login-form .title-section{
-    height: 45%;
-    position: relative;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    overflow: hidden;
-}
-
-.login-form .title-section:before{
-    content: "";
-    position: absolute;
-    top: -104%;
-    left: -35%;
-    width: 500px;
-    height: 500px;
-    border-radius:50% ;
-    background: url("music4.jpg") no-repeat top center;
-    background-size: cover;
-}
-
-/*
-.login-form .title-section h2{
-    position: relative;
-    padding-top: 8%;
-    text-transform: uppercase;
-    font-size: 2.5em;
+th, td{
+    padding: 20px;
     text-align: center;
-    color: whitesmoke;
-}
-*/
-
-.login-form .login-section{
-    width: 100%;
-    height: 55%;
-    padding: 30px 50px;
+    border-bottom: 1px solid #ddd;
 }
 
-.login-form .login-section .input-fields{
-    padding-bottom: 10px;
-    position: relative;
+#header{
+    background-color: black;
+    color: white;
 }
 
-.login-form .login-section .input-fields .input{
-    width: 53%;
-    position: relative;
-    border: none;
-    padding: 10px 30px;
-    border-radius: 3px;
-    font-size: 1em;
+tr:hover{
+    color: blueviolet;
+    background-color: #f5f5f5;
+    transform: scale(1.02);
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.3), -1px -1px 8px rgba(0,0,0,0.5);
 }
 
-.login-form .login-section input[type=text]:focus{
-    background: #fff;
-    opacity: 100%;
-    outline: 2px solid rebeccapurple;
+/* media Query */
+
+@media screen and (max-width:768px){
+    table{
+        width: 90%;
+    }
+    .search-bar{
+        width: 20%;
+    }
+    .user{
+        width: 90px;
+    }
+    .location{
+        width: 60px;
+    }
 }
 
 
 
-.login-form .login-section .input-fields a{
-    position: relative;
-    color: #212121;
-    right: 55px;
-    text-transform: capitalize;
-    font-size: 0.75em;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.login-form .login-section .input-fields .fas{
+/* SEARCH FIELD */
+.search-bar{
     position: absolute;
-    color: #212121;
-    left: 12px;
-    top: 15px;
-    font-size: 0.75em;
+    width: 43%;
+    left: 26%;
+    top: 0%;
+    background-color: black;
+    padding: 30px;
+    align-items: center;
     z-index: 1;
 }
 
-.btn{
-    width: 65%;
-    align-items: center;
-    background: #212121;
+.search-field{
+    height: 30px;
     padding: 10px;
-    margin-top: 5px;
-    text-align: center;
-    text-transform: capitalize;
-    letter-spacing: 2px;
-    color: whitesmoke;
-    border-radius: 3px;
-}
-
-#submit {
-    background-color: #212121;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius:3px;
-    color: #fff;
-    font-family: 'Oswald';
-    font-size: 20px;
-    text-decoration: none;
-    cursor: pointer;
-    border:none;
-    width: 100%;
-    margin: auto;
-}
-
-#submit:hover {
     border: none;
-    padding: 5px;
-    background: gray;
-    box-shadow: 0px 0px 1px #777;
+    border-radius: 25px;
+    outline: none;
+
 }
 
+.user{
+    width: 400px;
+}
 
-/* FOOTER */
-
-.footer {
-    position: absolute;
-    width: 97.3%;
-    bottom: 0;
+.search-btn{
+    height: 50px;
+    width: 50px;
+    background-color: slategray;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+}
+.search-icon{
+    font-size: 20px;
     color: white;
-    text-align: center;
-    padding: 20px;
-    color:whitesmoke;
-    background: black;
 }
 
-
-/*
-
--------------------------      HEADER.CSS    -------------------------------
-
-
-ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #160101;
+.filter{
+    padding: 15px;
+    border-radius: 25px;
+    color: grey;
 }
 
-li h1{
-    font-size: 36px;
-    line-height: 42px;
-    display: flex;
-    align-items: center;
-    color: #FFFCFC;
-    float: left;
-    padding: 14px 16px;
+.search-field:hover,.search-btn:hover, .filter:hover{
+    transition: all 0.1s ease-in-out;
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.7);
+    border: 2px solid rebeccapurple;
+    color: rebeccapurple;
 }
 
-li a{
-    font-size: 18px;
-    line-height: 21px;
-    display: block;
-    align-items: center;
-    text-align: center;
-    text-decoration: none;
-    float: right;
-    color: #FFFCFC;
-    padding: 14px 16px;
+.search-field:active{
+    color: rebeccapurple;
 }
-li a:hover{
-    background-color: #111;
+
+.invite-btn{
+    border:0;
+    padding: 10px;
+    width: 100%;
+    border-radius: 3px;
+    background-color:rebeccapurple;
+    color: whitesmoke;
+    font-family: "Bree Serif", serif;
+    font-size: 1rem;
+    margin: 5px 2px;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 10px;
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.3);
 }
-*/
+
+.invite-btn:hover{
+    transition: all 0.1s ease-in-out;
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.7);
+    background-color: black;
+}
+
+.invite-btn:active{
+    transition: all 0.1s ease-in-out;
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.7);
+    background-color: palevioletred;
+}
+
