@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import static com.bandmeetup.security.Hasher.hashPass;
 
 /**
@@ -32,7 +28,7 @@ public class RegistrationController {
      *
      * @return String redirect to Register
      */
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = {"/register*"}, method = RequestMethod.GET)
     public String displayRegistrationPage() {
         return "register";
     }
@@ -44,20 +40,22 @@ public class RegistrationController {
      * @param type      String, user's account type
      * @return String redirect to relevant page
      */
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String handleRegister(@RequestParam(name = "email") String email, @RequestParam(name = "pw") String pw
-            , @RequestParam(name = "accountT") String type, Model model) {
+    @RequestMapping(value = {"/register*"}, method = RequestMethod.POST)
+
+    public String handleRegister(@RequestParam(name = "email") String email,
+                                 @RequestParam(name = "full_name") String name,
+                                 @RequestParam(name = "pw") String pw,
+                                 @RequestParam(name = "accountT") String type, Model model) {
 
         pw = hashPass(pw);
-        String resp = service.register(email, pw, type);
-        if(resp.contains("ERROR:")){
+        String resp = service.register(email,name, pw, type);
+        if(resp.contains("Error:")){
             model.addAttribute("error",true);
-            model.addAttribute("msg", resp);
-            return "register";
+            return "redirect:/register";
         }
         else{
             model.addAttribute("reg_success", true);
-            return "login";
+            return "redirect:/login";
         }
     }
 }

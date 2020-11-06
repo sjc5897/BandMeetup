@@ -46,9 +46,8 @@ public class LogController {
     public String runLogin(@RequestParam(name="uname") String name, @RequestParam(name="pw") String pw, Model model) {
         pw = hashPass(pw);
         if (service.validateUser(name,pw)){
-            model.addAttribute("name", name);
             // TODO: We need some robust role system
-            return "profile";
+            return "redirect:/profile/" + name;
         }
         else{
             model.addAttribute("error", true);

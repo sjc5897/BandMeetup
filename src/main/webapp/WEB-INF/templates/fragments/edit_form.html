@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:fragment="edit_muse">
+        <div class="input-fields">
+            <i class="fas fa-user"></i>
+            <input th:value="${Profile.getGenre()}" class="input" id="genre" name="genre" type="text" placeholder="Musical Genre">
+        </div>
+        <div class="input-fields">
+            <i class="fas fa-user"></i>
+            <input th:value="${Profile.getInstruments()}" class="input" type="input" id="inst" name="inst" placeholder="Musical Instrument">
+        </div>
+        <div class="input-fields">
+            <i class="fas fa-user"></i>
+            <input th:value="${Profile.getBio()}"  class="input" type="text" id="bio" name="bio" placeholder="Bio">
+        </div>
+        <div class="input-fields">
+            <select class="input" id="status" name="status" required>
+                <option class="opt" value="Lookingtojoinaband">Looking to join a Band</option>
+                <option class="opt" value="Lookingforabandmember">Looking for a new Band Member</option>
+                <option class="opt" value="Lookingtostartaband">Looking to start a Band</option>
+                <option class="opt" value="Lookingtojam">Just looking to Jam</option>
+            </select>
+        </div>
+    </div>
+    <div th:fragment="edit_manager">
+        <div class="input-fields">
+            <i class="fas fa-user"></i>
+            <input th:value="${Profile.getDescription()}" class="input" type="text" id="desc" name="desc" placeholder="Description">
+        </div>
+    </div>
+</body>
+</html>

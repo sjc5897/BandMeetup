@@ -16,6 +16,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
  * Framework: Spring
  * Author: Stephen Cook <sjc5897@rit.edu>
  * Created: 10/21/20
+ * Last Edited: 11/3/20
  */
 
 @EnableWebMvc
@@ -32,6 +33,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/register").setViewName("register");
         registry.addViewController("/profile").setViewName("profile");
+        registry.addViewController("/cerror").setViewName("cerror");
     }
 
     /**
