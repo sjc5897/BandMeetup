@@ -1,6 +1,5 @@
 package com.bandmeetup.controller;
 
-import com.bandmeetup.model.Musician;
 import com.bandmeetup.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,10 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 import static com.bandmeetup.security.Hasher.hashPass;
 
@@ -33,7 +28,7 @@ public class RegistrationController {
      *
      * @return String redirect to Register
      */
-    @RequestMapping(value = {"/register"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/register*"}, method = RequestMethod.GET)
     public String displayRegistrationPage() {
         return "register";
     }
@@ -45,7 +40,7 @@ public class RegistrationController {
      * @param type      String, user's account type
      * @return String redirect to relevant page
      */
-    @RequestMapping(value = {"/register"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/register*"}, method = RequestMethod.POST)
 
     public String handleRegister(@RequestParam(name = "email") String email,
                                  @RequestParam(name = "full_name") String name,

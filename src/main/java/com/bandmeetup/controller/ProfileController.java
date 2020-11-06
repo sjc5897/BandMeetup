@@ -5,14 +5,13 @@ import com.bandmeetup.model.User;
 import com.bandmeetup.model.VenueManager;
 import com.bandmeetup.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.swing.*;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -52,14 +51,54 @@ public class ProfileController {
     public String getEditPage(@PathVariable("email")String email, Model model){
         email += ".com";
         addProfile(email,model);
-
         if(model.getAttribute("Profile") == null){
             return "redirect:/cerror/profile_not_found";
         }
         return "edit";
     }
+    @RequestMapping(value="/edit/{email}",method=RequestMethod.POST)
+    public String submitEdit(@PathVariable("email") String email, @RequestParam("full_name") String name,
+                             @RequestParam(value = "zipcode",required = false) Integer zip,
+                             @RequestParam(value = "genre", required = false) String genre,
+                             @RequestParam(value = "inst", required = false) String inst,
+                             @RequestParam(value = "bio", required = false) String bio,
+                             @RequestParam(value = "status", required = false) String status,
+                             @RequestParam(value = "desc", required = false) String desc){
+        email += ".com";
+        User user = service.getUser(email);
+        boolean resp = false;
+        if (user.getUserType().equals("Musician")) {
+            Musician profile = service.getMusician(email);
+            profile.setBio(bio);
+            profile.setGenre(genre);
+            profile.setLocation(zip.toString());
+            profile.setInstruments(inst);
+            profile.setStatus(status);
+            profile.setName(name);
+            resp = service.updateMusician(profile);
+        }
+        else if(user.getUserType().equals("VenueManager")){
+            VenueManager profile = service.getVenueManager(email);
+            profile.setDescription(desc);
+            profile.setName(name);
+            profile.setLocation(zip.toString());
+            resp = service.updateVenueManager(profile);
+        }
+        if(resp){
+            return "redirect:/profile/" + email;
+        }
+        else{
+            return "redirect:/edit/" + email;
+        }
 
+    }
 
+    /**
+     * This handles the get for the profile page
+     * @param email the Id
+     * @param model a fake model
+     * @return
+     */
     @RequestMapping(value="/profile/{email}", method = RequestMethod.GET)
     public String displayLoginPage(@PathVariable("email")String email,Model model) {
 

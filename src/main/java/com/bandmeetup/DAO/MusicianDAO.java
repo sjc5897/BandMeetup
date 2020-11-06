@@ -1,6 +1,5 @@
 package com.bandmeetup.DAO;
 import com.bandmeetup.model.Musician;
-import com.bandmeetup.model.User;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -92,21 +91,20 @@ public class MusicianDAO implements Dao<Musician> {
     @Override
     public String save(Musician musician) {
 
-        String sql = "INSERT INTO Musician(Email, Password, FName, LName, Genre, ProfileStatus, Instruments, Bio, Location) VALUES(?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Musician(Email, FName, LName, Genre, ProfileStatus, Instruments, Bio, Location) VALUES(?,?,?,?,?,?,?,?)";
         String resp;
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,musician.getEmail());
-            preparedStatement.setString(2,musician.getPw());
             String[] arrOfStr = musician.getName().split(" ", 2);
-            preparedStatement.setString(3,arrOfStr[0]);
-            preparedStatement.setString(4,arrOfStr[1]);
-            preparedStatement.setString(5,musician.getGenre());
-            preparedStatement.setString(6,String.valueOf(musician.getStatus()));
-            preparedStatement.setString(7,musician.getInstruments());
-            preparedStatement.setString(8,musician.getBio());
-            preparedStatement.setString(9,musician.getLocation());
+            preparedStatement.setString(2,arrOfStr[0]);
+            preparedStatement.setString(3,arrOfStr[1]);
+            preparedStatement.setString(4,musician.getGenre());
+            preparedStatement.setString(5,String.valueOf(musician.getStatus()));
+            preparedStatement.setString(6,musician.getInstruments());
+            preparedStatement.setString(7,musician.getBio());
+            preparedStatement.setString(8,musician.getLocation());
             preparedStatement.execute();
             preparedStatement.closeOnCompletion();
             resp = "Success";
@@ -118,35 +116,33 @@ public class MusicianDAO implements Dao<Musician> {
     }
 
     @Override
-    public void update(Musician musician) {
+    public boolean update(Musician musician) {
 
         String[] arrOfStr = musician.getName().split(" ", 2);
-        String sql = "update Musician set"+
-                "Password="+musician.getPw()+
-                ",FName="+arrOfStr[0]+
-                ",LName="+arrOfStr[1]+
-                ",Genre="+musician.getGenre()+
-                ",ProfileStatus="+String.valueOf(musician.getStatus())+
-                ",Instruments="+musician.getInstruments()+
-                ",Bio="+musician.getBio()+
-                ",Location=" +musician.getLocation()+
-                "where Email="+musician.getEmail()+";";
-
+        String sql = "UPDATE Musician SET FName=?, LName=?, Genre=?, ProfileStatus=?,Instruments=?,Bio=?,Location=? WHERE Email= ?;";
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.executeQuery();
+            preparedStatement.setString(1,arrOfStr[0]);
+            preparedStatement.setString(2,arrOfStr[1]);
+            preparedStatement.setString(3,musician.getGenre());
+            preparedStatement.setString(4,String.valueOf(musician.getStatus()));
+            preparedStatement.setString(5,musician.getInstruments());
+            preparedStatement.setString(6,musician.getBio());
+            preparedStatement.setString(7,musician.getLocation());
+            preparedStatement.setString(8,musician.getEmail());
+            preparedStatement.executeUpdate();
             preparedStatement.closeOnCompletion();
+            return true;
 
         }
         catch (SQLException ex){
            ex.getSQLState();
+           System.out.println(ex.getMessage());
+           return false;
         }
 
     }
-
-
-
 
     @Override
     public void delete(Musician musician) {

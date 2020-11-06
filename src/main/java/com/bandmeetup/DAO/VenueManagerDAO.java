@@ -17,7 +17,7 @@ public class VenueManagerDAO implements Dao<VenueManager> {
     @Override
     public Optional<VenueManager> get(String email) {
         // Sql statement for prepared statement
-        String sql = "select * from User JOIN VenueManager ON User.Email = VenueManager.Email WHERE User,Email=?;";
+        String sql = "select * from User JOIN VenueManager ON User.Email = VenueManager.Email WHERE User.Email=?;";
 
         try{
             // Try and get connection
@@ -87,16 +87,15 @@ public class VenueManagerDAO implements Dao<VenueManager> {
 
     @Override
     public String save(VenueManager venumanager) {
-        String sql = "INSERT INTO VenueManager(Email, Password, Name, Location, Description) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO VenueManager(Email, Name, Location, Description) VALUES(?,?,?,?)";
         String resp;
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,venumanager.getEmail());
-            preparedStatement.setString(2,venumanager.getPw());
-            preparedStatement.setString(3,venumanager.getName());
-            preparedStatement.setString(4,venumanager.getLocation());
-            preparedStatement.setString(5,venumanager.getDescription());
+            preparedStatement.setString(2,venumanager.getName());
+            preparedStatement.setString(3,venumanager.getLocation());
+            preparedStatement.setString(4,venumanager.getDescription());
             preparedStatement.execute();
             preparedStatement.closeOnCompletion();
             resp = "Success";
@@ -108,23 +107,23 @@ public class VenueManagerDAO implements Dao<VenueManager> {
     }
 
     @Override
-    public void update(VenueManager venumanager) {
-        String sql = "update VenueManager set"+
-                "Password="+venumanager.getPw()+
-                ",Name="+venumanager.getName()+
-                ",Location="+venumanager.getLocation()+
-                ",Description=" +venumanager.getDescription()+
-                "where Email="+venumanager.getEmail()+";";
-
+    public boolean update(VenueManager venumanager) {
+        String sql = "UPDATE VenueManager SET Name=?, Location=?, Description=? WHERE Email=?;";
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.executeQuery();
+            preparedStatement.setString(1,venumanager.getName());
+            preparedStatement.setString(2, venumanager.getLocation());
+            preparedStatement.setString(3, venumanager.getDescription());
+            preparedStatement.setString(4,venumanager.getEmail());
+            preparedStatement.executeUpdate();
             preparedStatement.closeOnCompletion();
+            return true;
 
         }
         catch (SQLException ex){
            ex.getSQLState();
+           return false;
         }
 
     }

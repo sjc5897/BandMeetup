@@ -49,5 +49,10 @@ public class ProfileService {
         }
         return venueManager.get();
     }
-
+    public boolean updateMusician(Musician muse){
+        return musicianDao.update(muse);
+    }
+    public boolean updateVenueManager(VenueManager man){
+        return venueManagerDao.update(man);
+    }
 }

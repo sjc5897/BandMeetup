@@ -35,12 +35,18 @@ public class RegistrationService {
     public String register(String email, String name, String pw, String type) {
         if (type.equals("Musician")){
             Musician n_user = new Musician(email,name,pw,type,"Lookingtojoinaband","","","","");
-            musicianDao.save(n_user);
+            String resp = musicianDao.save(n_user);
+            if(resp.contains("Error: ")){
+                return resp;
+            }
             return userDao.save(n_user);
         }
         if (type.equals("VenueManager")){
             VenueManager n_user = new VenueManager(email,name,pw,type,"","");
-            venueManagerDao.save(n_user);
+            String resp = venueManagerDao.save(n_user);
+            if(resp.contains("Error: ")){
+                return resp;
+            }
             return userDao.save(n_user);
         }
         return "Error: ";
