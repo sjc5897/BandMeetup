@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Bandmeetup Wow: Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/forms.css?<?php echo rand();?>}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<style>
+
+</style>
+<header>
+    <div th:include="fragments/header :: header"> </div>
+</header>
+<body>
+    <div class="container" id="container-reg">
+        <div class="reg-wrapper" id="regWrapper">
+            <div class="reg-form" id="regForm">
+                <div class="title-section">
+                    <h2>Edit Profile</h2>
+                </div>
+                <form method="POST" th:action="'/edit/' + ${(Profile.getEmail())}">
+                    <div class="reg-section" id="reg_sec">
+                        <div class="input-fields">
+                            <i class="fas fa-user"></i>
+                            <input name="full_name"  id="full_name" type="text" class="input" th:value="${Profile.getName()}" placeholder="Full Name">
+                        </div>
+                        <div class="input-fields">
+                            <i class="fas fa-user"></i>
+                            <input name="zipcode"  id="zipcode" type="text" inputmode="numeric" pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$" class="input" th:value="${Profile.getLocation()}" placeholder="Zip Code">
+                        </div>
+                        <div th:if="${Profile.getUserType()}=='Musician'" th:include="fragments/edit_form :: edit_muse">
+                        </div>
+                        <div th:if="${Profile.getUserType()}=='VenueManager'" th:include="fragments/edit_form :: edit_manager">
+                        </div>
+                    </div>
+                    <input type="submit" value="Submit"/>
+                </form>
+            </div>
+        </div>
+
+</div>
+
+</body>
+<footer>
+    <div th:include="fragments/footer :: footer"> </div>
+</footer>
+</html>

@@ -124,16 +124,18 @@ public class UserDAO implements Dao<User> {
     }
 
     @Override
-    public void update(User user) {
+    public boolean update(User user) {
         String sql = "update User set Password='"+user.getPw()+"'where Email='"+user.getEmail()+"';";
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.execute();
             preparedStatement.closeOnCompletion();
+            return true;
         }
         catch (SQLException ex){
             ex.getSQLState();
+            return false;
         }
     }
 

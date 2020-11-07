@@ -20,7 +20,7 @@ public interface Dao <T> {
     Optional<T> get(String email);
     List<T> getAll();
     String save(T t);
-    void update(T t);
+    boolean update(T t);
     void delete(T t);
 
 
