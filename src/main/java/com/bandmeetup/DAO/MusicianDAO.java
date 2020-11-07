@@ -1,6 +1,5 @@
 package com.bandmeetup.DAO;
 import com.bandmeetup.model.Musician;
-import com.bandmeetup.model.User;
 
 import org.springframework.stereotype.Component;
 
@@ -8,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.stereotype.Component;
+
 
 @Component
 public class MusicianDAO implements Dao<Musician> {
@@ -162,88 +161,151 @@ public class MusicianDAO implements Dao<Musician> {
             ex.getSQLState();
         }
     }
+
+    public List<Musician> findByStatus(String status) {
+
+            // SQL Statement for prepared statement
+            String sql = "select * from Musician where ProfileStatus='"+status+"';";
+            ArrayList<Musician> Musicians = new ArrayList<Musician>();
+            try{
+                //Try connection and prepared statement setup
+                Connection connection = ConnectDB.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                try{
+                    // Try Query
+                    ResultSet result = preparedStatement.executeQuery();
+                    if(result.next()){
+
+                        // If result create new user and return Optional with value of created user
+                        Musicians.add( new Musician(result.getString("Email"),
+                                result.getString("Fname")+" "+result.getString("LName"),
+                                result.getString("Password"),
+                                result.getString("UserType"),
+                                result.getString("ProfileStatus"),
+                                result.getString("Instruments"),
+                                result.getString("Genre"),
+                                result.getString("Location"),
+                                result.getString("Bio")));
+                    }
+                }
+                // Exceptions return empty arrays
+                catch (SQLException ex){
+                    return Musicians;
+                }
+            }
+            catch (SQLException ex){
+                return Musicians;
+            }
+            return Musicians;
+        }
+    public List<Musician> findByLocation(String location) {
+
+        // SQL Statement for prepared statement
+        String sql = "select * from Musician where Location='"+location+"';";
+        ArrayList<Musician> Musicians = new ArrayList<Musician>();
+        try{
+            //Try connection and prepared statement setup
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            try{
+                // Try Query
+                ResultSet result = preparedStatement.executeQuery();
+                if(result.next()){
+
+                    // If result create new user and return Optional with value of created user
+                    Musicians.add( new Musician(result.getString("Email"),
+                            result.getString("Fname")+" "+result.getString("LName"),
+                            result.getString("Password"),
+                            result.getString("UserType"),
+                            result.getString("ProfileStatus"),
+                            result.getString("Instruments"),
+                            result.getString("Genre"),
+                            result.getString("Location"),
+                            result.getString("Bio")));
+                }
+            }
+            // Exceptions return empty arrays
+            catch (SQLException ex){
+                return Musicians;
+            }
+        }
+        catch (SQLException ex){
+            return Musicians;
+        }
+        return Musicians;
+    }
+    public List<Musician> findByGenre(String genre) {
+
+        // SQL Statement for prepared statement
+        String sql = "select * from Musician where Genre='"+genre+"';";
+        ArrayList<Musician> Musicians = new ArrayList<Musician>();
+        try{
+            //Try connection and prepared statement setup
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            try{
+                // Try Query
+                ResultSet result = preparedStatement.executeQuery();
+                if(result.next()){
+
+                    // If result create new user and return Optional with value of created user
+                    Musicians.add( new Musician(result.getString("Email"),
+                            result.getString("Fname")+" "+result.getString("LName"),
+                            result.getString("Password"),
+                            result.getString("UserType"),
+                            result.getString("ProfileStatus"),
+                            result.getString("Instruments"),
+                            result.getString("Genre"),
+                            result.getString("Location"),
+                            result.getString("Bio")));
+                }
+            }
+            // Exceptions return empty arrays
+            catch (SQLException ex){
+                return Musicians;
+            }
+        }
+        catch (SQLException ex){
+            return Musicians;
+        }
+        return Musicians;
+    }
+    public List<Musician> findByInstruments(String instrument) {
+
+        // SQL Statement for prepared statement
+        String sql = "select * from Musician where Genre='"+instrument+"';";
+        ArrayList<Musician> Musicians = new ArrayList<Musician>();
+        try{
+            //Try connection and prepared statement setup
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            try{
+                // Try Query
+                ResultSet result = preparedStatement.executeQuery();
+                if(result.next()){
+
+                    // If result create new user and return Optional with value of created user
+                    Musicians.add( new Musician(result.getString("Email"),
+                            result.getString("Fname")+" "+result.getString("LName"),
+                            result.getString("Password"),
+                            result.getString("UserType"),
+                            result.getString("ProfileStatus"),
+                            result.getString("Instruments"),
+                            result.getString("Genre"),
+                            result.getString("Location"),
+                            result.getString("Bio")));
+                }
+            }
+            // Exceptions return empty arrays
+            catch (SQLException ex){
+                return Musicians;
+            }
+        }
+        catch (SQLException ex){
+            return Musicians;
+        }
+        return Musicians;
+    }
+
 }
-//    @Override
-//    public Musician extractUser(ResultSet rs) throws SQLException {
-//
-//        Musician m = new Musician();
-//        m.setEmail( rs.getString("email") );
-//        m.setName( rs.getString("FName") + rs.getString("LName"));
-//        m.setPw( rs.getString("pass") );
-//        return m;
-//    }
-//
-//
-//    @Override
-//    public Musician getMusician(String email) {
-//
-//        Connection connection = ConnectDB.getConnection();
-//        try {
-//            Statement stmt = connection.createStatement();
-//
-//            ResultSet rs = stmt.executeQuery("SELECT * FROM Musician WHERE email=" + email);
-//            if(rs.next())
-//            {
-//                return  extractUser(rs);
-//            }
-//        } catch (SQLException ex) {
-//
-//            ex.printStackTrace();
-//        }
-//        return null;
-//
-//    }
-//
-//    @Override
-//    public  List<Musician>  getAllMusician() {
-//        Connection connection = ConnectDB.getConnection();
-//        try {
-//            Statement stmt = connection.createStatement();
-//
-//            ResultSet rs = stmt.executeQuery("SELECT * FROM Musician");
-//            List<Musician> Musicians = new ArrayList<Musician>();
-//
-//            while(rs.next())
-//
-//            {
-//                Musicians.add(extractUser(rs));
-//
-//            }
-//
-//            return Musicians;
-//
-//        } catch (SQLException ex) {
-//
-//            ex.printStackTrace();
-//        }
-//
-//        return null;
-//
-//    }
-//
-//
-//    @Override
-//    public Musician getUserByUserNameAndPassword(){
-//        Musician m =new Musician();
-//        return m;
-//
-//    }
-//
-//    @Override
-//    public boolean insertMusician(){
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean updateMusician(){
-//        return true;
-//
-//    }
-//
-//    @Override
-//    public boolean deleteMusician(){
-//        return true;
-//    }
-//
-//}
+
