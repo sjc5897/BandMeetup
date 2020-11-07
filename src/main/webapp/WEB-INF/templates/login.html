@@ -4,8 +4,6 @@
     <title>Bandmeetup Wow: Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{/css/forms.css?<?php echo rand();?>}" rel="stylesheet"/>
-
-
 </head>
 <style>
 
@@ -18,8 +16,7 @@
      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
     <div class="form">
-        <p th:if="${reg_success == True}" class="success-message">Registration Succesful, Please Sign In.</p>
-        <p th:if="${error == True}" class="error-message">Authentication unsuccessful, please try again. </p>
+
         <form method="POST" action="/login">
             <label for="uname">Email:</label>
             <input id="uname" name="uname" type="text" required><br>
@@ -39,9 +36,10 @@
                 <div class="title-section">
                     <h2>Login form</h2>
                 </div>
-                <form method="get" action="/profile">
+                <p th:if="${{(param.reg_success != null)}}" class="success-message">Registration Succesful, Please Sign In.</p>
+                <p th:if="${{(param.error != null)}}" class="error-message">Authentication unsuccessful, please try again. </p>
+                <form method="POST" action="/login">
                     <div class="login-section">
-
                         <div class="input-fields">
                             <i class="fas fa-user"></i>
                             <input name="uname" type="text" class="input" placeholder="Username">
@@ -62,10 +60,6 @@
     <footer >
     <div th:include="fragments/footer :: footer"> </div>
     </footer>
-
-<script>
-
-</script>
 
 </body>
 </html>
