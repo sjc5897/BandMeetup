@@ -2,7 +2,7 @@ table{
     background-color: aliceblue;
     position: absolute;
     left: 50%;
-    top:50%;
+    top:36%;
     transform: translate(-50%,-50%);
     border-collapse: collapse;
     width: 800px;
@@ -56,11 +56,12 @@ tr:hover{
 /* SEARCH FIELD */
 .search-bar{
     position: absolute;
-    width: 43%;
-    left: 26%;
+    width: 48%;
+    left: 22%;
     top: 0%;
     background-color: black;
-    padding: 30px;
+    padding: 10px;
+    padding-top: 20px;
     align-items: center;
     z-index: 1;
 }
@@ -71,7 +72,6 @@ tr:hover{
     border: none;
     border-radius: 25px;
     outline: none;
-
 }
 
 .user{
@@ -109,6 +109,7 @@ tr:hover{
     color: rebeccapurple;
 }
 
+
 .invite-btn{
     border:0;
     padding: 10px;
@@ -138,3 +139,65 @@ tr:hover{
     background-color: palevioletred;
 }
 
+/*
+SEARCHDISPLAY PAGE ....................................................................
+*/
+
+.search-display{
+    margin: auto;
+    margin-top: 30px;
+    margin-left: 190px;
+}
+
+.cards{
+    margin: 50px;
+    display: inline-block;
+    width: 20%;
+    color: ghostwhite;
+    border-radius: 5px;
+    box-shadow: 2px 2px 12px black;
+    background-color: #1d1d1d;
+}
+
+.image img{
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.title{
+    text-align: center;
+}
+
+.desc{
+    text-align: center;
+}
+
+.desc p i{
+    width: 99%;;
+    display: inline-block;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 12px black;
+}
+
+button{
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 30%;
+    background-color: rebeccapurple;
+    color: whitesmoke;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: black;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.7);
+    transition: .5s;
+}
