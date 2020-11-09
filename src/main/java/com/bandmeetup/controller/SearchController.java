@@ -17,7 +17,7 @@ public class SearchController {
     }
 
     @RequestMapping(value="/search", method=RequestMethod.POST)
-    public String requestMethodName(@RequestParam(name = "searchBar") String searchentry,@RequestParam(name = "filter") String filter ) {
+    public String requestMethodName(@RequestParam(name = "searchBar") String searchentry) {
         
         return "";
     }
