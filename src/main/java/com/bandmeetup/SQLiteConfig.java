@@ -2,7 +2,7 @@ package com.bandmeetup;
 
 
 import com.bandmeetup.DAO.ConnectDB;
-import com.bandmeetup.model.VenuManager;
+import com.bandmeetup.model.VenueManager;
 
 import java.sql.*;
 
@@ -105,7 +105,7 @@ public class SQLiteConfig {
 
     }
     public static void save() throws ClassNotFoundException {
-        VenuManager nenumanager =new VenuManager("email", "name", "pw","VenueManager", "location", "description");
+        VenueManager nenumanager =new VenueManager("email", "name", "pw","VenueManager", "location", "description");
 
         String sql = "INSERT INTO VenueManager(Email, Name, Location, Description) VALUES(?,?,?,?)";
 
