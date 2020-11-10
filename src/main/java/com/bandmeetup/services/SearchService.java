@@ -17,6 +17,12 @@ public class SearchService {
 
     private List<Musician> musicians;
 
+    public List<Musician> displayallprofiles(){
+        musicians = musicianDao.getAll();
+        return musicians;
+
+    }
+
 
     public List<Musician> search(String searchentry, String filter){
         if(filter.equals("Status")){
