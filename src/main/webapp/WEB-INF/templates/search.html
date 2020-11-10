@@ -21,9 +21,10 @@
 
     <div class="search-wrapper">
         <div class="search-bar">
+            <form th:action="@{/}">
             <input type="text" name="searchBar" id="searchBar"
-                   class="search-field user" placeholder="Search your BandMate here. . . . ">
-            <select class="filter">
+                   class="search-field user" placeholder="Search your BandMate here. . . . " id="keyword" name="keyword" th:value="${keyword}" required/>
+            <select class="filter" >
                 <option>Select Filter</option>
                 <option>Account Type</option>
                 <option>Instrument</option>
@@ -32,8 +33,13 @@
             </select>
             <!-- <input type="text" name="location-filter" class="search-field location" placeholder="Location"> -->
 
-            <button class="search-btn"><i class="fas fa-search search-icon"></i></button>
-
+            <button class="search-btn" id="btnClear" onclick="clearSearch()"><i class="fas fa-search search-icon"></i></button>
+            </form>
+            <script type="text/javascript">
+                function clearSearch() {
+                    window.location = "[[@{/}]]";
+                }
+            </script>
         </div> <!-- search-bar -->
 
         <div class="search-result">
@@ -67,13 +73,13 @@
                     <td>14623</td>
                     <td><button class="invite-btn">Invite</button></td>
                 </tr>
-                <tr>
+                <tr th:each="musician : ${musicians}">
                     <td></td>
-                    <td><?php echo $row['FName']?></td>
-                    <td><?php echo $row['']?></td>
-                    <td><?php echo $row['Instuments']?></td>
-                    <td><?php echo $row['Genre']?></td>
-                    <td><?php echo $row['Location']?></td>
+                    <td th:text="${musician.name}"></td>
+                    <td th:text="${musician.status}"></td>
+                    <td th:text="${musician.instruments}"></td>
+                    <td th:text="${musician.genre}"></td>
+                    <td th:text="${musician.location}"></td>
                     <td><button class="invite-btn">Invite</button></td>
                 </tr>
                 <!-- <?php
