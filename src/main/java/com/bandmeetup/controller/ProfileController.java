@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
@@ -24,7 +28,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  * Last Edit: 11/3/20
  */
 @Controller
-public class ProfileController {
+public class ProfileController extends HttpServlet {
     @Autowired
     ProfileService service;
 
@@ -47,16 +51,33 @@ public class ProfileController {
      * This will most likely need some sort of ID passed to query the correct user and generate the profile.
      * @return String Login, which is used to represent the Profile page
      */
-    @RequestMapping(value="/edit/{email}", method = GET)
-    public String getEditPage(@PathVariable("email")String email, Model model){
-        email += ".com";
+    @RequestMapping(value="/edit/{email:.+}", method = GET)
+    public String getEditPage(@PathVariable("email")String email, Model model, HttpServletRequest request){
+
+        try {
+            HttpSession session1 = request.getSession(false);
+            String uname = (String) session1.getAttribute("email");
+            String role = (String) session1.getAttribute("role");
+
+            if (!uname.equals(email) && !role.equals("Admin")) {
+                return "redirect:/cerror/access_denied";
+            }
+        }
+        catch (Exception ex){
+            return "redirect:/login";
+        }
+
+        System.out.println("Valid Request");
+
         addProfile(email,model);
+
         if(model.getAttribute("Profile") == null){
             return "redirect:/cerror/profile_not_found";
         }
+
         return "edit";
     }
-    @RequestMapping(value="/edit/{email}",method=RequestMethod.POST)
+    @RequestMapping(value="/edit/{email:.+}",method=RequestMethod.POST)
     public String submitEdit(@PathVariable("email") String email, @RequestParam("full_name") String name,
                              @RequestParam(value = "zipcode",required = false) Integer zip,
                              @RequestParam(value = "genre", required = false) String genre,
@@ -64,7 +85,7 @@ public class ProfileController {
                              @RequestParam(value = "bio", required = false) String bio,
                              @RequestParam(value = "status", required = false) String status,
                              @RequestParam(value = "desc", required = false) String desc){
-        email += ".com";
+
         User user = service.getUser(email);
         boolean resp = false;
         if (user.getUserType().equals("Musician")) {
@@ -99,10 +120,16 @@ public class ProfileController {
      * @param model a fake model
      * @return
      */
-    @RequestMapping(value="/profile/{email}", method = RequestMethod.GET)
-    public String displayLoginPage(@PathVariable("email")String email,Model model) {
+    @RequestMapping(value="/profile/{email:.+}", method = RequestMethod.GET)
+    public String displayLoginPage(@PathVariable("email")String email,Model model, HttpServletRequest request) {
 
-        email += ".com";
+
+        try {
+            HttpSession session1 = request.getSession(false);
+        }
+        catch (Exception ex){  return "redirect:/login";}
+
+
         addProfile(email, model);
 
         if (model.getAttribute("Profile") == null) {

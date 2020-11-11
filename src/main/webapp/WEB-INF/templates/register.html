@@ -6,7 +6,11 @@
     <link th:href="@{/css/forms.css?<?php echo rand();?>}" rel="stylesheet"/>
 </head>
 <header>
-    <div th:include="fragments/header :: header"> </div>
+    <div th:switch="${session.isEmpty()}">
+        <div th:case="False" th:include="fragments/header :: header1"> </div>
+        <div th:case="*" th:include="fragments/header :: header">
+        </div>
+
 </header>
 <body>
    <div class="container" id="container-reg">
