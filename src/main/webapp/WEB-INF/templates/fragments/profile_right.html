@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body th:fragment="profile-right">
+
+    <script>
+        function openTab(tab,) {
+            var i, tabcontent, tablinks;
+
+            tabcontent = document.getElementsByClassName("tab");
+            for (i=0;i < tabcontent.length; i++){
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("nav-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.getElementById(tab).style.display = "block";
+
+
+        }
+    </script>
+
+
+    <div th:if="${Profile.getUserType()}=='Musician'" class="profile-right-side">
+        <div class="profile-nav">
+            <ul>
+                <li onclick="openTab('bio',this)" class="nav-button active">Bio</li>
+                <li onclick="openTab('genre',this)" class="nav-button">Genre</li>
+                <li onclick="openTab('instrument',this)" class="nav-button">Instruments</li>
+            </ul>
+        </div> <!-- .profile-nav -->
+
+            <div class="profile-body">
+                <div id="bio" class="tab">
+                    <h1 th:text="${Profile.getName() + '''s Bio'}"></h1>
+                    <p th:text="${Profile.getBio()}">Bio</p>
+                </div>
+                <div id="genre" class="tab">
+                    <h1 th:text="${Profile.getName() + '''s Genre'}"></h1>
+                    <p th:text="${Profile.getGenre()}">Genre</p>
+                </div>
+                <div id='instrument' class="tab">
+                    <h1 th:text="${Profile.getName() + '''s Music Instrument'}"></h1>
+                    <p th:text="${Profile.getInstruments()}">Meme</p>
+                </div>
+            </div>
+    </div>
+
+    <div th:if="${Profile.getUserType()}=='VenueManager'" class="profile-right-side">
+        <div class="profile-nav">
+            <ul>
+                <li onclick="openTab('desc',this)" class="nav-button">Description</li>
+                <li onclick="openTab('event',this)" class="nav-button">Events</li>
+            </ul>
+        </div> <!-- .profile-nav -->
+        <div class="profile-body">
+            <div id="desc" class="tab">
+                <h1 th:text="${Profile.getName() + '''s Description'}"></h1>
+                <p th:text="${Profile.getDescription()}"></p>
+            </div>
+            <div id="event" class="tab">
+                <h1 th:text="${Profile.getName() + '''s Events'}"></h1>
+                <p>
+                </p>
+            </div>
+
+
+        </div>
+    </div>
+
+</div> <!-- .profile-right-side -->
+</body>
+</html>
