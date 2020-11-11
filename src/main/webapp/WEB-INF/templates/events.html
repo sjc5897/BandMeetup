@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Bandmeetup Wow</title>
+    <!-- ?<?php echo rand();?> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/search.css}" rel="stylesheet"/>
+    <link th:href="@{/css/forms.css}" rel="stylesheet"/>
+    <link th:href="@{https://pro.fontawesome.com/releases/v5.10.0/css/all.css}" rel="stylesheet"/>
+
+</head>
+<header>
+    <div th:include="fragments/header :: header1"> </div>
+</header>
+<body>
+<div class="container">
+    <form action="/events" method="post">
+    <div class="search-wrapper">
+        <div class="search-bar">
+            <form th:action="@{/search}">
+                <input type="text" name="searchBar" id="searchBar" class="search-field user" placeholder="Search your BandMate here. . . . " th:value="${keyword}" required>
+                <select name = searchfilter class="filter" th:value="*{searchfilter}" id="filter-options">
+                    <option >Select Filter</option>
+                    <option th:value="'status'">Status</option>
+                    <option th:value="'instrument'">Instrument</option>
+                    <option th:value="'genre'">Genre</option>
+                    <option th:value="'location'">Location</option>
+                    <option th:value="'events'">Events</option>
+                </select>
+                <!-- <input type="text" name="location-filter" class="search-field location" placeholder="Location"> -->
+
+                <button class="search-btn" id="btnClear" onclick="clearSearch()"><i class="fas fa-search search-icon"></i></button>
+            </form>
+        </div> <!-- search-bar -->
+<!--event's attributes that should be displayed are: Title, Description, date, VenueManager.
+I think we need filter-->
+        <div class="search-display">
+
+            <div class="cards">
+                <div class="image">
+                    <img th:src="@{resources/profile1.jpg}">
+                </div>
+                <div class="title">
+                    <h3>Title</h3>
+                </div>
+                <div class="desc">
+                    <p>
+                        <i class="fas fa-arrow">&nbsp;&nbsp;Description</i><br>
+                        <i class="fas fa-calendar i-calendar">&nbsp;&nbsp;Date</i><br>
+                        <i class="fas fa-user">&nbsp;&nbsp;Venue Manager</i><br>
+                        <i class="fas fa-globe">&nbsp;&nbsp; 14666</i>
+                    </p>
+                    <button><i class="fas fa-plus">&nbsp;&nbsp;Join</i></button>
+                </div>
+            </div>
+
+            <!-- cards -->
+            <div class="cards">
+                <div class="image">
+                    <img th:src="@{resources/profile1.jpg}">
+                </div>
+                <div class="title">
+                    <h3>Jerry</h3>
+                </div>
+                <div class="desc">
+                    <p>
+                        <i class="fas fa-arrow">&nbsp;&nbsp;Description</i><br>
+                        <i class="fas fa-calendar i-calendar">&nbsp;&nbsp;Date</i><br>
+                        <i class="fas fa-user">&nbsp;&nbsp;Venue Manager</i><br>
+                        <i class="fas fa-globe">&nbsp;&nbsp; 14666</i>
+                    </p>
+                    <button><i class="fas fa-plus">&nbsp;&nbsp;Join</i></button>
+                </div>
+            </div>
+
+            <!-- cards -->
+            <div class="cards">
+                <div class="image">
+                    <img th:src="@{resources/profile1.jpg}">
+                </div>
+                <div class="title">
+                    <h3>Taylor</h3>
+                </div>
+                <div class="desc">
+                    <p>
+                        <i class="fas fa-arrow">&nbsp;&nbsp;Description</i><br>
+                        <i class="fas fa-calendar i-calendar">&nbsp;&nbsp;Date</i><br>
+                        <i class="fas fa-user">&nbsp;&nbsp;Venue Manager</i><br>
+                        <i class="fas fa-globe">&nbsp;&nbsp; 14666</i>
+                    </p>
+                    <button><i class="fas fa-plus">&nbsp;&nbsp;Join</i></button>
+                </div>
+            </div>
+
+            <!-- cards -->
+            <div class="cards">
+                <div class="image">
+                    <img th:src="@{resources/profile1.jpg}">
+                </div>
+                <div class="title">
+                    <h3>Title Name</h3>
+                </div>
+                <div class="desc">
+                    <p>
+                        <i class="fas fa-arrow">&nbsp;&nbsp;Description</i><br>
+                        <i class="fas fa-calendar i-calendar">&nbsp;&nbsp;Date</i><br>
+                        <i class="fas fa-user">&nbsp;&nbsp;Venue Manager</i><br>
+                        <i class="fas fa-globe">&nbsp;&nbsp; 14666</i>
+                    </p>
+                    <button><i class="fas fa-plus">&nbsp;&nbsp;Join</i></button>
+                </div>
+            </div>
+
+
+            <!-- cards -->
+            <div class="cards">
+                <div class="image">
+                    <img th:src="@{resources/profile1.jpg}">
+                </div>
+                <div class="title">
+                    <h3>Title Name</h3>
+                </div>
+                <div class="desc">
+                    <p>
+                        <i class="fas fa-arrow">&nbsp;&nbsp;Description</i><br>
+                        <i class="fas fa-calendar i-calendar">&nbsp;&nbsp;Date</i><br>
+                        <i class="fas fa-user">&nbsp;&nbsp;Venue Manager</i><br>
+                        <i class="fas fa-globe">&nbsp;&nbsp; 14666</i>
+                    </p>
+                    <button><i class="fas fa-plus">&nbsp;&nbsp;Join</i></button>
+                </div>
+            </div>
+
+            <!-- cards -->
+            <div class="cards">
+                <div class="image">
+                    <img th:src="@{resources/profile1.jpg}">
+                </div>
+                <div class="title">
+                    <h3>Title Name</h3>
+                </div>
+                <div class="desc">
+                    <p>
+                        <i class="fas fa-arrow">&nbsp;&nbsp;Description</i><br>
+                        <i class="fas fa-calendar i-calendar">&nbsp;&nbsp;Date</i><br>
+                        <i class="fas fa-user">&nbsp;&nbsp;Venue Manager</i><br>
+                        <i class="fas fa-globe">&nbsp;&nbsp; 14666</i><br>
+                    </p>
+                    <button><i class="fas fa-plus">&nbsp;&nbsp;Join</i></button>
+                </div>
+            </div>
+
+        </div> <!-- search-display -->
+
+    </div><!-- search-warpper -->
+    </form>
+</div><!--container-->
+
+    <footer >
+        <div th:include="fragments/footer :: footer"> </div>
+    </footer>
+
+</body>
+</html>
