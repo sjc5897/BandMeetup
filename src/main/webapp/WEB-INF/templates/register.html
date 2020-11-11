@@ -14,13 +14,15 @@
        <div class="reg-wrapper" id="regWrapper">
            <div class="reg-form" id="regForm">
                <div class="title-section">
-                   <!-- <h2>Registration Form</h2>-->
+                   <h2>Registration Form</h2>
                </div>
                <form method="POST" action="/register">
                    <div class="reg-section" id="reg_sec">
+                       <p th:if="${{(param.error != null)}}" class="error-message">Registration Unsuccessful, Email Taken </p>
+
                        <div class="input-fields">
                            <i class="fas fa-user"></i>
-                           <input name="uname" type="text" class="input" placeholder="Full Name">
+                           <input name="full_name"  id="full_name" type="text" class="input" placeholder="Full Name">
                        </div>
 
                        <div class="input-fields">
@@ -29,14 +31,10 @@
                        </div>
 
                        <div class="input-fields">
-                           <i class="fas fa-user"></i>
-                           <input name="uname" type="text" class="input" placeholder="Username">
-                       </div>
-
-                       <div class="input-fields">
                            <i class="fas fa-unlock-alt"></i>
                            <input class="input" id="pw" name="pw" type="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Password" required>
                        </div>
+
                        <div class="input-fields">
                            <i class="fas fa-unlock-alt"></i>
                            <input class="input" id="pwC" name="pwC" type="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Confirm Password" required>
@@ -52,13 +50,7 @@
                                <option class="opt" value="VenueManager">Venue</option>
                            </select>
                        </div>
-
-                       <div class="input-fields">
-                           <i class="fas fa-calendar"></i>
-                           <input name="dob" type="text" class="input" placeholder="Date of Birth: MM/DD/YYYY">
-                       </div>
-
-                       <div class="btn"><form method="POST" action="/login"><input id="submit" type="submit" name="reg-form" value="Registration"></form></div>
+                       <div class="btn"><form method="get" action="/login"><input id="submit" type="submit" name="reg-form" value="Register"></form></div>
                    </div>
                </form>
 

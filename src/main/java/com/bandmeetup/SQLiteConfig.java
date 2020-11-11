@@ -1,6 +1,9 @@
 package com.bandmeetup;
 
 
+import com.bandmeetup.DAO.ConnectDB;
+import com.bandmeetup.model.VenueManager;
+
 import java.sql.*;
 
 public class SQLiteConfig {
@@ -79,10 +82,50 @@ public class SQLiteConfig {
 
     public static void main(String[] args) throws Exception {
 
-        boolean Pass =loginAuth("s@s","123456");
-        System.out.println(Pass);
+//        boolean Pass =loginAuth("s@s","123456");
+//        System.out.println(Pass);
+//        update("D@d");
+        save();
 
     }
+
+
+    public static void update(String email) throws ClassNotFoundException {
+
+        String sql = "update Musician set FName='" + "Mohammed" + "' where Email='" + email + "';";
+        Class.forName("org.sqlite.JDBC");
+        try (Connection conn = connect();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.execute();
+            ps.closeOnCompletion();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+    public static void save() throws ClassNotFoundException {
+        VenueManager nenumanager =new VenueManager("email", "name", "pw","VenueManager", "location", "description");
+
+        String sql = "INSERT INTO VenueManager(Email, Name, Location, Description) VALUES(?,?,?,?)";
+
+
+        try{
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,nenumanager.getEmail());
+            preparedStatement.setString(2,nenumanager.getName());
+            preparedStatement.setString(3,nenumanager.getLocation());
+            preparedStatement.setString(4,nenumanager.getDescription());
+            preparedStatement.execute();
+            preparedStatement.closeOnCompletion();
+        }
+        catch (SQLException ex){
+
+        }
+
+    }
+
 
 
 }

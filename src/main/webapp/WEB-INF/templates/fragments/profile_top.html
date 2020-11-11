@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:fragment="profile-header">
+        <!-- Trying to upload Profile Picture -->
+        <div class="profile-img">
+            <img th:src="@{../resources/profile1.jpg}" width="150" alt="Profile"/>
+        </div>
+
+
+        <div class="profile-nav-info">
+            <h3 class="user-name" th:text="${Profile.getName()}">Name</h3>
+            <div class="address">
+                <p class="state" th:text="'Zip Code: ' + ${Profile.getLocation()}">New York</p>
+            </div>
+        </div> <!-- .profile-nav-info -->
+        <div th:if="${session.email}== ${Profile.getEmail()}"  class="profile-option">
+            <div class="notification">
+              <a style="color:white;text-decoration: none;" th:href="@{/edit/} + ${Profile.getEmail()}" class="fas fa-wrench"> </a>
+            </div><!-- .notification -->
+        </div> <!-- .profile-option -->
+    </div> <!-- .profile-header -->
+</body>
+</html>

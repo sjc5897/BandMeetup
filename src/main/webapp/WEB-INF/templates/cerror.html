@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<header>
+    <div th:include="fragments/header :: header"> </div>
+</header>
+<body>
+    <div>
+        <p th:if="${error_type} == 'profile_not_found'">Requested Profile not Found</p>
+    </div>
+</body>
+<footer>
+    <div th:include="fragments/footer :: footer"> </div>
+</footer>
+</html>

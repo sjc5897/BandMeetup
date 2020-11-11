@@ -22,30 +22,18 @@ public class SearchService {
     public List<Musician> search(String searchentry, String filter){
         if(filter.equals("status")){
             musicians = musicianDao.findByStatus(searchentry);
-            if(musicians.isEmpty()){
-
-            }
             return musicians;
         }else if(filter.equals("location")){
             musicians = musicianDao.findByLocation(searchentry);
-            // if(musicians.isEmpty()){
-
-            // }
             return musicians;
         }else if(filter.equals("genre")){
             musicians = musicianDao.findByGenre(searchentry);
-            if(musicians.isEmpty()){
-
-            }
             return musicians;
         }else if(filter.equals("instruments")){
             musicians = musicianDao.findByInstruments(searchentry);
-            if(musicians.isEmpty()){
-
-            }
             return musicians;
         }
-
+        
         return musicians;
     }
 }

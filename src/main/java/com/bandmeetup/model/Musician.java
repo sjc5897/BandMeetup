@@ -1,5 +1,6 @@
 package com.bandmeetup.model;
-import javax.lang.model.element.Element;
+
+import java.util.ArrayList;
 
 /**
  * Class used to represent the Musician Object
@@ -31,6 +32,17 @@ public class Musician extends User{
         this.location = location;
         this.bio = bio;
     }
+
+    public Musician(String email, String name, String status, String instruments, String Genre, String location, String bio) {
+        super(email);
+        this.name = name;
+        this.status = this.status.valueOf(status);;
+        this.instruments = instruments;
+        this.Genre = Genre;
+        this.location = location;
+        this.bio = bio;
+    }
+
 
     // Getters
     public Status getStatus() {
@@ -86,6 +98,8 @@ public class Musician extends User{
     public void setLocation(String location) {
         this.location = location;
     }
+
+
 }
 
 /**

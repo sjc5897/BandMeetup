@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en " xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:fragment="profile-left">
+        <div class="profile-side">
+            <p th:text="${Profile.getUserType()} + ' Profile'">type</p>
+
+            <div th:if="${Profile.getUserType().equals('Musician')}" class="profile-status">
+                <p class="fas fa-music" th:text="': ' + ${Profile.getStatusSpace()}">stats</p>
+            </div>
+
+            <div class="user-email" >
+                <p class="fas fa-envelope" th:text="': ' + ${Profile.getEmail()}">example@email.com</p>
+            </div>
+
+            <div class="profile-btn">
+                <button class="chatbtn">
+                    <i class="fas fa-comment"></i> Chat
+                </button>
+                <button class="invitebtn">
+                    <i class="fas fa-plus"></i> Invite
+                </button>
+            </div> <!-- .profile-btn -->
+        </div>
+</div> <!-- .profile-left-side -->
+</body>
+</html>

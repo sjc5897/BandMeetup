@@ -12,17 +12,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 @Controller
-public class SearchController {
+public class SearchController extends HttpServlet {
     @Autowired
     private SearchService searchService;
 
 
 
     @RequestMapping(value = {"/search*"}, method = RequestMethod.GET)
-    public String displaySearchPage() {
+    public String displaySearchPage(HttpServletRequest request) {
+        try {
+            HttpSession session1 = request.getSession();
+            if(session1.isNew()){
+                return "redirect:/login";
+            }
+        }
+        catch (Exception ex) {
+            return "redirect:/login";
+        }
         return "search";
     }
 
@@ -33,5 +45,5 @@ public class SearchController {
 
         return "search";
     }
-
 }
+
