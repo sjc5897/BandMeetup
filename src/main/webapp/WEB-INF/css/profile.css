@@ -205,6 +205,7 @@ button.invitebtn i{
 }
 
 .profile-nav ul{
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     list-style-type: none;
@@ -214,17 +215,19 @@ button.invitebtn i{
 }
 
 
-.profile-nav ul li{
-    padding: 10px;
+.nav-button {
+    padding: 10px 10px;
     width: 100%;
     cursor: pointer;
     text-align: center;
     color: black;
     transition: all 0.2s ease-in-out;
+    display: block;
+
 }
 
-.profile-nav ul li.active,
-.profile-nav ul li:hover{
+.nav-button.active,
+.nav-button:hover{
     box-shadow: 0px -3px 0px var(--reb_color) inset;
 }
 
