@@ -33,6 +33,17 @@ public class Musician extends User{
         this.bio = bio;
     }
 
+    public Musician(String email, String name, String status, String instruments, String Genre, String location, String bio) {
+        super(email);
+        this.name = name;
+        this.status = this.status.valueOf(status);;
+        this.instruments = instruments;
+        this.Genre = Genre;
+        this.location = location;
+        this.bio = bio;
+    }
+    
+
     // Getters
     public Status getStatus() {
 
@@ -87,6 +98,8 @@ public class Musician extends User{
     public void setLocation(String location) {
         this.location = location;
     }
+
+   
 }
 
 /**

@@ -34,6 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController("/register").setViewName("register");
         registry.addViewController("/profile").setViewName("profile");
         registry.addViewController("/cerror").setViewName("cerror");
+        registry.addViewController("/search").setViewName("search");
     }
 
     /**
@@ -75,7 +76,7 @@ public class WebConfig implements WebMvcConfigurer {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**", "/css/**")
-                .addResourceLocations("/WEB-INF/resources/", "/WEB-INF/css/");
+        registry.addResourceHandler("/resources/**", "/css/**", "/javascript/**")
+                .addResourceLocations("/WEB-INF/resources/", "/WEB-INF/css/","/WEB-INF/javascript/");
     }
 }
