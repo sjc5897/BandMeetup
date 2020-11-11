@@ -125,9 +125,12 @@ public class ProfileController extends HttpServlet {
 
 
         try {
-            HttpSession session1 = request.getSession(false);
+            HttpSession session1 = request.getSession();
+            if(session1.isNew()){
+                return "redirect:/login";
+            }
         }
-        catch (Exception ex){  return "redirect:/login";}
+        catch (Exception ex){ return "redirect:/login";}
 
 
         addProfile(email, model);

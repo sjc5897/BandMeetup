@@ -16,10 +16,10 @@
         <div class="login-wrapper">
             <div class="login-form">
                 <div class="title-section">
+                    <p th:if="${{(param.reg_success != null)}}" class="success-message">Registration Succesful, Please Sign In.</p>
+                    <p th:if="${{(param.error != null)}}" class="error-message">Authentication unsuccessful, please try again. </p>
                     <h2>Login form</h2>
                 </div>
-                <p th:if="${{(param.reg_success != null)}}" class="success-message">Registration Succesful, Please Sign In.</p>
-                <p th:if="${{(param.error != null)}}" class="error-message">Authentication unsuccessful, please try again. </p>
                 <form method="POST" action="/login">
                     <div class="login-section">
                         <div class="input-fields">
