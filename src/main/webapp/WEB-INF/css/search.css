@@ -56,9 +56,9 @@ tr:hover{
 /* SEARCH FIELD */
 .search-bar{
     position: absolute;
-    width: 48%;
+    width: 43%;
     left: 22%;
-    top: -8%;
+    top: 0%;
     background-color: black;
     padding: 10px;
     padding-top: 20px;
@@ -145,7 +145,7 @@ SEARCHDISPLAY PAGE .............................................................
 
 .search-display{
     margin: auto;
-    margin-top: 30px;
+    margin-top: 150px;
     margin-left: 190px;
 }
 
