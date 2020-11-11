@@ -2,6 +2,7 @@ package com.bandmeetup.DAO;
 
 
 import com.bandmeetup.model.Event;
+import com.bandmeetup.model.VenueManager;
 import org.springframework.stereotype.Component;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -55,7 +56,6 @@ public class EventDAO implements Dao<Event>{
                 // Try Query
                 ResultSet result = preparedStatement.executeQuery();
                 while(result.next()){
-
                     // If result create new user and return Optional with value of created user
                     events.add( new Event(result.getInt("ID"),
                             result.getString("Title"),
@@ -103,7 +103,7 @@ public class EventDAO implements Dao<Event>{
     @Override
     public void delete(Event event) {
 
-        String sql = "DELETE FROM Event where ID="+event.getID()+";";
+        String sql = "DELETE FROM Event where ID='"+event.getID()+"';";
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -116,4 +116,39 @@ public class EventDAO implements Dao<Event>{
     }
     @Override
     public Optional<Event> get(String email){ return Optional.empty(); }
+
+    public List<Event> getEvents(String email) {
+        VenueManagerDAO vm = new VenueManagerDAO();
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        String sql = "select * from Event where VenueManager='"+email+"';";
+        ArrayList<Event> events = new ArrayList<Event>();
+        try{
+            //Try connection and prepared statement setup
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            try{
+                // Try Query
+                ResultSet result = preparedStatement.executeQuery();
+                while(result.next()){
+                    // If result create new user and return Optional with value of created user
+                    events.add( new Event(result.getInt("ID"),
+                            result.getString("Title"),
+                            result.getString("Description"),
+                            format.parse(result.getString("date")),
+                            vm.getVenueManager(result.getString("VenueManager"))));
+                }
+            }
+            // Exceptions return empty arrays
+            catch (SQLException ex){
+                return events;
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        catch (SQLException ex){
+            return events;
+        }
+        return events;
+
+    }
 }
