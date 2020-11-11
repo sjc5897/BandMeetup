@@ -21,24 +21,17 @@ public class SearchController {
 
 
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String displaySearchPage(Model model) {
-        List<Musician> musicians = searchService.displayallprofiles();
-        for(Musician musi: musicians){
-            model.addAttribute("FName", musi.getName());
-            model.addAttribute("Status", musi.getStatus());
-            model.addAttribute("Instruments", musi.getInstruments());
-            model.addAttribute("Genre", musi.getGenre());
-            model.addAttribute("Location", musi.getLocation());
-        }
-        
+    @RequestMapping(value = {"/search*"}, method = RequestMethod.GET)
+    public String displaySearchPage() {
         return "search";
     }
 
-    @RequestMapping(value="/search", method=RequestMethod.POST)
-    public String requestMethodName(@RequestParam(name = "searchBar") String searchentry) {
-        
-        return "";
+    @RequestMapping(value = {"/search*"}, method=RequestMethod.POST)
+    public String requestMethodName(@RequestParam(name = "searchBar") String searchentry, @RequestParam(name = "searchfilter") String filter, Model model) {
+        List<Musician> musicians = searchService.search(searchentry, filter);
+        model.addAttribute("musicians", musicians);
+
+        return "search";
     }
     
 }

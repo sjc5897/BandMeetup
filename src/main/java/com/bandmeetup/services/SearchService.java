@@ -17,33 +17,28 @@ public class SearchService {
 
     private List<Musician> musicians;
 
-    public List<Musician> displayallprofiles(){
-        musicians = musicianDao.getAll();
-        return musicians;
-
-    }
 
 
     public List<Musician> search(String searchentry, String filter){
-        if(filter.equals("Status")){
+        if(filter.equals("status")){
             musicians = musicianDao.findByStatus(searchentry);
             if(musicians.isEmpty()){
                 
             }
             return musicians;
-        }else if(filter.equals("Location")){
+        }else if(filter.equals("location")){
             musicians = musicianDao.findByLocation(searchentry);
-            if(musicians.isEmpty()){
+            // if(musicians.isEmpty()){
                 
-            }
+            // }
             return musicians;
-        }else if(filter.equals("Genre")){
+        }else if(filter.equals("genre")){
             musicians = musicianDao.findByGenre(searchentry);
             if(musicians.isEmpty()){
                 
             }
             return musicians;
-        }else if(filter.equals("Instruments")){
+        }else if(filter.equals("instruments")){
             musicians = musicianDao.findByInstruments(searchentry);
             if(musicians.isEmpty()){
                 

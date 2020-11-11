@@ -169,13 +169,11 @@ public class MusicianDAO implements Dao<Musician> {
             try{
                 // Try Query
                 ResultSet result = preparedStatement.executeQuery();
-                if(result.next()){
+                while(result.next()){
 
                     // If result create new user and return Optional with value of created user
                     Musicians.add( new Musician(result.getString("Email"),
                             result.getString("Fname")+" "+result.getString("LName"),
-                            result.getString("Password"),
-                            result.getString("UserType"),
                             result.getString("ProfileStatus"),
                             result.getString("Instruments"),
                             result.getString("Genre"),
@@ -205,13 +203,11 @@ public class MusicianDAO implements Dao<Musician> {
             try{
                 // Try Query
                 ResultSet result = preparedStatement.executeQuery();
-                if(result.next()){
+                while(result.next()){
 
                     // If result create new user and return Optional with value of created user
                     Musicians.add( new Musician(result.getString("Email"),
                             result.getString("Fname")+" "+result.getString("LName"),
-                            result.getString("Password"),
-                            result.getString("UserType"),
                             result.getString("ProfileStatus"),
                             result.getString("Instruments"),
                             result.getString("Genre"),
@@ -225,6 +221,7 @@ public class MusicianDAO implements Dao<Musician> {
             }
         }
         catch (SQLException ex){
+            System.out.print(ex);
             return Musicians;
         }
         return Musicians;
@@ -241,13 +238,11 @@ public class MusicianDAO implements Dao<Musician> {
             try{
                 // Try Query
                 ResultSet result = preparedStatement.executeQuery();
-                if(result.next()){
+                while(result.next()){
 
                     // If result create new user and return Optional with value of created user
                     Musicians.add( new Musician(result.getString("Email"),
                             result.getString("Fname")+" "+result.getString("LName"),
-                            result.getString("Password"),
-                            result.getString("UserType"),
                             result.getString("ProfileStatus"),
                             result.getString("Instruments"),
                             result.getString("Genre"),
@@ -277,13 +272,11 @@ public class MusicianDAO implements Dao<Musician> {
             try{
                 // Try Query
                 ResultSet result = preparedStatement.executeQuery();
-                if(result.next()){
+                while(result.next()){
 
                     // If result create new user and return Optional with value of created user
                     Musicians.add( new Musician(result.getString("Email"),
                             result.getString("Fname")+" "+result.getString("LName"),
-                            result.getString("Password"),
-                            result.getString("UserType"),
                             result.getString("ProfileStatus"),
                             result.getString("Instruments"),
                             result.getString("Genre"),

@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{/css/search.css?<?php echo rand();?>}">
     <link th:href="@{/css/forms.css?<?php echo rand();?>}" rel="stylesheet"/>
-    <link rel="stylesheet" th:href=${"https://pro.fontawesome.com/releases/v5.10.0/css/all.css"} integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{https://pro.fontawesome.com/releases/v5.10.0/css/all.css}"/>
 
     <script th:src="@{/javascript/jquery.js}"></script>
     <script th:src="@{/javascript/ddtf.js}"></script>
@@ -16,22 +16,29 @@
 </header>
 <body>
 <div class="container">
+    <form method="post" action="/search">
+
 
     <div class="search-wrapper">
         <div class="search-bar">
-            <input type="text" name="searchBar" id="searchBar"
-                   class="search-field user" placeholder="Search your BandMate here. . . . ">
-            <select class="filter">
-                <option>Select Filter</option>
-                <option>Account Type</option>
-                <option>Instrument</option>
-                <option>Genre</option>
-                <option>Location</option>
+            <form th:action="@{/search}">
+            <input type="text" name="searchBar" id="searchBar" class="search-field user" placeholder="Search your BandMate here. . . . " th:value="${keyword}" required>
+            <select name = searchfilter class="filter" th:value="*{searchfilter}" id="filter-options">
+                <option >Select Filter</option>
+                <option th:value="'status'">Status</option>
+                <option th:value="'instrument'">Instrument</option>
+                <option th:value="'genre'">Genre</option>
+                <option th:value="'location'">Location</option>
             </select>
             <!-- <input type="text" name="location-filter" class="search-field location" placeholder="Location"> -->
 
-            <button class="search-btn"><i class="fas fa-search search-icon"></i></button>
-
+            <button class="search-btn" id="btnClear" onclick="clearSearch()"><i class="fas fa-search search-icon"></i></button>
+            </form>
+            <script type="text/javascript">
+                function clearSearch() {
+                    window.location = "[[@{/search}]]";
+                }
+            </script>
         </div> <!-- search-bar -->
 
         <div class="search-result">
@@ -47,6 +54,7 @@
                         Location
                     </th>
                     <th>Invite</th>
+                    <th>Profile</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -56,23 +64,17 @@
                             $stmt->execute();
                             while($row=$stmt->fetch()){
                         ?> -->
-                <!-- <tr>
+                <tr th:each="musician : ${musicians}">
                     <td></td>
-                    <td>Vaibhavi</td>
-                    <td>Musician</td>
-                    <td>Guitar</td>
-                    <td>Country</td>
-                    <td>14623</td>
+                    <td th:text="${musician.name}"></td>
+                    <td th:text="${musician.status}"></td>
+                    <td th:text="${musician.instruments}"></td>
+                    <td th:text="${musician.genre}"></td>
+                    <td th:text="${musician.location}"></td>
                     <td><button class="invite-btn">Invite</button></td>
-                </tr> -->
-                <tr>
-                    <td></td>
-                    <td><?php echo $row['FName']?></td>
-                    <td><?php echo $row['Status']?></td>
-                    <td><?php echo $row['Instruments']?></td>
-                    <td><?php echo $row['Genre']?></td>
-                    <td><?php echo $row['Location']?></td>
-                    <td><button class="invite-btn">Invite</button></td>
+                    <td>
+                        <a th:href="@{'/profile/' + ${musician.email}}">Profile</a>
+                    </td>
                 </tr>
                 <!-- <?php
                         }
@@ -81,7 +83,7 @@
             </table>
         </div> <!-- search-results -->
     </div><!-- search-warpper -->
-
+    </form>
 </div>
 
 <div >
