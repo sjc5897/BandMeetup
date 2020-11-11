@@ -25,10 +25,11 @@
             <input type="text" name="searchBar" id="searchBar" class="search-field user" placeholder="Search your BandMate here. . . . " th:value="${keyword}" required>
             <select name = searchfilter class="filter" th:value="*{searchfilter}" id="filter-options">
                 <option >Select Filter</option>
-                <option th:value="'status'">Status</option>
+                <option th:value="'musician'">Musician</option>
+                <option th:value="'venue'">Venue Manager</option>
                 <option th:value="'instrument'">Instrument</option>
                 <option th:value="'genre'">Genre</option>
-                <option th:value="'location'">Location</option>
+                <option th:value="'location'">Zip Code</option>
             </select>
             <!-- <input type="text" name="location-filter" class="search-field location" placeholder="Location"> -->
 
@@ -51,7 +52,7 @@
                     <th>Instrument</th>
                     <th>Genre</th>
                     <th>
-                        Location
+                        Zip Code
                     </th>
                     <th>Invite</th>
                     <th>Profile</th>
