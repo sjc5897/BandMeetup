@@ -45,5 +45,5 @@ public class SearchController extends HttpServlet {
 
         return "search";
     }
-    
 }
+
