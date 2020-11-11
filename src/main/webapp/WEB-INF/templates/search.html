@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Bandmeetup Wow</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/search.css?<?php echo rand();?>}">
+    <link th:href="@{/css/forms.css?<?php echo rand();?>}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{https://pro.fontawesome.com/releases/v5.10.0/css/all.css}"/>
+
+    <script th:src="@{/javascript/jquery.js}"></script>
+    <script th:src="@{/javascript/ddtf.js}"></script>
+
+</head>
+<header>
+    <div th:include="fragments/header :: header1"> </div>
+</header>
+<body>
+<div class="container">
+    <form method="post" action="/search">
+
+
+    <div class="search-wrapper">
+        <div class="search-bar">
+            <form th:action="@{/search}">
+            <input type="text" name="searchBar" id="searchBar" class="search-field user" placeholder="Search your BandMate here. . . . " th:value="${keyword}" required>
+            <select name = searchfilter class="filter" th:value="*{searchfilter}" id="filter-options">
+                <option >Select Filter</option>
+                <option th:value="'status'">Status</option>
+                <option th:value="'instrument'">Instrument</option>
+                <option th:value="'genre'">Genre</option>
+                <option th:value="'location'">Location</option>
+            </select>
+            <!-- <input type="text" name="location-filter" class="search-field location" placeholder="Location"> -->
+
+            <button class="search-btn" id="btnClear" onclick="clearSearch()"><i class="fas fa-search search-icon"></i></button>
+            </form>
+            <script type="text/javascript">
+                function clearSearch() {
+                    window.location = "[[@{/search}]]";
+                }
+            </script>
+        </div> <!-- search-bar -->
+
+        <div class="search-result">
+            <table class="table-sortable" >
+                <thead>
+                <tr id="header">
+                    <th>Profile</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Instrument</th>
+                    <th>Genre</th>
+                    <th>
+                        Location
+                    </th>
+                    <th>Invite</th>
+                    <th>Profile</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--        <?php //Code check here.
+                            $db = new PDO("mysql: host=localhost; dbname=BandDB", "root", "");
+                            $stmt = $db->prepare("select * from Musician");
+                            $stmt->execute();
+                            while($row=$stmt->fetch()){
+                        ?> -->
+                <tr th:each="musician : ${musicians}">
+                    <td></td>
+                    <td th:text="${musician.name}"></td>
+                    <td th:text="${musician.status}"></td>
+                    <td th:text="${musician.instruments}"></td>
+                    <td th:text="${musician.genre}"></td>
+                    <td th:text="${musician.location}"></td>
+                    <td><button class="invite-btn">Invite</button></td>
+                    <td>
+                        <a th:href="@{'/profile/' + ${musician.email}}">Profile</a>
+                    </td>
+                </tr>
+                <!-- <?php
+                        }
+                    ?> -->
+                </tbody>
+            </table>
+        </div> <!-- search-results -->
+    </div><!-- search-warpper -->
+    </form>
+</div>
+
+<div >
+
+<footer >
+    <div th:include="fragments/footer :: footer"> </div>
+</footer>
+
+</body>
+</html>

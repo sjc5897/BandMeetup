@@ -47,6 +47,10 @@ public class User {
 
     // Methods
 
+    public User(String email){
+        this.email = email;
+    }
+
     /**
      * Constructor for User Object
      *
