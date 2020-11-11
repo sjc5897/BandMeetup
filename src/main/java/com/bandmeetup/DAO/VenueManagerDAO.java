@@ -142,5 +142,37 @@ public class VenueManagerDAO implements Dao<VenueManager> {
         }
 
     }
+
+    public VenueManager getVenueManager(String email) {
+        // Sql statement for prepared statement
+        String sql = "select * from VenueManager join User ON VenueManager.Email = User.Email WHERE VenueManager.Email='" + email + "';";
+        VenueManager vm = null;
+        try {
+            // Try and get connection
+            Connection connection = ConnectDB.getConnection();
+            // Setup prepared statement
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            try {
+                // Try executing statement
+                ResultSet result = preparedStatement.executeQuery();
+                if (result.next()) {
+                    // If result create new user and return Optional with value of created user
+                    vm = new VenueManager(result.getString("Email"),
+                            result.getString("Name"),
+                            result.getString("Password"),
+                            result.getString("UserType"),
+                            result.getString("Location"),
+                            result.getString("Description"));
+                    return vm;
+                }
+
+            } catch (SQLException ex) {
+                return vm;
+            }
+        } catch (SQLException ex) {
+            return vm;
+        }
+        return vm;
+    }
     
 }
