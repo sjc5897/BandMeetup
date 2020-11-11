@@ -8,23 +8,13 @@
         <div class="profile-side">
             <p th:text="${Profile.getUserType()} + ' Profile'">type</p>
 
-            <div th:if="${Profile.getUserType().equals('Musican')}" class="profile-status">
+            <div th:if="${Profile.getUserType().equals('Musician')}" class="profile-status">
                 <p class="fas fa-music" th:text="': ' + ${Profile.getStatusSpace()}">stats</p>
             </div>
 
             <div class="user-email" >
                 <p class="fas fa-envelope" th:text="': ' + ${Profile.getEmail()}">example@email.com</p>
             </div>
-
-            <div th:if="${Profile.getUserType().equals('Musican')}">
-                <p class="user-bio" th:text="${Profile.getBio()}"> </p>
-            </div>
-
-
-            <div  th:if="${Profile.getUserType().equals('VenueManager')}">
-                <p class="user-bio" th:text=" ${Profile.getDescription()}">BIO</p>
-            </div> <!-- .profile-side -->
-
 
             <div class="profile-btn">
                 <button class="chatbtn">
