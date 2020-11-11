@@ -17,7 +17,7 @@
                 <p class="state" th:text="${Profile.getLocation()}">New York</p>
             </div>
         </div> <!-- .profile-nav-info -->
-        <div class="profile-option">
+        <div th:if="${session.email}== ${Profile.getEmail()}"  class="profile-option">
             <div class="notification">
               <a style="color:white;text-decoration: none;" th:href="@{/edit/} + ${Profile.getEmail()}" class="fas fa-wrench"> </a>
             </div><!-- .notification -->
