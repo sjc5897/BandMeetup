@@ -9,10 +9,7 @@
 
 </head>
 <header>
-    <div th:switch="${session.isEmpty()}">
-        <div th:case="False" th:include="fragments/header :: header1"> </div>
-        <div th:case="*" th:include="fragments/header :: header"></div>
-    </div>
+        <div  th:include="fragments/header :: header"> </div>
 </header>
 <body>
 

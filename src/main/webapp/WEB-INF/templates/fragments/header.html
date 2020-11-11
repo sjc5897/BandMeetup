@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<header th:fragment="header">
+<html xmlns:th="http://www.thymeleaf.org" lang="en" th:fragment="header">
+<header th:if="${session.isEmpty()}">
     <head>
         <link  th:href="@{/css/header.css?<?php echo rand();?>}" rel="stylesheet" media="all">
         <title></title>
@@ -14,19 +14,16 @@
 
             <div class="right-side">
                 <div class="nav-link-wrapper">
-                    <a href="register.html">SIGN UP</a>
+                    <a th:href="@{/register}">SIGN UP</a>
                 </div>
                 <div class="nav-link-wrapper">
-                    <a href="login.html">LOGIN</a>
-                </div>
-                <div class="nav-link-wrapper">
-                    <a href="profile.html">PROFILE</a>
+                    <a th:href="@{/login}">LOGIN</a>
                 </div>
             </div>
         </div>
 </header>
 
-<header1 th:fragment="header1">
+<header th:if="${!session.isEmpty()}">
     <head>
         <link  th:href="@{/css/header.css?<?php echo rand();?>}" rel="stylesheet" media="all">
         <title></title>
@@ -65,7 +62,7 @@
             </div>
         </div>
     </div>
-</header1>
+</header>
 <body>
 </body>
 </html>
