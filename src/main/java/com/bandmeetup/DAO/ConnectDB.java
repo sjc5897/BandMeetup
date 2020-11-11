@@ -8,13 +8,17 @@ public class ConnectDB  {
     static Connection conn = null;
 
     public static Connection getConnection() {
-        try {
-            conn = DriverManager.getConnection(URL);
-            return conn;
-        } catch (SQLException ex) {
-            throw new RuntimeException("Error connecting to the database", ex);
+        if (conn == null) {
+            try {
+                conn = DriverManager.getConnection(URL);
+                return conn;
+            } catch (SQLException ex) {
+                throw new RuntimeException("Error connecting to the database", ex);
+            }
         }
-
+        else{
+            return conn;
+        }
     }
 
 }

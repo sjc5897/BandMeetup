@@ -42,8 +42,8 @@ public class UserDAO implements Dao<User> {
                 if(result.next()){
                     // If result create new user and return Optional with value of created user
                     User u = new User(result.getString("Email"),
-                                      result.getString("Password"),
-                                      result.getString("UserType"));
+                            result.getString("Password"),
+                            result.getString("UserType"));
                     return Optional.of(u);
                 }
                 else{
@@ -81,8 +81,8 @@ public class UserDAO implements Dao<User> {
                 if(result.next()){
                     // Add each database entry to the list as user objects
                     users.add(new User(result.getString("Email"),
-                                       result.getString("Password"),
-                                       result.getString("UserType")));
+                            result.getString("Password"),
+                            result.getString("UserType")));
                 }
             }
             // Exceptions return empty arrays
@@ -118,18 +118,40 @@ public class UserDAO implements Dao<User> {
             resp = "Success";
         }
         catch (SQLException ex){
-             resp = "Error: Email Invalid";
+            resp = "Error: Email Invalid";
         }
         return resp;
     }
 
     @Override
-    public void update(User user) {
-
+    public boolean update(User user) {
+        String sql = "update User set Password='"+user.getPw()+"'where Email='"+user.getEmail()+"';";
+        try{
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
+            preparedStatement.closeOnCompletion();
+            return true;
+        }
+        catch (SQLException ex){
+            ex.getSQLState();
+            return false;
+        }
     }
 
     @Override
     public void delete(User user) {
-
+        String sql = "DELETE User WHERE Email='"+user.getEmail()+"';";
+        try{
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeQuery();
+            preparedStatement.closeOnCompletion();
+        }
+        catch (SQLException ex){
+            ex.getSQLState();
+        }
     }
+
+
 }
