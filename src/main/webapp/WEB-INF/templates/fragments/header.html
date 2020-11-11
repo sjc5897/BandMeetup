@@ -37,7 +37,7 @@
 
         <div class="right-side">
             <div class="nav-link-wrapper">
-                <a href="profile.html">HOME</a>
+                <a th:href="@{/profile/}+${session.email}" href="profile.html">HOME</a>
             </div>
 
             <div class="nav-link-wrapper">
@@ -56,9 +56,6 @@
              </div> -->
             <div class="nav-link-wrapper">
                 <a th:href="@{/logout}">LOG OUT</a>
-            </div>
-            <div class="nav-link-wrapper">
-                <a href="profile.html">PROFILE</a>
             </div>
         </div>
     </div>
