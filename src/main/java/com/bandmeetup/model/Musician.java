@@ -1,6 +1,6 @@
 package com.bandmeetup.model;
 
-import javax.lang.model.element.Element;
+import java.util.ArrayList;
 
 /**
  * Class used to represent the Musician Object
@@ -42,7 +42,7 @@ public class Musician extends User{
         this.location = location;
         this.bio = bio;
     }
-    
+
 
     // Getters
     public Status getStatus() {
@@ -99,7 +99,7 @@ public class Musician extends User{
         this.location = location;
     }
 
-   
+
 }
 
 /**

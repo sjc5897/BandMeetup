@@ -7,18 +7,15 @@
     <div th:fragment="profile-left">
         <div class="profile-side">
             <p th:text="${Profile.getUserType()} + ' Profile'">type</p>
-            <p th:if="${Profile.getUserType()=='Musican'}" class="profile-status">
-                <i class="fas fa-music"></i><p th:text="${Profile.getStatusSpace()}">stats</p>
-            </p>
 
-            <p class="user-email" th:text="${Profile.getEmail()}">  <i class="fas fa-envelope"></i> example@email.com</p><
-
-            <div class="user-bio" th:if="${Profile.getUserType()=='Musican'}">
-                <p th:text="${Profile.getBio()}">BIO</p>
+            <div th:if="${Profile.getUserType().equals('Musician')}" class="profile-status">
+                <p class="fas fa-music" th:text="': ' + ${Profile.getStatusSpace()}">stats</p>
             </div>
-            <div class="user-bio" th:if="${Profile.getUserType()=='VenueManager'}">
-                <p th:text="${Profile.getDescription()}">BIO</p>
-            </div> <!-- .profile-side -->
+
+            <div class="user-email" >
+                <p class="fas fa-envelope" th:text="': ' + ${Profile.getEmail()}">example@email.com</p>
+            </div>
+
             <div class="profile-btn">
                 <button class="chatbtn">
                     <i class="fas fa-comment"></i> Chat

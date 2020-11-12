@@ -42,8 +42,8 @@ public class UserDAO implements Dao<User> {
                 if(result.next()){
                     // If result create new user and return Optional with value of created user
                     User u = new User(result.getString("Email"),
-                                      result.getString("Password"),
-                                      result.getString("UserType"));
+                            result.getString("Password"),
+                            result.getString("UserType"));
                     return Optional.of(u);
                 }
                 else{
@@ -81,8 +81,8 @@ public class UserDAO implements Dao<User> {
                 if(result.next()){
                     // Add each database entry to the list as user objects
                     users.add(new User(result.getString("Email"),
-                                       result.getString("Password"),
-                                       result.getString("UserType")));
+                            result.getString("Password"),
+                            result.getString("UserType")));
                 }
             }
             // Exceptions return empty arrays
@@ -118,7 +118,7 @@ public class UserDAO implements Dao<User> {
             resp = "Success";
         }
         catch (SQLException ex){
-             resp = "Error: Email Invalid";
+            resp = "Error: Email Invalid";
         }
         return resp;
     }

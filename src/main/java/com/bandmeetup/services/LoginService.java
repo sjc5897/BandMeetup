@@ -1,8 +1,6 @@
 package com.bandmeetup.services;
 
 import com.bandmeetup.DAO.Dao;
-import com.bandmeetup.DAO.UserDAO;
-import com.bandmeetup.SQLiteConfig;
 import com.bandmeetup.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +13,7 @@ import java.util.Optional;
  * Framework: Spring
  * Author: Stephen Cook <sjc5897@rit.edu>
  * Created: 10/17/20
- * Last Edit: 10/19/20
+ * Last Edit: 11/11/20
  */
 
 @Service
@@ -37,5 +35,15 @@ public class LoginService {
         }
         // Otherwise we want to authenticate user
         return user.get().authenticate(password);
+    }
+
+    /**
+     * Gets the role of a user with an id
+     * @param uid String user id
+     * @return String of user id
+     */
+    public String userRole(String uid){
+        Optional<User> user = userDao.get(uid);
+        return user.get().getUserType();
     }
 }

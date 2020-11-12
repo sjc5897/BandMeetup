@@ -12,7 +12,7 @@
 
 </head>
 <header>
-    <div th:include="fragments/header :: header1"> </div>
+    <div th:include="fragments/header :: header"> </div>
 </header>
 <body>
 <div class="container">
@@ -30,11 +30,11 @@
             </select>
             <select name = searchfilter class="filter" th:value="*{searchfilter}" id="filter-options">
                 <option >Select Filter</option>
-                <option th:value="'status'">Status</option>
+                <option th:value="'musician'">Musician</option>
+                <option th:value="'venue'">Venue Manager</option>
                 <option th:value="'instrument'">Instrument</option>
                 <option th:value="'genre'">Genre</option>
                 <option th:value="'location'">Zip Code</option>
-                
             </select>
             <!-- <input type="text" name="location-filter" class="search-field location" placeholder="Location"> -->
 
