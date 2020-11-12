@@ -104,11 +104,12 @@ public class EventDAO implements Dao<Event>{
     @Override
     public void delete(Event event) {
 
-        String sql = "DELETE FROM Event where ID='"+event.getID()+"';";
+        String sql = "DELETE FROM Event WHERE ID=?;";
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.executeQuery();
+            preparedStatement.setInt(1,event.getID());
+            preparedStatement.execute();
             preparedStatement.closeOnCompletion();
         }
         catch (SQLException ex){
