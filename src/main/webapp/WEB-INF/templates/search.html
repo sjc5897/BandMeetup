@@ -23,6 +23,11 @@
         <div class="search-bar">
             <form th:action="@{/search}">
             <input type="text" name="searchBar" id="searchBar" class="search-field user" placeholder="Search your BandMate here. . . . " th:value="${keyword}" required>
+            <select name = usersearchfilter class="filter" th:value="*{userfilter}" id="filter-options">
+                <option >Select Filter</option>
+                <option th:value="'musician'">Musician</option>
+                <option th:value="'venuemanager'">Venuemanager</option>
+            </select>
             <select name = searchfilter class="filter" th:value="*{searchfilter}" id="filter-options">
                 <option >Select Filter</option>
                 <option th:value="'musician'">Musician</option>
@@ -42,7 +47,7 @@
             </script>
         </div> <!-- search-bar -->
 
-        <div class="search-result">
+        <div th:if="${userfilter}=='musician'" class="search-result">
             <table class="table-sortable" >
                 <thead>
                 <tr id="header">
@@ -59,12 +64,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!--        <?php //Code check here.
-                            $db = new PDO("mysql: host=localhost; dbname=BandDB", "root", "");
-                            $stmt = $db->prepare("select * from Musician");
-                            $stmt->execute();
-                            while($row=$stmt->fetch()){
-                        ?> -->
                 <tr th:each="musician : ${musicians}">
                     <td></td>
                     <td th:text="${musician.name}"></td>
@@ -77,9 +76,30 @@
                         <a th:href="@{'/profile/' + ${musician.email}}">Profile</a>
                     </td>
                 </tr>
-                <!-- <?php
-                        }
-                    ?> -->
+                </tbody>
+            </table>
+        </div> <!-- search-results -->
+        <div th:if="${userfilter}=='venuemanager'" class="search-result">
+            <table class="table-sortable" >
+                <thead>
+                <tr id="header">
+                    <th>Name</th>
+                    <th>
+                        Zip Code
+                    </th>
+                    <th>Profile</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="venumanager : ${venumanagers}">
+                    <td></td>
+                    <td th:text="${venumanager.name}"></td>
+                    <td th:text="$venumanager.location}"></td>
+                    <td><button class="invite-btn">Invite</button></td>
+                    <td>
+                        <a th:href="@{'/profile/' + ${venumanager.email}}">Profile</a>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div> <!-- search-results -->

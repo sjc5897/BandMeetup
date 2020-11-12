@@ -2,6 +2,7 @@ package com.bandmeetup.controller;
 
 import com.bandmeetup.services.SearchService;
 import com.bandmeetup.model.Musician;
+import com.bandmeetup.model.VenueManager;
 
 import java.util.List;
 
@@ -39,10 +40,15 @@ public class SearchController extends HttpServlet {
     }
 
     @RequestMapping(value = {"/search*"}, method=RequestMethod.POST)
-    public String requestMethodName(@RequestParam(name = "searchBar") String searchentry, @RequestParam(name = "searchfilter") String filter, Model model) {
-        List<Musician> musicians = searchService.search(searchentry, filter);
-        model.addAttribute("musicians", musicians);
-
+    public String requestMethodName(@RequestParam(name = "searchBar") String searchentry, @RequestParam(name = "searchfilter") String filter, @RequestParam(name = "usersearchfilter") String userfilter, Model model) {
+        if(userfilter.equals("musician")){
+            List<Musician> musicians = searchService.searchMusicians(searchentry, filter);
+            model.addAttribute("musicians", musicians);
+        }
+        else if(userfilter.equals("venuemanager")){
+            List<VenueManager> venueManagers = searchService.searchVenueManagers(searchentry, filter);
+            model.addAttribute("venumanagers", venueManagers);
+        }
         return "search";
     }
 }
