@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/search.css?<?php echo rand();?>}">
 </head>
 <body th:fragment="profile-right">
 
@@ -64,14 +65,26 @@
             </div>
             <div id="event" class="tab">
                 <h1 th:text="${Profile.getName() + '''s Events'}"></h1>
-                <p>
-                </p>
-            </div>
-
-
+                <table class="table-sortable" >
+                    <thead>
+                        <tr id="header">
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="event: ${events}">
+                            <td th:text="${event.getTitle()}"></td>
+                            <td th:text="${event.getDescription()}"></td>
+                            <td th:text="${event.getSimpleDate()}"></td>
+                            <td th:if="${session.email}== ${Profile.getEmail()}"><a th:href="@{/edit_event/}+${event.getID()}">edit?</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> <!-- search-results -->
         </div>
     </div>
-
 </div> <!-- .profile-right-side -->
 </body>
 </html>

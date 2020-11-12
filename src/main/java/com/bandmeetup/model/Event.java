@@ -1,4 +1,5 @@
 package com.bandmeetup.model;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Clock;
@@ -15,9 +16,14 @@ public class Event {
         this.ID = ID;
         Title = title;
         Description = description;
-        String str = new SimpleDateFormat("MM/dd/yyyy").format(date);
-        System.out.println(str);
-        this.date = new SimpleDateFormat("dd/mm/yyyy").parse(str);;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String formatstr = sdf.format(date);
+        System.out.println(formatstr);
+        sdf.applyPattern("dd/MM/yyyy");
+        this.date = sdf.parse(formatstr);
+        System.out.println(this.date.toString());
+
         this.venueManager = venueManager;
     }
 
@@ -49,8 +55,14 @@ public class Event {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public String getSimpleDate() {
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        return dateFormat.format(this.date);
+    }
+
+    public void setDate(Date date) throws ParseException {
+        String str = new SimpleDateFormat("MM/dd/yyyy").format(date);
+        this.date = new SimpleDateFormat("dd/mm/yyyy").parse(str);
     }
 
     public VenueManager getVenueManager() {

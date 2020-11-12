@@ -45,10 +45,10 @@ public class SearchController extends HttpServlet {
             List<Musician> musicians = searchService.searchMusicians(searchentry, filter);
             model.addAttribute("musicians", musicians);
         }
-        else if(userfilter.equals("venuemanager")){
-            List<VenueManager> venueManagers = searchService.searchVenueManagers(searchentry, filter);
-            model.addAttribute("venumanagers", venueManagers);
-        }
+//        else if(userfilter.equals("venuemanager")){
+//            List<VenueManager> venueManagers = searchService.searchVenueManagers(searchentry, filter);
+//            model.addAttribute("venumanagers", venueManagers);
+//        }
         return "search";
     }
 }

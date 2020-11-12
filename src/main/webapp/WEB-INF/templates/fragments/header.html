@@ -25,7 +25,7 @@
 
 <header th:if="${!session.isEmpty()}">
     <head>
-        <link  th:href="@{/css/header.css}" rel="stylesheet" media="all">
+        <link  th:href="@{/css/header.css?<?php echo rand();?>}" rel="stylesheet" media="all">
         <title></title>
     </head>
     <div class="nav-wrapper">
@@ -43,6 +43,13 @@
             <div class="nav-link-wrapper">
                 <a th:href="@{/search/}">Search Profiles</a>
             </div>
+
+            <div th:if="${session.role.equals('VenueManager')}" class="nav-link-wrapper">
+                <a th:href="@{/new_event/}">Create Event</a>
+            </div>
+
+
+
 
             <div class="nav-link-wrapper">
                 <a href="profile.html">INVITE</a>

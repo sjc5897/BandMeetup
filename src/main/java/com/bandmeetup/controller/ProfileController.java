@@ -1,5 +1,6 @@
 package com.bandmeetup.controller;
 
+import com.bandmeetup.model.Event;
 import com.bandmeetup.model.Musician;
 import com.bandmeetup.model.User;
 import com.bandmeetup.model.VenueManager;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -43,7 +46,9 @@ public class ProfileController extends HttpServlet {
         }
         else if(user.getUserType().equals("VenueManager")){
             VenueManager profile = service.getVenueManager(email);
+            List<Event> events = service .getEvents(email);
             model.addAttribute("Profile", profile);
+            model.addAttribute("events", events);
         }
     }
     /**
@@ -121,7 +126,7 @@ public class ProfileController extends HttpServlet {
      * @return
      */
     @RequestMapping(value="/profile/{email:.+}", method = RequestMethod.GET)
-    public String displayLoginPage(@PathVariable("email")String email,Model model, HttpServletRequest request) {
+    public String displayProfilePage(@PathVariable("email")String email,Model model, HttpServletRequest request) {
 
 
         try {
@@ -134,6 +139,8 @@ public class ProfileController extends HttpServlet {
 
 
         addProfile(email, model);
+
+
 
         if (model.getAttribute("Profile") == null) {
             return "redirect:/cerror/profile_not_found";
