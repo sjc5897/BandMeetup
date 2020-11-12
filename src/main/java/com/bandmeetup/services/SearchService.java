@@ -39,8 +39,19 @@ public class SearchService {
             musicians = musicianDao.findByInstruments(searchentry);
             return musicians;
         }
-
         return musicians;
+    }
+
+    public List<VenueManager> searchVenueManagers(String searchentry, String filter){
+        if(filter.equals("location")){
+            venueManagers = venueManagerDAO.findByLocation(searchentry);
+            return venueManagers;
+        }else if(filter.equals("name")){
+            venueManagers = venueManagerDAO.findByName(searchentry);
+            return venueManagers;
+        }
+        
+        return venueManagers;
     }
 }
 
