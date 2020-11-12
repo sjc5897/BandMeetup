@@ -47,7 +47,7 @@ public class SearchService {
         if(filter.equals("location")){
             venueManagers = venueManagerDAO.findByLocation(searchentry);
             return venueManagers;
-        }else if(filter.equals("genre")){
+        }else if(filter.equals("name")){
             venueManagers = venueManagerDAO.findByName(searchentry);
             return venueManagers;
         }

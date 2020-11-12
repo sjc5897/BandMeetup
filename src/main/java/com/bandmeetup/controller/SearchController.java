@@ -41,13 +41,17 @@ public class SearchController extends HttpServlet {
 
     @RequestMapping(value = {"/search*"}, method=RequestMethod.POST)
     public String requestMethodName(@RequestParam(name = "searchBar") String searchentry, @RequestParam(name = "searchfilter") String filter, @RequestParam(name = "usersearchfilter") String userfilter, Model model) {
+        filter = filter.replace("Select Filter","");
+        filter = filter.replace(",","");
         if(userfilter.equals("musician")){
             List<Musician> musicians = searchService.searchMusicians(searchentry, filter);
             model.addAttribute("musicians", musicians);
+            model.addAttribute("userfilter", userfilter);
         }
         else if(userfilter.equals("venuemanager")){
             List<VenueManager> venueManagers = searchService.searchVenueManagers(searchentry, filter);
             model.addAttribute("venumanagers", venueManagers);
+            model.addAttribute("userfilter", userfilter);
         }
         return "search";
     }

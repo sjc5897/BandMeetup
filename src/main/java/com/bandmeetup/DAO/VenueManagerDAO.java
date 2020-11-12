@@ -175,7 +175,7 @@ public class VenueManagerDAO implements Dao<VenueManager> {
         }
         return vm;
     }
-    public List<VenueManager> findByLocation(String location) throws SQLException {
+    public List<VenueManager> findByLocation(String location){
 
         // SQL Statement for prepared statement
         String sql = "select * from VenueManager where Location='"+location+"';";
@@ -207,7 +207,7 @@ public class VenueManagerDAO implements Dao<VenueManager> {
         }
         return vm;
     }
-    public List<VenueManager> findByName(String name) throws SQLException {
+    public List<VenueManager> findByName(String name){
 
         // SQL Statement for prepared statement
 
@@ -235,7 +235,6 @@ public class VenueManagerDAO implements Dao<VenueManager> {
             }
         }
         catch (SQLException ex){
-            System.out.print(ex);
             return vm;
         }
         return vm;
