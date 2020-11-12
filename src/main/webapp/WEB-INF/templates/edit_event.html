@@ -37,11 +37,16 @@
                         <i class="fas fa-user"></i>
                         <input name="date"  id="date" type="date" class="input" th:value="${event.getSimpleDate()}" placeholder="Date dd/mm/yyyy">
                     </div>
-                    <input class="btn" type="submit" value="Submit" onclick="confirm('Confirm Update?')"/>
-
+                    <div class="input-fields">
+                        <i class="fas fa-user"></i>
+                        <select id="action" name="action" required>
+                            <option class="opt" value="edit">Edit</option>
+                            <option class="opt" value="delete">Delete</option>
+                        </select>
+                    </div>
+                    <input class="btn" type="submit" value="Submit" onclick="confirm('Confirm Action?')"/>
                 </div>
             </form>
-            <button th:action="@{/delete_event/} + ${event.getID()}" th:method="POST" class="btn" onclick="confirm('Confirm Delete?')">Delete</button>
         </div>
     </div>
 </div>

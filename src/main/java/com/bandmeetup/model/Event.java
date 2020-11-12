@@ -19,10 +19,21 @@ public class Event {
 
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         String formatstr = sdf.format(date);
-        System.out.println(formatstr);
-        sdf.applyPattern("dd/MM/yyyy");
         this.date = sdf.parse(formatstr);
-        System.out.println(this.date.toString());
+
+        this.venueManager = venueManager;
+    }
+    public Event(Integer ID, String title, String description, String date, VenueManager venueManager) throws ParseException {
+        this.ID = ID;
+        Title = title;
+        Description = description;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = sdf.parse(date);
+
+        sdf.applyPattern("MM/dd/yyyy");
+        this.date = sdf.parse(sdf.format(date1));
+
 
         this.venueManager = venueManager;
     }
@@ -60,9 +71,12 @@ public class Event {
         return dateFormat.format(this.date);
     }
 
-    public void setDate(Date date) throws ParseException {
-        String str = new SimpleDateFormat("MM/dd/yyyy").format(date);
-        this.date = new SimpleDateFormat("dd/mm/yyyy").parse(str);
+    public void setDate(String date) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = sdf.parse(date);
+
+        sdf.applyPattern("MM/dd/yyyy");
+        this.date = sdf.parse(sdf.format(date1));
     }
 
     public VenueManager getVenueManager() {

@@ -120,7 +120,7 @@ public class EventDAO implements Dao<Event>{
 
     public Optional<Event> getById(Integer Id){
         VenueManagerDAO vm = new VenueManagerDAO();
-        SimpleDateFormat format = new SimpleDateFormat("mm/dd/yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
         String sql = "Select * from Event where ID=?;";
         try{
             Connection connection = ConnectDB.getConnection();

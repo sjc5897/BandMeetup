@@ -89,7 +89,7 @@ public class EventController {
     @RequestMapping(value="/edit_event/{id}", method = RequestMethod.POST)
     public String sumbitEventEdit(@PathVariable("id")Integer id, Model model, HttpServletRequest request,
                                   @RequestParam("title") String title, @RequestParam("desc") String desc,
-                                  @RequestParam("date") String Date){
+                                  @RequestParam("date") String Date,@RequestParam("action")String action){
 
         HttpSession session1 = request.getSession(false);
 
@@ -105,48 +105,22 @@ public class EventController {
         if(!uname.equals(e.getVenueManager().getEmail())){
             return "redirect:/cerror/access_denied";
         }
-        try {
-            e.setTitle(title);
-            e.setDescription(desc);
-            System.out.println(Date);
-            e.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(Date));
-            System.out.println(e.getDate());
-            service.update(e);
+        if(action.equals("delete")){
+            service.deleteEvent(e);
         }
-        catch (Exception ex){
-            model.addAttribute("error",true);
-            return "redirect:/edit_event/"+id;
-        }
-        return "redirect:/profile/" + uname;
-    }
-
-    @RequestMapping(value="/delete_event/{id}", method = RequestMethod.POST)
-    public String deleteEvent(@PathVariable("id")Integer id, Model model, HttpServletRequest request){
-        String uname;
-        String role;
-        try {
-            HttpSession session1 = request.getSession(false);
-
-            uname = (String) session1.getAttribute("email");
-            role = (String) session1.getAttribute("role");
-
-            if (!role.equals("VenueManager")) {
-                return "redirect:/cerror/access_denied";
+        else {
+            try {
+                e.setTitle(title);
+                e.setDescription(desc);
+                e.setDate(Date);
+                System.out.println(e.getDate());
+                service.update(e);
+            } catch (Exception ex) {
+                model.addAttribute("error", true);
+                return "redirect:/edit_event/" + id;
             }
         }
-        catch (Exception ex){
-            return "redirect:/login";
-        }
-
-        Event e = service.getEventById(id);
-
-        if(!uname.equals(e.getVenueManager().getEmail())){
-            return "redirect:/cerror/access_denied";
-        }
-
-        service.deleteEvent(e);
         return "redirect:/profile/" + uname;
-
     }
 
 }

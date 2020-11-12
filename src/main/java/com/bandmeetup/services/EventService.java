@@ -20,9 +20,7 @@ public class EventService {
 
     public boolean createEvent(String title, String desc, String date, String venue) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date d = sdf.parse(date);
-            eventDao.save(new Event(0,title, desc, d, venueManagerDao.get(venue).get()));
+            eventDao.save(new Event(0,title, desc, date, venueManagerDao.get(venue).get()));
             return true;
         } catch (Exception ex) {
             System.out.println(ex.getLocalizedMessage());
