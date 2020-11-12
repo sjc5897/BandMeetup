@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.bandmeetup.model.Musician;
 import com.bandmeetup.model.VenueManager;
 import org.springframework.stereotype.Component;
 
@@ -63,7 +64,7 @@ public class VenueManagerDAO implements Dao<VenueManager> {
              try{
                  // Try Query
                  ResultSet result = preparedStatement.executeQuery();
-                 if(result.next()){
+                 while(result.next()){
  
                      // If result create new user and return Optional with value of created user
                     VenuManagers.add( new VenueManager(result.getString("Email"),
@@ -141,6 +142,103 @@ public class VenueManagerDAO implements Dao<VenueManager> {
             ex.getSQLState();
         }
 
+    }
+
+    public VenueManager getVenueManager(String email) {
+        // Sql statement for prepared statement
+        String sql = "select * from VenueManager join User ON VenueManager.Email = User.Email WHERE VenueManager.Email='" + email + "';";
+        VenueManager vm = null;
+        try {
+            // Try and get connection
+            Connection connection = ConnectDB.getConnection();
+            // Setup prepared statement
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            try {
+                // Try executing statement
+                ResultSet result = preparedStatement.executeQuery();
+                if (result.next()) {
+                    // If result create new user and return Optional with value of created user
+                    vm = new VenueManager(result.getString("Email"),
+                            result.getString("Name"),
+                            result.getString("Password"),
+                            result.getString("UserType"),
+                            result.getString("Location"),
+                            result.getString("Description"));
+                    return vm;
+                }
+
+            } catch (SQLException ex) {
+                return vm;
+            }
+        } catch (SQLException ex) {
+            return vm;
+        }
+        return vm;
+    }
+    public List<VenueManager> findByLocation(String location) throws SQLException {
+
+        // SQL Statement for prepared statement
+        String sql = "select * from VenueManager where Location='"+location+"';";
+        ArrayList<VenueManager> vm = new ArrayList<VenueManager>();
+        try{
+            //Try connection and prepared statement setup
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            try{
+                // Try Query
+                ResultSet result = preparedStatement.executeQuery();
+                while(result.next()){
+
+                    // If result create new user and return Optional with value of created user
+                    vm.add( new VenueManager(result.getString("Email"),
+                            result.getString("Name"),
+                            result.getString("Location"),
+                            result.getString("Description")));
+                }
+            }
+            // Exceptions return empty arrays
+            catch (SQLException ex){
+                return vm;
+            }
+        }
+        catch (SQLException ex){
+            System.out.print(ex);
+            return vm;
+        }
+        return vm;
+    }
+    public List<VenueManager> findByName(String name) throws SQLException {
+
+        // SQL Statement for prepared statement
+
+        String sql = "select * from VenueManager where Name like'%"+name+"%';";
+        ArrayList<VenueManager> vm = new ArrayList<VenueManager>();
+        try{
+            //Try connection and prepared statement setup
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            try{
+                // Try Query
+                ResultSet result = preparedStatement.executeQuery();
+                while(result.next()){
+
+                    // If result create new user and return Optional with value of created user
+                    vm.add( new VenueManager(result.getString("Email"),
+                            result.getString("Name"),
+                            result.getString("Location"),
+                            result.getString("Description")));
+                }
+            }
+            // Exceptions return empty arrays
+            catch (SQLException ex){
+                return vm;
+            }
+        }
+        catch (SQLException ex){
+            System.out.print(ex);
+            return vm;
+        }
+        return vm;
     }
     
 }

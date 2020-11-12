@@ -5,6 +5,15 @@ public class VenueManager extends User{
     private String location;    //location of company
     private String description; //Brief description of company
 
+    public VenueManager(String email, String name, String location, String description) {
+        super(email);
+        this.name = name;
+        this.location = location;
+        this.description = description;
+    }
+
+
+
     public VenueManager(String email, String name, String pw, String userType, String location, String description){
         super(email, pw, userType);
         this.name = name;

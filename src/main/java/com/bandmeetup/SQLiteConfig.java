@@ -2,9 +2,15 @@ package com.bandmeetup;
 
 
 import com.bandmeetup.DAO.ConnectDB;
+import com.bandmeetup.DAO.EventDAO;
+import com.bandmeetup.DAO.VenueManagerDAO;
+import com.bandmeetup.model.Event;
 import com.bandmeetup.model.VenueManager;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class SQLiteConfig {
     static Connection conn = null;
@@ -85,10 +91,19 @@ public class SQLiteConfig {
 //        boolean Pass =loginAuth("s@s","123456");
 //        System.out.println(Pass);
 //        update("D@d");
-        save();
+//        VenueManagerDAO vmdao=new VenueManagerDAO();
+//        VenueManager vm= vmdao.getVenueManager("Sultan@rit.edu");
+//        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
+//        Date date = DATE_FORMAT.parse("10/19/2020");
+//        Event v=new Event(1, "Ceremony", "MIT Graduation party at Building 10", date, vm );
+//        String pass = save(v);
+        EventDAO event= new EventDAO();
+        List<Event> events = event.getAll();
+        for (Event element: events) {
+            System.out.println(element);
+        }
 
     }
-
 
     public static void update(String email) throws ClassNotFoundException {
 
@@ -104,7 +119,7 @@ public class SQLiteConfig {
         }
 
     }
-    public static void save() throws ClassNotFoundException {
+    public static void save1() throws ClassNotFoundException {
         VenueManager nenumanager =new VenueManager("email", "name", "pw","VenueManager", "location", "description");
 
         String sql = "INSERT INTO VenueManager(Email, Name, Location, Description) VALUES(?,?,?,?)";
@@ -123,6 +138,32 @@ public class SQLiteConfig {
         catch (SQLException ex){
 
         }
+
+    }
+
+
+    public static String save(Event event) {
+        String sql ="INSERT INTO Event(Title, Description, date, VenueManager) VALUES(?,?,?,?);";
+
+        String resp;
+        try{
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,event.getTitle());
+            preparedStatement.setString(2,event.getDescription());
+            System.out.println(event.getDate().toString());
+            String newstring = new SimpleDateFormat("MM/dd/yyyy").format(event.getDate());
+            System.out.println(newstring);
+            preparedStatement.setString(3,new SimpleDateFormat("MM/dd/yyyy").format(event.getDate()));
+            preparedStatement.setString(4,event.getVenueManager().getEmail());
+            preparedStatement.execute();
+            preparedStatement.closeOnCompletion();
+            resp = "Success";
+        }
+        catch (SQLException ex){
+            resp = "Error: Inserting a new event went wrong";
+        }
+        return resp;
 
     }
 
