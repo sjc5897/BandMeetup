@@ -98,8 +98,15 @@ public class MusicianDAO implements Dao<Musician> {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,musician.getEmail());
             String[] arrOfStr = musician.getName().split(" ", 2);
-            preparedStatement.setString(2,arrOfStr[0]);
-            preparedStatement.setString(3,arrOfStr[1]);
+            //This errors on one word names.
+            if(arrOfStr.length == 1){
+                preparedStatement.setString(2,arrOfStr[0]);
+                preparedStatement.setString(3,"");
+            }
+            else{
+                preparedStatement.setString(2,arrOfStr[0]);
+                preparedStatement.setString(3,arrOfStr[1]);
+            }
             preparedStatement.setString(4,musician.getGenre());
             preparedStatement.setString(5,String.valueOf(musician.getStatus()));
             preparedStatement.setString(6,musician.getInstruments());

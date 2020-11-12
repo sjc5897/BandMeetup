@@ -15,7 +15,7 @@
         </div>
         <div class="input-fields">
             <i class="fas fa-user"></i>
-            <input th:value="${Profile.getBio()}"  class="input" type="text" id="bio" name="bio" placeholder="Bio">
+            <textarea th:value="${Profile.getBio()}"  class="input" type="text" id="bio" name="bio" placeholder="Bio" maxlength="255"></textarea>
         </div>
         <div class="input-fields">
             <select class="input" id="status" name="status" required>
@@ -29,7 +29,7 @@
     <div th:fragment="edit_manager">
         <div class="input-fields">
             <i class="fas fa-user"></i>
-            <input th:value="${Profile.getDescription()}" class="input" type="text" id="desc" name="desc" placeholder="Description">
+            <textarea th:value="${Profile.getDescription()}" class="input" type="text" id="desc" name="desc" placeholder="Description" maxlength="255"></textarea>
         </div>
     </div>
 </body>

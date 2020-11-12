@@ -25,33 +25,35 @@ public class SearchService {
     private List<VenueManager> venueManagers;
 
 
-    public List<Musician> searchMusicians(String searchentry, String filter){
-        if(filter.equals("status")){
+    public List<Musician> searchMusicians(String searchentry, String filter) {
+        if (filter.equals("status")) {
             musicians = musicianDao.findByStatus(searchentry);
             return musicians;
-        }else if(filter.equals("location")){
+        } else if (filter.equals("location")) {
             musicians = musicianDao.findByLocation(searchentry);
             return musicians;
-        }else if(filter.equals("genre")){
+        } else if (filter.equals("genre")) {
             musicians = musicianDao.findByGenre(searchentry);
             return musicians;
-        }else if(filter.equals("instruments")){
+        } else if (filter.equals("instruments")) {
             musicians = musicianDao.findByInstruments(searchentry);
             return musicians;
         }
-        
+
         return musicians;
     }
-
-    public List<VenueManager> searchVenueManagers(String searchentry, String filter){
-        if(filter.equals("location")){
-            venueManagers = venueManagerDAO.findByLocation(searchentry);
-            return venueManagers;
-        }else if(filter.equals("genre")){
-            venueManagers = venueManagerDAO.findByName(searchentry);
-            return venueManagers;
-        }
-        
-        return venueManagers;
-    }
 }
+
+//
+//    public List<VenueManager> searchVenueManagers(String searchentry, String filter){
+//        if(filter.equals("location")){
+//            venueManagers = venueManagerDAO.findByLocation(searchentry);
+//            return venueManagers;
+//        }else if(filter.equals("genre")){
+//            venueManagers = venueManagerDAO.findByName(searchentry);
+//            return venueManagers;
+//        }
+//
+//        return venueManagers;
+//    }
+//}

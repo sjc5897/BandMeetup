@@ -1,4 +1,5 @@
 package com.bandmeetup.model;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Clock;
@@ -15,9 +16,25 @@ public class Event {
         this.ID = ID;
         Title = title;
         Description = description;
-        String str = new SimpleDateFormat("MM/dd/yyyy").format(date);
-        System.out.println(str);
-        this.date = new SimpleDateFormat("dd/mm/yyyy").parse(str);;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String formatstr = sdf.format(date);
+        this.date = sdf.parse(formatstr);
+
+        this.venueManager = venueManager;
+    }
+    public Event(Integer ID, String title, String description, String date, VenueManager venueManager) throws ParseException {
+        this.ID = ID;
+        Title = title;
+        Description = description;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = sdf.parse(date);
+
+        sdf.applyPattern("MM/dd/yyyy");
+        this.date = sdf.parse(sdf.format(date1));
+
+
         this.venueManager = venueManager;
     }
 
@@ -49,8 +66,17 @@ public class Event {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public String getSimpleDate() {
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        return dateFormat.format(this.date);
+    }
+
+    public void setDate(String date) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = sdf.parse(date);
+
+        sdf.applyPattern("MM/dd/yyyy");
+        this.date = sdf.parse(sdf.format(date1));
     }
 
     public VenueManager getVenueManager() {

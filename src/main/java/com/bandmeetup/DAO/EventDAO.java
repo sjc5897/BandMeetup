@@ -80,14 +80,15 @@ public class EventDAO implements Dao<Event>{
     @Override
     public boolean update(Event event) {
 
-        String sql = "update Event set"+
-                "',Title='"+event.getTitle()+
-                "',Description='"+event.getDescription()+
-                "',date='"+event.getDate().toString()+
-                "where VenueManager='"+event.getVenueManager().getEmail()+"';";
+
+        String sql = "UPDATE  Event SET Title=?,Description=?,Date=? where ID=?;";
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,event.getTitle());
+            preparedStatement.setString(2,event.getDescription());
+            preparedStatement.setString(3,event.getSimpleDate());
+            preparedStatement.setInt(4,event.getID());
             preparedStatement.execute();
             preparedStatement.closeOnCompletion();
             return true;
@@ -103,11 +104,12 @@ public class EventDAO implements Dao<Event>{
     @Override
     public void delete(Event event) {
 
-        String sql = "DELETE FROM Event where ID='"+event.getID()+"';";
+        String sql = "DELETE FROM Event WHERE ID=?;";
         try{
             Connection connection = ConnectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.executeQuery();
+            preparedStatement.setInt(1,event.getID());
+            preparedStatement.execute();
             preparedStatement.closeOnCompletion();
         }
         catch (SQLException ex){
@@ -116,6 +118,30 @@ public class EventDAO implements Dao<Event>{
     }
     @Override
     public Optional<Event> get(String email){ return Optional.empty(); }
+
+    public Optional<Event> getById(Integer Id){
+        VenueManagerDAO vm = new VenueManagerDAO();
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        String sql = "Select * from Event where ID=?;";
+        try{
+            Connection connection = ConnectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,Id.toString());
+            ResultSet res = preparedStatement.executeQuery();
+            if(res.next()){
+                 Event e = new Event(res.getInt("ID"),
+                            res.getString("Title"),
+                            res.getString("Description"),
+                            format.parse(res.getString("date")),
+                            vm.getVenueManager(res.getString("VenueManager")));
+                 return Optional.of(e);
+            }
+        }catch (Exception ex){
+            return Optional.empty();
+        }
+        return Optional.empty();
+
+    }
 
     public List<Event> getEvents(String email) {
         VenueManagerDAO vm = new VenueManagerDAO();
