@@ -65,7 +65,7 @@
             </div>
             <div id="event" class="tab">
                 <h1 th:text="${Profile.getName() + '''s Events'}"></h1>
-                <table class="table-sortable" >
+                <table class="table-sortable" cellspacing="10px">
                     <thead>
                         <tr id="header">
                                 <th>Title</th>
@@ -78,7 +78,7 @@
                             <td th:text="${event.getTitle()}"></td>
                             <td th:text="${event.getDescription()}"></td>
                             <td th:text="${event.getSimpleDate()}"></td>
-                            <td th:if="${session.email}== ${Profile.getEmail()}"><a th:href="@{/edit_event/}+${event.getID()}">edit?</a></td>
+                            <td class="btn-td" th:if="${session.email}== ${Profile.getEmail()}"><a class="edit-link" th:href="@{/edit_event/}+${event.getID()}">edit</a></td>
                         </tr>
                     </tbody>
                 </table>
