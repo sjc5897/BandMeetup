@@ -9,6 +9,8 @@
 
     <script th:src="@{/javascript/jquery.js}"></script>
     <script th:src="@{/javascript/ddtf.js}"></script>
+    <script type="text/javascript" th:src="@{/javascript/usersearchselection.js}"></script>
+
 
 </head>
 <header>
@@ -21,18 +23,22 @@
         <div class="search-bar">
             <form th:action="@{/search}">
             <input type="text" name="searchBar" id="searchBar" class="search-field user" placeholder="Search your BandMate here. . . . " th:value="${keyword}" required>
-            <select name = usersearchfilter class="filter" th:value="*{userfilter}" id="filter-options">
+            <select onchange="change(this)" name = "usersearchfilter" class="filter" th:value="*{userfilter}" id="filter-options">
                 <option >Select Filter</option>
                 <option th:value="'musician'">Musician</option>
                 <option th:value="'venuemanager'">Venuemanager</option>
             </select>
-            <select name = searchfilter class="filter" th:value="*{searchfilter}" id="filter-options">
+            <select name = "searchfilter" class="filter" th:value="*{searchfilter}" id="musicfilter-options" style="display: none;" required>
                 <option >Select Filter</option>
-                <option th:value="'musician'">Musician</option>
-                <option th:value="'venue'">Venue Manager</option>
+                <option th:value="'Status'">Status</option>
                 <option th:value="'instrument'">Instrument</option>
                 <option th:value="'genre'">Genre</option>
                 <option th:value="'location'">Zip Code</option>
+            </select>
+            <select name = "searchfilter" class="filter" th:value="*{searchfilter}" id="venuefilter-options" style="display: none;" required>
+                <option >Select Filter</option>
+                <option th:value="'location'">Zip Code</option>
+                <option th:value="'name'">Name</option>
             </select>
             <!-- <input type="text" name="location-filter" class="search-field location" placeholder="Location"> -->
 
@@ -85,15 +91,15 @@
                     <th>
                         Zip Code
                     </th>
+                    <th>Description</th>
                     <th>Profile</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="venumanager : ${venumanagers}">
-                    <td></td>
                     <td th:text="${venumanager.name}"></td>
-                    <td th:text="$venumanager.location}"></td>
-                    <td><button class="invite-btn">Invite</button></td>
+                    <td th:text="${venumanager.location}"></td>
+                    <td th:text="${venumanager.description}"></td>
                     <td>
                         <a th:href="@{'/profile/' + ${venumanager.email}}">Profile</a>
                     </td>
@@ -110,6 +116,25 @@
 <footer >
     <div th:include="fragments/footer :: footer"> </div>
 </footer>
+<script>
 
+function change(obj) {
+
+
+    var selectBox = obj;
+    var selected = selectBox.options[selectBox.selectedIndex].value;
+    var musician = document.getElementById("musicfilter-options");
+    var venue = document.getElementById("venuefilter-options");
+
+    if(selected === 'musician'){
+        musician.style.display = "block";
+        venue.style.display = "none"
+    }
+    else if(selected === 'venuemanager'){
+        venue.style.display = "block";
+        musician.style.display = "none";
+    }
+}
+</script>
 </body>
 </html>
