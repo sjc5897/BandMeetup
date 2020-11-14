@@ -2,8 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/forms.css}" rel="stylesheet"/>
 </head>
 <body>
+<div class="container">
     <div th:fragment="edit_muse">
         <div class="input-fields">
             <i class="fas fa-user"></i>
@@ -28,9 +30,10 @@
     </div>
     <div th:fragment="edit_manager">
         <div class="input-fields">
-            <i class="fas fa-user"></i>
+            <i class="fas fa-arrow-right"></i>
             <textarea th:value="${Profile.getDescription()}" class="input" type="text" id="desc" name="desc" placeholder="Description" maxlength="255"></textarea>
         </div>
     </div>
+</div>
 </body>
 </html>

@@ -2,7 +2,8 @@
 <head>
     <title>Bandmeetup Wow: Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/forms.css?<?php echo rand();?>}" rel="stylesheet"/>
+    <!-- ?<?php echo rand();?> -->
+    <link th:href="@{/css/forms.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <style>
@@ -28,7 +29,7 @@
                         </div>
 
                         <div class="input-fields">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-globe"></i>
                             <input name="zipcode"  id="zipcode" type="text" class="input" th:value="${Profile.getLocation()}" placeholder="Zip Code" minlength="5" maxlength="5">
                         </div>
 
@@ -38,7 +39,7 @@
                         <div th:if="${Profile.getUserType()}=='VenueManager'" th:include="fragments/edit_form :: edit_manager">
                         </div>
 
-                        <input class="btn" type="submit" value="Submit"/>
+                        <div class="new-btn"><input id="submit" type="submit" name="Login" value="Update"></div>
                     </div>
                 </form>
             </div>
