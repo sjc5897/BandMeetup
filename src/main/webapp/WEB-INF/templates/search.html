@@ -3,8 +3,8 @@
 <head>
     <title>Bandmeetup Wow</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" th:href="@{/css/search.css?<?php echo rand();?>}">
-    <link th:href="@{/css/forms.css?<?php echo rand();?>}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/search.css}">
+    <link th:href="@{/css/forms.css}" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{https://pro.fontawesome.com/releases/v5.10.0/css/all.css}"/>
 
     <script th:src="@{/javascript/jquery.js}"></script>
@@ -17,8 +17,6 @@
 <body>
 <div class="container">
     <form method="post" action="/search">
-
-
     <div class="search-wrapper">
         <div class="search-bar">
             <form th:action="@{/search}">

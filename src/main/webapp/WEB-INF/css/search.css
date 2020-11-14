@@ -52,16 +52,15 @@ tr:hover{
 }
 
 
-
 /* SEARCH FIELD */
 .search-bar{
     position: absolute;
-    width: 43%;
+    width: 54%;
     left: 22%;
-    top: 0%;
+    top: 10%;
     background-color: black;
     padding: 10px;
-    padding-top: 20px;
+    padding-top: 25px;
     align-items: center;
     z-index: 1;
 }
@@ -108,7 +107,6 @@ tr:hover{
 .search-field:active{
     color: rebeccapurple;
 }
-
 
 .invite-btn{
     border:0;
