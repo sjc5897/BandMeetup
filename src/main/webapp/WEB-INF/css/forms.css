@@ -12,7 +12,7 @@ body{
 
 .container-reg{
     z-index: 1;
-    min-height:70vh; /* will cover the 100% of viewport */
+    min-height:80vh; /* will cover the 100% of viewport */
     overflow: hidden;
     display: block;
     position: relative;
