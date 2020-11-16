@@ -30,7 +30,7 @@
 
                     <div class="input-fields">
                         <i class="fas fa-user"></i>
-                        <input name="desc"  id="desc" type="text" class="input" th:value="${event.getDescription()}" placeholder="Description">
+                        <textarea name="desc"  id="desc" type="text" class="input" th:text="${event.getDescription()}" placeholder="Description"></textarea>
                     </div>
 
                     <div class="input-fields">
