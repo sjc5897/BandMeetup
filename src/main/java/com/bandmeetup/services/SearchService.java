@@ -35,7 +35,7 @@ public class SearchService {
         } else if (filter.equals("genre")) {
             musicians = musicianDao.findByGenre(searchentry);
             return musicians;
-        } else if (filter.equals("instruments")) {
+        } else if (filter.equals("instrument")) {
             musicians = musicianDao.findByInstruments(searchentry);
             return musicians;
         }
