@@ -2,7 +2,7 @@
 <head>
     <title>Bandmeetup Wow: Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/forms.css?<?php echo rand();?>}" rel="stylesheet"/>
+    <link th:href="@{/css/forms.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <style>
@@ -12,31 +12,31 @@
     <div th:include="fragments/header :: header"> </div>
 </header>
 <body>
-<div class="container" id="container-reg">
-    <div class="reg-wrapper" id="regWrapper">
-        <div class="reg-form" id="regForm">
+<div class="container-reg" id="container">
+    <div class="new-wrapper" id="newWrapper">
+        <div class="new-form" id="newForm">
 
             <div class="title-section">
                 <h2>New Event</h2>
             </div>
             <form method="POST" th:action="@{/new_event/}">
-                <div class="reg-section" id="reg_sec">
+                <div class="new-section" id="new_sec">
                     <div class="input-fields">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-arrow-right"></i>
                         <input name="title"  id="title" type="text" class="input" placeholder="Title">
                     </div>
 
                     <div class="input-fields">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-arrow-right"></i>
                         <input name="desc"  id="desc" type="text" class="input" placeholder="Description">
                     </div>
 
                     <div class="input-fields">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-arrow-right"></i>
                         <input name="date"  id="date" type="date" class="input" placeholder="Date dd/mm/yyyy">
                     </div>
 
-                    <input class="btn" type="submit" value="Submit"/>
+                    <div class="new-btn"><input id="submit" type="submit" name="Login" value="Create"></div>
                 </div>
             </form>
         </div>

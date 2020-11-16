@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/profile.css?<?php echo rand();?>}" rel="stylesheet"/>
 </head>
 <body>
     <div th:fragment="profile-header">
@@ -19,7 +20,7 @@
         </div> <!-- .profile-nav-info -->
         <div th:if="${session.email}== ${Profile.getEmail()}"  class="profile-option">
             <div class="notification">
-              <a style="color:white;text-decoration: none;" th:href="@{/edit/} + ${Profile.getEmail()}" class="fas fa-wrench"> </a>
+              <a style="color:white;text-decoration: none; ::hover:color:black;" th:href="@{/edit/} + ${Profile.getEmail()}" class="fas fa-wrench"> </a>
             </div><!-- .notification -->
         </div> <!-- .profile-option -->
     </div> <!-- .profile-header -->

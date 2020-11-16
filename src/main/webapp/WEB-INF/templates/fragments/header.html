@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en" th:fragment="header">
 <header th:if="${session.isEmpty()}">
     <head>
-        <link  th:href="@{/css/header.css?<?php echo rand();?>}" rel="stylesheet" media="all">
+        <link  th:href="@{/css/header.css}" rel="stylesheet">
         <title></title>
     </head>
         <div class="nav-wrapper">
@@ -50,7 +50,7 @@
 
 
 
-
+            <!--
             <div class="nav-link-wrapper">
                 <a href="profile.html">INVITE</a>
             </div>
@@ -58,7 +58,7 @@
             <div class="nav-link-wrapper">
                 <a href="personal.html">CHAT</a>
             </div>
-            <!-- <div class="nav-link-wrapper">
+             <div class="nav-link-wrapper">
                  <a href="index.html">SIGN UP</a>
              </div> -->
             <div class="nav-link-wrapper">
