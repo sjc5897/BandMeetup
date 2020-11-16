@@ -270,7 +270,7 @@ public class MusicianDAO implements Dao<Musician> {
     public List<Musician> findByInstruments(String instrument) {
 
         // SQL Statement for prepared statement
-        String sql = "select * from Musician where Genre='"+instrument+"';";
+        String sql = "select * from Musician where Instruments='"+instrument+"';";
         ArrayList<Musician> Musicians = new ArrayList<Musician>();
         try{
             //Try connection and prepared statement setup
@@ -293,10 +293,12 @@ public class MusicianDAO implements Dao<Musician> {
             }
             // Exceptions return empty arrays
             catch (SQLException ex){
+                System.out.print(ex.getCause());
                 return Musicians;
             }
         }
         catch (SQLException ex){
+            System.out.print(ex.getCause());
             return Musicians;
         }
         return Musicians;
