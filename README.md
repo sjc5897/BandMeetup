@@ -3,13 +3,13 @@ Band Meetup is a web application that allows users to connect with other users w
 
 # How to Run it?
 
-Clone the project\
+-> Clone the project\
 `git Clone git@github.com:sjc5897/BandMeetup.git`
 
 
-Run\
+-> Run\
 `BandmeetupApplication.java`
 
 
-Check http://localhost:8080/ 
+Check http://localhost:8080/ \
 You can create your own profile.
