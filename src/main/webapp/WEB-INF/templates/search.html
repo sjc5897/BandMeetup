@@ -55,7 +55,6 @@
             <table class="table-sortable" >
                 <thead>
                 <tr id="header">
-                    <th>Profile</th>
                     <th>Name</th>
                     <th>Status</th>
                     <th>Instrument</th>
@@ -63,21 +62,18 @@
                     <th>
                         Zip Code
                     </th>
-                    <th>Invite</th>
                     <th>Profile</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="musician : ${musicians}">
-                    <td></td>
                     <td th:text="${musician.name}"></td>
                     <td th:text="${musician.status}"></td>
                     <td th:text="${musician.instruments}"></td>
                     <td th:text="${musician.genre}"></td>
                     <td th:text="${musician.location}"></td>
-                    <td><button class="invite-btn">Invite</button></td>
                     <td>
-                        <a th:href="@{'/profile/' + ${musician.email}}">Profile</a>
+                        <a th:href="@{'/profile/' + ${musician.email}}">View Profile</a>
                     </td>
                 </tr>
                 </tbody>
