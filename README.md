@@ -29,6 +29,7 @@ Run BandmeetupApplication as main
 
 >Via Command Line:\
 Run the run.bat file\
+NOTE: the above Enviromental Variable configuration must be done for the run.bat to work as well
 
 
 Check http://localhost:8080/ \
